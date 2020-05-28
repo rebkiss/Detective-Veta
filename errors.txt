@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 57: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "Goodbye"
+             ^
+
+Ren'Py Version: Ren'Py 7.3.5.606
+Thu May 28 12:53:20 2020
