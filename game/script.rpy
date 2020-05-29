@@ -58,6 +58,9 @@ label start:
             #back
             hotspot (1704, 891, 167, 149) action Hide("bag", transition = dissolve)
 
+    
+
+
     label maplow:
 
         scene mapconcept
@@ -99,6 +102,12 @@ label start:
             #bag
             hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
 
+            #shade
+            hotspot (635, 19, 824, 429) action Jump("shade")
+
+            #pottery
+            hotspot (27, 507, 1584, 557) action Jump("pottery")
+
     label hotellow:
 
         scene hotelbuttons
@@ -116,6 +125,22 @@ label start:
             #bag
             hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
 
+            #bed
+            hotspot (20, 608, 1076, 390) action Jump("bed")
+
+            #view
+            hotspot (1225, 335, 310, 159) action Jump("view")
+
+            #chairs
+            hotspot (1216, 575, 330, 90) action Jump("chairs")
+
+            #flower
+            hotspot (1601, 379, 273, 524) action Jump("flower")
+
+
+
+
+
 
 
 
@@ -132,6 +157,37 @@ label start:
         v "These clouds aren't helping with the heat."
         call screen oasis
 
+    label shade:
+        scene marketconcept
+        v "The canopy doesn't seem to do much with providing shade from the sun."
+        call screen market
 
+    label pottery:
+        scene marketconcept
+        v "A lot of the pottery here looks interesting.
+        Too bad most are buried in sand."
+        call screen market
+
+    label bed:
+        scene hotelconcept
+        v "The bed is so soft. I'll sleep good tonight."
+        call screen hotel
+
+    label view:
+        scene hotelconcept
+        v "Sand. So much sand.
+        I want to roll down one of the dunes."
+        call screen hotel
+
+    label chairs:
+        scene hotelconcept
+        v "These chairs are comfy. 
+        Maybe I'll sleep under the stars sometime this week."
+        call screen hotel
+
+    label flower:
+        scene hotelconcept
+        v "I think these are lilies. My knowledge of flowers is a bit rusty."
+        call screen hotel
 
     return

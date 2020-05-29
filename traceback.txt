@@ -1,34 +1,44 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 13, in script call
+  File "game/script.rpy", line 155, in script call
     call screen oasis
   File "game/script.rpy", line 65, in script call
     call screen map
-  File "game/script.rpy", line 106, in script call
+  File "game/script.rpy", line 166, in script call
+    call screen market
+  File "game/script.rpy", line 65, in script call
+    call screen map
+  File "game/script.rpy", line 171, in script
     call screen hotel
-  File "game/script.rpy", line 61, in script
-    label maplow:
-Exception: Arguments supplied, but parameter list not present
+ScriptError: could not find label 'flower'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 13, in script call
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/bootstrap.py", line 316, in bootstrap
+    renpy.main.main()
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/main.py", line 578, in main
+    run(restart)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/main.py", line 143, in run
+    renpy.execution.run_context(True)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/execution.py", line 908, in run_context
+    context.run()
+  File "game/script.rpy", line 155, in script call
     call screen oasis
   File "game/script.rpy", line 65, in script call
     call screen map
-  File "game/script.rpy", line 106, in script call
+  File "game/script.rpy", line 166, in script call
+    call screen market
+  File "game/script.rpy", line 65, in script call
+    call screen map
+  File "game/script.rpy", line 171, in script
     call screen hotel
-  File "game/script.rpy", line 61, in script
-    label maplow:
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 855, in execute
-    values = apply_arguments(self.parameters, renpy.store._args, renpy.store._kwargs)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 154, in apply_arguments
-    raise Exception("Arguments supplied, but parameter list not present")
-Exception: Arguments supplied, but parameter list not present
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/script.py", line 898, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'flower'.
 
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
 Detective Veta 1.0
-Fri May 29 12:34:50 2020
+Fri May 29 15:10:55 2020
