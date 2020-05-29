@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 74: imagemap expects a non-empty block.
-    imagemap:
-             ^
+File "game/script.rpy", line 31: u'call' is not a keyword argument or valid child for the hotspot statement.
+    hotspot (1793, 939, 112, 102) action call("map", transition = dissolve)
+                                             ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Thu May 28 19:05:56 2020
+Fri May 29 12:02:00 2020

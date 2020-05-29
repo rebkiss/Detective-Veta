@@ -6,7 +6,12 @@ define dude = Character("dude")
 
 label start:
 
-    call screen oasis
+    label oasislow:
+
+        scene oasisbuttons
+
+        call screen oasis
+
     screen oasis():
 
         imagemap:
@@ -26,7 +31,7 @@ label start:
             hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
 
             #map
-            hotspot (1793, 939, 112, 102) action
+            hotspot (1793, 939, 112, 102) action Call("maplow")
                 
         
 
@@ -53,6 +58,66 @@ label start:
             #back
             hotspot (1704, 891, 167, 149) action Hide("bag", transition = dissolve)
 
+    label maplow:
+
+        scene mapconcept
+
+        call screen map
+
+    screen map():
+        imagemap:
+
+            idle "MapConcept.jpg"
+
+            #oasis
+            hotspot (714, 298, 488, 390) action Call("oasislow") 
+            
+            #hotel
+            hotspot (479, 203, 212, 294) action Call("hotellow") 
+            
+            #market
+            hotspot (1291, 236, 171, 232) action Call("marketlow")
+            
+            #back
+            hotspot (1706, 925, 140, 119) action Hide("map", transition = dissolve)
+
+
+    label marketlow:
+
+        scene marketbuttons
+
+        call screen market
+
+    screen market():
+        imagemap:
+
+            idle "marketbuttons.jpg"
+
+            #map
+            hotspot (1795, 939, 110, 99) action Call("maplow")
+
+            #bag
+            hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
+
+    label hotellow:
+
+        scene hotelbuttons
+
+        call screen hotel
+
+    screen hotel():
+        imagemap:
+
+            idle "hotelbuttons.jpg"
+
+            #map
+            hotspot (1793, 939, 112, 102) action Call("maplow")
+
+            #bag
+            hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
+
+
+
 
     label water:
         scene oasisconcept 
@@ -66,6 +131,7 @@ label start:
         scene oasisconcept
         v "These clouds aren't helping with the heat."
         call screen oasis
+
 
 
     return
