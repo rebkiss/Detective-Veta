@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 31: u'call' is not a keyword argument or valid child for the hotspot statement.
-    hotspot (1793, 939, 112, 102) action call("map", transition = dissolve)
-                                             ^
+File "game/script.rpy", line 42: u'modal' is not a keyword argument or valid child for the imagemap statement.
+    modal True
+         ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Fri May 29 12:02:00 2020
+Sat May 30 12:23:30 2020

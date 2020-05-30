@@ -32,34 +32,162 @@ label start:
 
             #map
             hotspot (1793, 939, 112, 102) action Call("maplow")
-                
-        
+
 
     screen bag():
+
+        modal True
+        
         imagemap:
 
-            idle "MenuImage.jpg"
+            idle "menuconcept.jpg"
 
             #journal
-            hotspot (340, 155, 337, 352) 
+            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("journaltwo"), Hide("profile"), Hide("mystery"), Hide("itemone"), Hide("itemtwo")]
             
             #profiles
-            hotspot (839, 157, 337, 350)
+            hotspot (17, 428, 337, 127) action [Hide("journalone"), Hide("journaltwo"), Show("profile"), Hide("mystery"), Hide("itemone"), Hide("itemtwo")]
 
             #mysteries
-            hotspot (1351, 158, 336, 349)
+            hotspot (18, 582, 336, 130) action [Hide("journalone"), Hide("journaltwo"), Hide("profile"), Show("mystery"), Hide("itemone"), Hide("itemtwo")]
 
             #items
-            hotspot (579, 601, 335, 351)
-
-            #save
-            hotspot (1109, 602, 337, 349)
+            hotspot (18, 737, 335, 129) action [Hide("journalone"), Hide("journaltwo"), Hide("profile"), Hide("mystery"), Show("itemone"), Hide("itemtwo")]
 
             #back
-            hotspot (1704, 891, 167, 149) action Hide("bag", transition = dissolve)
+            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("journalone"), Hide("journaltwo"), Hide("profile"), Hide("mystery"), Hide("itemone"), Hide("itemtwo")]
 
-    
+    screen journalone():
+        imagemap:
 
+            idle "journaloneconcept.png"
+
+            #right arrow
+            hotspot (937, 870, 53, 45) action [Show("journaltwo"), Hide("journalone")]
+
+            #journal
+            hotspot (17, 273, 338, 128) action [Hide("journalone"), Show("journalone")]
+            
+            #profiles
+            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("journalone")]
+
+            #mysteries
+            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("journalone")]
+
+            #items
+            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("journalone")]
+
+            #back
+            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("journalone")]
+
+    screen journaltwo():
+        imagemap:
+
+            idle "journaltwoconcept.png"
+            
+            #left arrow
+            hotspot (627, 870, 47, 48) action [Show("journalone"), Hide("journaltwo")]
+
+            #journal
+            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("journaltwo")]
+            
+            #profiles
+            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("journaltwo")]
+
+            #mysteries
+            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("journaltwo")]
+
+            #items
+            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("journaltwo")]
+
+            #back
+            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("journaltwo")]
+
+    screen profile():
+        imagemap:
+
+            idle "profileconcept.png"
+
+            #journal
+            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("profile")]
+            
+            #profiles
+            hotspot (17, 428, 337, 127) action [Hide("profile"), Show("profile")]
+
+            #mysteries
+            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("profile")]
+
+            #items
+            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("profile")]
+
+            #back
+            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("profile")]
+
+    screen mystery():
+        imagemap:
+
+            idle "mysteryconcept.png"
+
+            #journal
+            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("mystery")]
+            
+            #profiles
+            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("mystery")]
+
+            #mysteries
+            hotspot (18, 582, 336, 130) action [Hide("mystery"), Show("mystery")]
+
+            #items
+            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("mystery")]
+
+            #back
+            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("mystery")]
+
+    screen itemone():
+        imagemap:
+
+            idle "itemoneconcept.png"
+
+            #right arrow
+            hotspot (937, 869, 56, 52) action [Show("itemtwo"), Hide("itemone")]
+
+            #journal
+            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("itemone")]
+            
+            #profiles
+            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("itemone")]
+
+            #mysteries
+            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("itemone")]
+
+            #items
+            hotspot (18, 737, 335, 129) action [Hide("itemone"), Show("itemone")]
+
+            #back
+            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("itemone")]
+
+    screen itemtwo():
+        imagemap:
+
+            idle "itemtwoconcept.png"
+
+            #left arrow
+            hotspot (622, 869, 51, 49) action [Show("itemone"), Hide("itemtwo")]
+
+            #journal
+            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("itemtwo")]
+            
+            #profiles
+            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("itemtwo")]
+
+            #mysteries
+            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("itemtwo")]
+
+            #items
+            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("itemtwo")]
+
+            #back
+            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("itemtwo")]
 
     label maplow:
 
