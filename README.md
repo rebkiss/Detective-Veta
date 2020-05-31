@@ -1,1 +1,1 @@
-A rogue detective searches for a missing boy in a small village
+A couple of students search for their teacher's murderer to prove their friend's innocence.
