@@ -4,11 +4,100 @@ image dude = Placeholder("boy")
 define dude = Character("dude")
 
 
+default backpack = Container()
+
+$ paperone = Item('paper')
+
+$ inventory = Item('Student ID') ### example
+
+init python:
+
+    #inventory stuff
+    class Item(object):
+        def __init__(self, name):
+            self.name = name
+
+    class InvItem(object):
+        def __init__(self, item):
+            self.item = item
+
+    class Container(object):
+        def __init__(self):
+            self.inventory = []
+
+        def add_item(self, item, amount=1):
+            self.inventory.append(InvItem(item))
+
+        def has_item(self, item, amount=1):
+            if item in [i.item for i in self.inventory]:
+                if self.finditem(item).amount >= amount:
+                    return(self.finditem(item).amount)
+                else:
+                    return(False)
+            else:
+                return(False)
+            
+        def find_item(self, item):
+            return(self.inventory[[i.item for i in self.inventory].index(item)])
+
+        def remove_item(self, item, amount=1):
+            if self.has_item(item):
+                self.finditem(item).amount -= amount
+                if self.finditem(item).amount <= 0:
+                    self.inventory.pop(self.inventory.index(self.finditem(item)))
+                    return('gone')
+                else:
+                    return('more left')
+            else:
+                return('not found')
+
+
+
+ ## Attempt to make a party system so investigation varies depending on party members
+    class Person(object):
+        def __init__(self, name):
+            self.name = name
+
+    class Group(object):
+        def __init__(self, member):
+            self.member = member
+    
+    class Party(object):
+        def __init__(self, party):
+            self.party = []
+
+        def add_member(self, member, amount=1):
+            self.party.append(Party(name, member))
+
+        def has_member(self, member, amount=1):
+            if member in [i.member for i in self.party]:
+                if self.findmember(member).amount >= amount:
+                    return(self.findmember(member).amount)
+                else:
+                    return(False)
+            else:
+                return(False)
+       
+        def find_member(self, member):
+            return(self.party[[i.member for i in self.party].index(member)])
+
+        def remove_member(self, member, amount=1):
+            if self.has_member(member):
+                self.findmember(member).amount -= amount
+                if self.findmember(member).amount <= 0:
+                    self.party.pop(self.party.index(self.findmember(member)))
+                    return('gone')
+                else:
+                    return('more left')
+            else:
+                return('not found')
+
+# game starts here
 label start:
 
     label oasislow:
 
-        scene oasisbuttons
+        scene oasisbuttonsperson
 
         call screen oasis
 
@@ -16,13 +105,13 @@ label start:
 
         imagemap:
 
-            idle "oasisbuttons.jpg"
+            idle "oasisbuttonsitems.jpg"
             
             #water
-            hotspot (264, 616, 1346, 119) action Jump("water")
+            hotspot (360, 619, 1300, 128) action Jump("water")
 
             #sand  
-            hotspot (22, 850, 1885, 219) action Jump("sand")
+            hotspot (28, 404, 1803, 126) action Jump("sand")
 
             #sky    
             hotspot (4, 9, 1900, 339) action Jump("sky")
@@ -33,11 +122,41 @@ label start:
             #map
             hotspot (1793, 939, 112, 102) action Call("maplow")
 
+            #paper
+            hotspot (1381, 855, 114, 69) action Jump("firstpaper")
+
+            #man
+            hotspot (228, 740, 97, 262) action Jump("Ellis")
+
+    screen oasistwo():
+
+        imagemap:
+
+            idle "oasisbuttonsperson.jpg"
+            
+            #water
+            hotspot (360, 619, 1300, 128) action Jump("water")
+
+            #sand  
+            hotspot (28, 404, 1803, 126) action Jump("sand")
+
+            #sky    
+            hotspot (4, 9, 1900, 339) action Jump("sky")
+
+            #bag
+            hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
+
+            #map
+            hotspot (1793, 939, 112, 102) action Call("maplow")
+
+            #man
+            hotspot (228, 740, 97, 262) action Jump("Ellis")
+
 
     screen bag():
 
         modal True
-        
+
         imagemap:
 
             idle "menuconcept.jpg"
@@ -215,14 +334,14 @@ label start:
 
     label marketlow:
 
-        scene marketbuttons
+        scene marketbuttonsperson
 
         call screen market
 
     screen market():
         imagemap:
 
-            idle "marketbuttons.jpg"
+            idle "marketbuttonsperson.jpg"
 
             #map
             hotspot (1795, 939, 110, 99) action Call("maplow")
@@ -231,10 +350,13 @@ label start:
             hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
 
             #shade
-            hotspot (635, 19, 824, 429) action Jump("shade")
+            hotspot (529, 13, 951, 420) action Jump("shade")
 
             #pottery
-            hotspot (27, 507, 1584, 557) action Jump("pottery")
+            hotspot (50, 391, 1415, 659) action Jump("pottery")
+
+            #person
+            hotspot (1533, 433, 188, 317) action Jump("documentmissing")
 
     label hotellow:
 
@@ -317,5 +439,106 @@ label start:
         scene hotelconcept
         v "I think these are lilies. My knowledge of flowers is a bit rusty."
         call screen hotel
+
+    label firstpaper:
+        scene oasisconcept
+
+        show vetaconcept at right
+        show quainplaceholder at left
+
+        v "Hey, I found something!"
+        q "What is that?"
+        q "Seems like a piece of paper. Throw it out."
+        v "Hold on, look on the back! There are some lines on here."
+        q "Alright, it’s got some squiggles. Now throw it out."
+        v "This could be important!"
+        q "It's junk. Even if you kept it, what are the chances of you finding the rest of it?"
+        v "Fine. I'll throw it out."
+        "Piece of paper sneakily slipped into bag"
+        $ backpack.add_item("paperone")
+
+        call screen oasistwo
+
+    label Ellis:
+        scene oasisconcept
+
+        show quainplaceholder at left
+        show dude at right
+
+        menu: 
+            "What should I ask him about?"
+
+            "Murder":
+                q "Can you tell me about the murder? What happened?"
+                dude "A teacher from the city was killed last night.
+                I didn’t know about it until I woke up this morning.
+                The oasis is frozen over too.
+                Someone with an ice ability must have done it.
+                Considering how rare that ability is around here, an outsider probably did it."
+                jump Ellis
+
+            "Victim":
+                q "The victim, did you know anything about her?"
+                dude "I just know she’s a teacher.
+                Some students had been in that crowd earlier and were saying that she was their teacher."
+                jump Ellis
+
+            "Suspect":
+                q "Is there someone that you think could be the murderer?"
+                dude "Someone said they saw the teacher with a student last night.
+                A lot of people started assuming that the student is the suspect.
+                While that could be true, it’s probably best to wait until the authorities from the city arrive."
+                q "Who was the person that saw the teacher and student together?"
+                dude "I’m not sure.
+                You could probably ask around at the market. Information spreads there."
+                jump Ellis
+
+            "That's all":
+                q "Thank you for the information." 
+                jump discussion
+
+    label discussion:
+        scene oasisconcept
+
+        show vetaconcept at right
+        show quainplaceholder at left
+
+        v "Well, no new information there besides the whole ice ability thing."
+        q "That and the fact that Ms. Millie and Mariatu were seen together last night. 
+        Did you know about this?"
+        v "Yeah...Mari lost her key as soon as we got to the room. 
+        She had to talk to Ms. Millie about it."
+        q "Why am I not surprised?"
+        v "We should probably check out the market.
+        Seems like a breeding ground for rumors and information."
+        q "Agreed."
+
+        call screen oasistwo
+
+    label documentmissing:
+        scene marketconcept
+
+        show vetaconcept at right
+        show dude at center
+        show quainplaceholder at left
+
+        v "Is something the matter, sir?"
+        dude "Oh, I didn't see you two there. 
+        I lost a piece of my paper during the crowd earlier by the crime scene."
+        
+        if "paper" in backpack:
+            q "..."
+            v "Do you mean...this piece of paper?"
+            q "What the-?! Where did you-?!"
+            dude "YES!
+            You found it!"
+            "Piece of paper given to the dude."
+            $ backpack.remove_item('paper')
+            v "Glad to help!"
+            call screen market
+
+            else q "Sorry, we don't have it."
+            dude "Ashame."
+            call screen market
 
     return
