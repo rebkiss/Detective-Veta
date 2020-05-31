@@ -526,7 +526,7 @@ label start:
         dude "Oh, I didn't see you two there. 
         I lost a piece of my paper during the crowd earlier by the crime scene."
         
-        if "paper" in backpack:
+        if $ backpack.has_item('paper'):
             q "..."
             v "Do you mean...this piece of paper?"
             q "What the-?! Where did you-?!"
