@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 528: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation.
-    if backpack.has_item('paper'):
-    ^
+File "game/script.rpy", line 519: expected statement.
+    else: call screen oasis
+        ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sun May 31 12:37:41 2020
+Sun May 31 22:34:16 2020

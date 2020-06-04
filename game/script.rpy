@@ -6,7 +6,6 @@ define dude = Character("dude")
 
 default backpack = Container()
 
-$ paperone = Item('paper')
 
 $ inventory = Item('Student ID') ### example
 
@@ -18,20 +17,21 @@ init python:
             self.name = name
 
     class InvItem(object):
-        def __init__(self, item):
+        def __init__(self, item, amount):
             self.item = item
+            self.amount = amount
 
     class Container(object):
         def __init__(self):
             self.inventory = []
 
         def add_item(self, item, amount=1):
-            self.inventory.append(InvItem(item))
+            self.inventory.append(InvItem(item, amount))
 
         def has_item(self, item, amount=1):
             if item in [i.item for i in self.inventory]:
-                if self.finditem(item).amount >= amount:
-                    return(self.finditem(item).amount)
+                if self.find_item(item).amount >= amount:
+                    return(self.find_item(item).amount)
                 else:
                     return(False)
             else:
@@ -42,15 +42,16 @@ init python:
 
         def remove_item(self, item, amount=1):
             if self.has_item(item):
-                self.finditem(item).amount -= amount
-                if self.finditem(item).amount <= 0:
-                    self.inventory.pop(self.inventory.index(self.finditem(item)))
+                self.find_item(item).amount -= amount
+                if self.find_item(item).amount <= 0:
+                    self.inventory.pop(self.inventory.index(self.find_item(item)))
                     return('gone')
                 else:
                     return('more left')
             else:
                 return('not found')
-
+    
+    paper = Item('paper')
 
 
  ## Attempt to make a party system so investigation varies depending on party members
@@ -455,7 +456,7 @@ label start:
         q "It's junk. Even if you kept it, what are the chances of you finding the rest of it?"
         v "Fine. I'll throw it out."
         "Piece of paper sneakily slipped into bag"
-        $ backpack.add_item("paperone")
+        $ backpack.add_item(paper)
 
         call screen oasistwo
 
@@ -513,8 +514,6 @@ label start:
         Seems like a breeding ground for rumors and information."
         q "Agreed."
 
-        call screen oasistwo
-
     label documentmissing:
         scene marketconcept
 
@@ -526,19 +525,50 @@ label start:
         dude "Oh, I didn't see you two there. 
         I lost a piece of my paper during the crowd earlier by the crime scene."
         
-        if $ backpack.has_item('paper'):
+        if backpack.has_item(paper, amount=1):
             q "..."
             v "Do you mean...this piece of paper?"
             q "What the-?! Where did you-?!"
             dude "YES!
             You found it!"
             "Piece of paper given to the dude."
-            $ backpack.remove_item('paper')
+            $ backpack.remove_item(paper, amount=1)
             v "Glad to help!"
             call screen market
+            #jump documentmissingone
 
-            else q "Sorry, we don't have it."
+        else: 
+            q "Sorry, we don't have it."
             dude "Ashame."
             call screen market
+            #jump documentmissingtwo
+
+    #label documentmissingone:
+            #scene marketconcept
+
+            #show vetaconcept at right
+            #show dude at center
+            #show quainplaceholder at left
+
+            #q "..."
+            #v "Do you mean...this piece of paper?"
+            #q "What the-?! Where did you-?!"
+            #dude "YES!
+            #You found it!"
+            #"Piece of paper given to the dude."
+            #$ backpack.remove_item('paper')
+            #v "Glad to help!"
+            #call screen market
+
+   #label documentmissingtwo:
+            #scene marketconcept
+
+            #show vetaconcept at right
+            #show dude at center
+            #show quainplaceholder at left           
+            
+            #q "Sorry, we don't have it."
+            #dude "Ashame."
+            #call screen market
 
     return
