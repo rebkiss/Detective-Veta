@@ -6,6 +6,7 @@ define dude = Character("dude")
 
 default backpack = Container()
 
+$ default flag = 0
 
 $ inventory = Item('Student ID') ### example
 
@@ -389,12 +390,6 @@ label start:
             hotspot (1601, 379, 273, 524) action Jump("flower")
 
 
-
-
-
-
-
-
     label water:
         scene oasisconcept 
         v "The water looks really refreshing right now. "
@@ -514,6 +509,12 @@ label start:
         Seems like a breeding ground for rumors and information."
         q "Agreed."
 
+        if backpack.has_item(paper, amount=1):
+            jump oasistwo
+
+        else: 
+            jump oasislow
+
     label documentmissing:
         scene marketconcept
 
@@ -535,40 +536,10 @@ label start:
             $ backpack.remove_item(paper, amount=1)
             v "Glad to help!"
             call screen market
-            #jump documentmissingone
 
         else: 
             q "Sorry, we don't have it."
             dude "Ashame."
             call screen market
-            #jump documentmissingtwo
-
-    #label documentmissingone:
-            #scene marketconcept
-
-            #show vetaconcept at right
-            #show dude at center
-            #show quainplaceholder at left
-
-            #q "..."
-            #v "Do you mean...this piece of paper?"
-            #q "What the-?! Where did you-?!"
-            #dude "YES!
-            #You found it!"
-            #"Piece of paper given to the dude."
-            #$ backpack.remove_item('paper')
-            #v "Glad to help!"
-            #call screen market
-
-   #label documentmissingtwo:
-            #scene marketconcept
-
-            #show vetaconcept at right
-            #show dude at center
-            #show quainplaceholder at left           
-            
-            #q "Sorry, we don't have it."
-            #dude "Ashame."
-            #call screen market
 
     return
