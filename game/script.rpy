@@ -6,8 +6,6 @@ define dude = Character("dude")
 
 default backpack = Container()
 
-$ default flag = 0
-
 $ inventory = Item('Student ID') ### example
 
 init python:
@@ -73,8 +71,8 @@ init python:
 
         def has_member(self, member, amount=1):
             if member in [i.member for i in self.party]:
-                if self.findmember(member).amount >= amount:
-                    return(self.findmember(member).amount)
+                if self.find_member(member).amount >= amount:
+                    return(self.find_member(member).amount)
                 else:
                     return(False)
             else:
@@ -85,9 +83,9 @@ init python:
 
         def remove_member(self, member, amount=1):
             if self.has_member(member):
-                self.findmember(member).amount -= amount
-                if self.findmember(member).amount <= 0:
-                    self.party.pop(self.party.index(self.findmember(member)))
+                self.find_member(member).amount -= amount
+                if self.find_member(member).amount <= 0:
+                    self.party.pop(self.party.index(self.find_member(member)))
                     return('gone')
                 else:
                     return('more left')

@@ -2,9 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 519: expected statement.
-    else: call screen oasis
-        ^
+File "game/script.rpy", line 9: invalid syntax
+    default flag = 0
+                ^
+    
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sun May 31 22:34:16 2020
+Mon Jun 15 14:46:48 2020
