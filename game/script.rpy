@@ -3,6 +3,10 @@ define q = Character("Quain")
 image dude = Placeholder("boy")
 define dude = Character("dude")
 
+default profile_highlights = False
+default journal_highlights = False
+default mysteries_highlights = False
+default items_highlights = False
 
 default backpack = Container()
 
@@ -159,154 +163,86 @@ label start:
 
         imagemap:
 
-            idle "menuconcept.jpg"
+            ground "bagmenu.png"
+
+            #back button
+            hotspot (51, 938, 138, 95) action Hide("bag", transition = dissolve)
+
+            #profiles
+            hotspot (515, 522, 195, 117):
+                action Show("profiles")
+                hovered SetVariable("profile_highlights", True)
+                unhovered SetVariable("profile_highlights", False)
+                if profile_highlights:
+                    add "profileshover.png" xalign 0.3 yalign 0.54
 
             #journal
-            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("journaltwo"), Hide("profile"), Hide("mystery"), Hide("itemone"), Hide("itemtwo")]
-            
-            #profiles
-            hotspot (17, 428, 337, 127) action [Hide("journalone"), Hide("journaltwo"), Show("profile"), Hide("mystery"), Hide("itemone"), Hide("itemtwo")]
+            hotspot (500, 682, 236, 168):
+                action Show("journal")
+                hovered SetVariable("journal_highlights", True)
+                unhovered SetVariable("journal_highlights", False)
+                if journal_highlights:
+                    add "journalhover.png" xalign 0.3 yalign 0.76
 
             #mysteries
-            hotspot (18, 582, 336, 130) action [Hide("journalone"), Hide("journaltwo"), Hide("profile"), Show("mystery"), Hide("itemone"), Hide("itemtwo")]
+            hotspot (836, 662, 73, 175):
+                action Show("mysteries")
+                hovered SetVariable("mysteries_highlights", True)
+                unhovered SetVariable("mysteries_highlights", False)
+                if mysteries_highlights:
+                    add "mysterieshover.png" xalign 0.45 yalign 0.74
 
             #items
-            hotspot (18, 737, 335, 129) action [Hide("journalone"), Hide("journaltwo"), Hide("profile"), Hide("mystery"), Show("itemone"), Hide("itemtwo")]
+            hotspot (743, 341, 87, 280):
+                action Show("items")
+                hovered SetVariable("items_highlights", True)
+                unhovered SetVariable("items_highlights", False)
+                if items_highlights:
+                    add "itemshover.png" xalign 0.41 yalign 0.42
 
-            #back
-            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("journalone"), Hide("journaltwo"), Hide("profile"), Hide("mystery"), Hide("itemone"), Hide("itemtwo")]
+    screen profiles():
 
-    screen journalone():
+        modal True
+
         imagemap:
 
-            idle "journaloneconcept.png"
+            idle "profilespage.png"
 
-            #right arrow
-            hotspot (937, 870, 53, 45) action [Show("journaltwo"), Hide("journalone")]
+            #back button
+            hotspot (51, 938, 138, 95) action Hide("bag", transition = dissolve)
 
-            #journal
-            hotspot (17, 273, 338, 128) action [Hide("journalone"), Show("journalone")]
-            
-            #profiles
-            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("journalone")]
+    screen journal():
 
-            #mysteries
-            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("journalone")]
+        modal True
 
-            #items
-            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("journalone")]
-
-            #back
-            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("journalone")]
-
-    screen journaltwo():
         imagemap:
 
-            idle "journaltwoconcept.png"
-            
-            #left arrow
-            hotspot (627, 870, 47, 48) action [Show("journalone"), Hide("journaltwo")]
+            idle "journalpageone.png"
 
-            #journal
-            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("journaltwo")]
-            
-            #profiles
-            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("journaltwo")]
+            #back button
+            hotspot (51, 938, 138, 95) action Hide("bag", transition = dissolve)
 
-            #mysteries
-            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("journaltwo")]
+    screen mysteries():
 
-            #items
-            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("journaltwo")]
-
-            #back
-            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("journaltwo")]
-
-    screen profile():
+        modal True
+        
         imagemap:
 
-            idle "profileconcept.png"
+            idle "mysteries.png"
 
-            #journal
-            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("profile")]
-            
-            #profiles
-            hotspot (17, 428, 337, 127) action [Hide("profile"), Show("profile")]
+            #back button
+            hotspot (51, 938, 138, 95) action Hide("bag", transition = dissolve)
 
-            #mysteries
-            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("profile")]
+    screen items():
 
-            #items
-            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("profile")]
+        modal True
 
-            #back
-            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("profile")]
-
-    screen mystery():
         imagemap:
 
-            idle "mysteryconcept.png"
+            idle "itemspageone.png"
 
-            #journal
-            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("mystery")]
-            
-            #profiles
-            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("mystery")]
-
-            #mysteries
-            hotspot (18, 582, 336, 130) action [Hide("mystery"), Show("mystery")]
-
-            #items
-            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("mystery")]
-
-            #back
-            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("mystery")]
-
-    screen itemone():
-        imagemap:
-
-            idle "itemoneconcept.png"
-
-            #right arrow
-            hotspot (937, 869, 56, 52) action [Show("itemtwo"), Hide("itemone")]
-
-            #journal
-            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("itemone")]
-            
-            #profiles
-            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("itemone")]
-
-            #mysteries
-            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("itemone")]
-
-            #items
-            hotspot (18, 737, 335, 129) action [Hide("itemone"), Show("itemone")]
-
-            #back
-            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("itemone")]
-
-    screen itemtwo():
-        imagemap:
-
-            idle "itemtwoconcept.png"
-
-            #left arrow
-            hotspot (622, 869, 51, 49) action [Show("itemone"), Hide("itemtwo")]
-
-            #journal
-            hotspot (17, 273, 338, 128) action [Show("journalone"), Hide("itemtwo")]
-            
-            #profiles
-            hotspot (17, 428, 337, 127) action [Show("profile"), Hide("itemtwo")]
-
-            #mysteries
-            hotspot (18, 582, 336, 130) action [Show("mystery"), Hide("itemtwo")]
-
-            #items
-            hotspot (18, 737, 335, 129) action [Show("itemone"), Hide("itemtwo")]
-
-            #back
-            hotspot (192, 921, 139, 93) action [Hide("bag", transition = dissolve), Hide("itemtwo")]
+            #back button
+            hotspot (51, 938, 138, 95) action Hide("bag", transition = dissolve)
 
     label maplow:
 

@@ -2,10 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 9: invalid syntax
-    default flag = 0
-                ^
-    
+File "game/script.rpy", line 174: u'Show' is not a keyword argument or valid child for the hotspot statement.
+    Show "profileshover.png"
+        ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jun 15 14:46:48 2020
+Tue Jun 16 15:50:04 2020
