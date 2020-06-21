@@ -17,11 +17,15 @@ image quaindefault:
     pause 0.5
     repeat
 
-
+#bag
 default profile_highlights = False
 default journal_highlights = False
 default mysteries_highlights = False
 default items_highlights = False
+
+#profiles
+default profile_veta = False
+default profile_quain = False
 
 define storypoints = 1
 
@@ -558,16 +562,34 @@ label start:
 
         modal True
 
-        imagemap:
+        if storypoints >= 1:
+            imagemap:
 
-            idle "profilespage.png"
+                idle "profilespageone.png"
 
-            #back button
-            hotspot (51, 938, 138, 95): 
-                action Hide("bag", transition = dissolve)
+                #back button
+                hotspot (51, 938, 138, 95): 
+                    action Hide("bag", transition = dissolve)
 
-            #bag
-            hotspot (73, 404, 158, 221) action Hide("profiles")
+                #bag
+                hotspot (73, 404, 158, 221) action Hide("profiles")    
+
+                #veta
+                hotspot (446, 530, 106, 99):
+                    action NullAction()
+                    hovered SetVariable("profile_veta", True)
+                    unhovered SetVariable("profile_veta", False)
+                    if profile_veta:
+                        add "profilesvetahover.png" xalign 0.25 yalign 0.541
+
+                #quain
+                hotspot (561, 530, 107, 98):
+                    action NullAction()
+                    hovered SetVariable("profile_quain", True)
+                    unhovered SetVariable("profile_quain", False) 
+                    if profile_quain:
+                        add "profilesquainhover.png" xalign 0.3 yalign 0.54           
+
 
     screen journal():
 
