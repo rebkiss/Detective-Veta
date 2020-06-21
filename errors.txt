@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 174: u'Show' is not a keyword argument or valid child for the hotspot statement.
-    Show "profileshover.png"
-        ^
+File "game/script.rpy", line 588: u'Hide' is not a keyword argument or valid child for the textbutton statement.
+    textbutton "The Missing Door Key" action Show("TheMissingDoorKey") xalign 0.3 yalign 0.3 Hide("TheSuspiciousDoor")
+                                                                                                 ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Tue Jun 16 15:50:04 2020
+Sun Jun 21 11:04:11 2020
