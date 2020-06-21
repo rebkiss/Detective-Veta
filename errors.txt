@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 576: u'action' is not a keyword argument or valid child for the imagemap statement.
-    action Call("profilespageone")  
-          ^
+File "game/script.rpy", line 607: is not terminated with a newline. (Check strings and parenthesis.)
+                hotspot (73, 404, 158, 221) action Hide("journal"), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey"
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sun Jun 21 13:59:22 2020
+Sun Jun 21 14:59:20 2020

@@ -524,7 +524,7 @@ label start:
             ground "bagmenu.png"
 
             #back button
-            hotspot (51, 938, 138, 95) action Hide("bag", transition = dissolve)
+            hotspot (53, 934, 134, 99) action Hide("bag", transition = fade)
 
             #profiles
             hotspot (515, 522, 195, 117):
@@ -568,8 +568,8 @@ label start:
                 idle "profilespageone.png"
 
                 #back button
-                hotspot (51, 938, 138, 95): 
-                    action Hide("bag", transition = dissolve)
+                hotspot (53, 934, 134, 99): 
+                    action Hide("bag", transition = fade), Hide("profiles", transition = fade)
 
                 #bag
                 hotspot (73, 404, 158, 221) action Hide("profiles")    
@@ -600,11 +600,11 @@ label start:
             idle "journalpageone.png"
 
             #back button
-            hotspot (51, 938, 138, 95):
-                action Hide("bag", transition = dissolve)
+            hotspot (53, 934, 134, 99):
+                action Hide("bag", transition = fade), Hide("journal", transition = fade), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey")
 
             #bag
-            hotspot (73, 404, 158, 221) action Hide("journal")
+            hotspot (73, 404, 158, 221) action Hide("journal"), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey")
 
             if storypoints >= 2: 
                 textbutton "The Missing Door Key" action Hide("TheSuspiciousDoor"), Show("TheMissingDoorKey") xalign 0.3 yalign 0.3 
@@ -632,16 +632,31 @@ label start:
 
         modal True
         
-        imagemap:
+        if storypoints >= 2:
 
-            idle "mysteriespage.png"
+            imagemap:
 
-            #back button
-            hotspot (51, 938, 138, 95): 
-                action Hide("bag", transition = dissolve)
+                idle "mysterypageone.png"
 
-            #bag
-            hotspot (73, 404, 158, 221) action Hide("mysteries")
+                #back button
+                hotspot (53, 934, 134, 99): 
+                    action Hide("bag", transition = fade), Hide("mysteries", transition = fade)
+
+                #bag
+                hotspot (73, 404, 158, 221) action Hide("mysteries")
+
+                if storypoints >= 2:
+                    hotspot (446, 527, 109, 210) action Show("MissingKey")
+
+    screen MissingKey():
+
+        vbox:
+
+            area (447, 263, 1010, 244) 
+
+            text "My friend, Mariatu, lost her room key sometime between when Ms. Millie gave her the key and when we got to our room. Mariatu is very forgetful, but I have a feeling she didn't just drop it somewhere."
+
+
 
     screen items():
 
@@ -652,8 +667,8 @@ label start:
             idle "itemspageone.png"
 
             #back button
-            hotspot (51, 938, 138, 95): 
-                action Hide("bag", transition = dissolve)
+            hotspot (53, 934, 134, 99): 
+                action Hide("bag", transition = fade), Hide("items", transition = fade)
 
             #bag
             hotspot (73, 404, 158, 221) action Hide("items")
