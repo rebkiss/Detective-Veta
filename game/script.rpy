@@ -166,7 +166,7 @@ label start:
             hotspot (1786, 28, 103, 115) action Show("bag")
 
             #map
-            hotspot (1785, 916, 91, 134) action Call("map")
+            hotspot (1785, 916, 91, 134) action Show("map")
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotelroommovelow")
@@ -257,7 +257,7 @@ label start:
             hotspot (1786, 28, 103, 115) action Show("bag")
 
             #map
-            hotspot (1785, 916, 91, 134) action Call("map")
+            hotspot (1785, 916, 91, 134) action Show("map")
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotelhallwaymovelow")
@@ -361,7 +361,7 @@ label start:
             hotspot (1786, 28, 103, 115) action Show("bag")
 
             #map
-            hotspot (1785, 916, 91, 134) action Call("map")
+            hotspot (1785, 916, 91, 134) action Show("map")
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotellobbymovelow")
@@ -673,22 +673,25 @@ label start:
             #bag
             hotspot (73, 404, 158, 221) action Hide("items")
 
-   # screen map():
-        #imagemap:
+    screen map():
 
-           # idle "MapConcept.jpg"
+        modal True
+
+        imagemap:
+
+            idle "MapConcept.jpg"
 
             #oasis
            # hotspot (714, 298, 488, 390) action Call("oasislow") 
             
             #hotel
-           # hotspot (479, 203, 212, 294) action Call("hotellow") 
+            hotspot (479, 203, 212, 294) action Call("hotellobbylow") 
             
             #market
            # hotspot (1291, 236, 171, 232) action Call("marketlow")
             
             #back
-            #hotspot (1706, 925, 140, 119) action Hide("map", transition = dissolve)
+            hotspot (1707, 924, 138, 119) action Call("map", transition = dissolve)
 
 
    # label marketlow:
