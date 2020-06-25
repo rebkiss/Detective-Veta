@@ -3,9 +3,11 @@ define q = Character("Quain")
 image dude = Placeholder("boy")
 define dude = Character("dude")
 
+define fade = Fade(0.5, 0.0, 0.5)
+
 image vetadefault:
     "vetadefault1.png"
-    pause 2
+    pause 1
     "vetadefault2.png"
     pause 0.5
     repeat
@@ -124,10 +126,10 @@ label start:
 
     label chapterone:
 
-        scene chapter1
+        scene chapter1 with fade
         $ renpy.pause(delay=5,hard=False)
 
-        scene hotelroom
+        scene hotelroom with fade
         show vetadefault at right
         show quaindefault at left
 
@@ -139,15 +141,17 @@ label start:
         v "Let's get this investigation started!"
         $ storypoints += 1
 
-        call screen hotelroom
+        call screen hotelroom with fade
 
     label hotelroomlow:
 
-        scene hotelroom
+        scene hotelroom 
 
-        call screen hotelroom
+        call screen hotelroom with fade
 
     screen hotelroom():
+
+        tag location
 
         imagemap:
 
@@ -163,17 +167,17 @@ label start:
             hotspot (219, 190, 435, 303) action Jump("roompainting")
 
             #bag
-            hotspot (1786, 28, 103, 115) action Show("bag")
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("map")
+            hotspot (1785, 916, 91, 134) action Show("map", transition = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotelroommovelow")
 
     label roomoutside:
 
-        scene hotelroom
+        scene hotelroom 
 
         v "Wow, the sand outside looks like it's blue!"
         q "I'm more concerned with the fact that the window doesn't have curtains or blinds."
@@ -182,11 +186,11 @@ label start:
         v "At least the view is beautiful."
         q "I suppose."
 
-        call screen hotelroom
+        call screen hotelroom 
 
     label bed:
 
-        scene hotelroom
+        scene hotelroom 
 
         v "*lays on bed* These beds are really comfy!"
         q "They certainly are."
@@ -200,13 +204,13 @@ label start:
 
     label roompainting:
 
-        scene hotelroom
+        scene hotelroom 
 
         v "It's a cactus."
         q "Thank you for pointing out the obvious."
         v "You're welcome."
 
-        call screen hotelroom
+        call screen hotelroom 
 
     label hotelroommovelow:
 
@@ -228,11 +232,13 @@ label start:
 
     label hotelhallwaylow:
 
-        scene hotelhallway
+        scene hotelhallway with fade
 
         call screen hotelhallway
 
     screen hotelhallway():
+
+        tag location
 
         imagemap:
 
@@ -254,10 +260,10 @@ label start:
             hotspot (737, 191, 109, 112) action Jump("hallwaylight")
 
             #bag
-            hotspot (1786, 28, 103, 115) action Show("bag")
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("map")
+            hotspot (1785, 916, 91, 134) action Show("map", transition = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotelhallwaymovelow")
@@ -270,11 +276,11 @@ label start:
         q "We can always take a break if you want."
         v "I think it's you who needs a break."
 
-        call screen hotelhallway
+        call screen hotelhallway 
 
     label hallwaydoor:
 
-        scene hotelhallway
+        scene hotelhallway with fade
 
         q "This doesn't look like a regular guest room."
         v "It could be for employees only."
@@ -285,7 +291,7 @@ label start:
 
         $ storypoints += 1
 
-        call screen hotelhallway
+        call screen hotelhallway with fade
 
     label hallwaywindow:
 
@@ -329,11 +335,13 @@ label start:
 
     label hotellobbylow:
 
-        scene hotelobby
+        scene hotelobby with fade
 
         call screen hotellobby
 
     screen hotellobby():
+
+        tag location
 
         imagemap:
 
@@ -358,10 +366,10 @@ label start:
             hotspot (563, 645, 1336, 123)
 
             #bag
-            hotspot (1786, 28, 103, 115) action Show("bag")
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("map")
+            hotspot (1785, 916, 91, 134) action Show("map", transtion = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotellobbymovelow")
@@ -517,6 +525,8 @@ label start:
 
     screen bag():
 
+        tag bagmenu
+
         modal True
 
         imagemap:
@@ -604,16 +614,18 @@ label start:
                 action Hide("bag", transition = fade), Hide("journal", transition = fade), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey")
 
             #bag
-            hotspot (73, 404, 158, 221) action Hide("journal"), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey")
+            hotspot (73, 404, 158, 221) action Hide("journal"), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey"), 
 
             if storypoints >= 2: 
-                textbutton "The Missing Door Key" action Hide("TheSuspiciousDoor"), Show("TheMissingDoorKey") xalign 0.3 yalign 0.3 
+                textbutton "The Missing Door Key" action Show("TheMissingDoorKey") xalign 0.3 yalign 0.3 
                 
 
             if storypoints >= 3:
-                textbutton "The Suspicious Door" action Hide("TheMissingDoorKey"), Show("TheSuspiciousDoor") xalign 0.3 yalign 0.4 
+                textbutton "The Suspicious Door" action Show("TheSuspiciousDoor") xalign 0.3 yalign 0.4 
 
     screen TheMissingDoorKey():
+
+        tag journalentry
 
         vbox:
 
@@ -622,6 +634,8 @@ label start:
             text "We've finally arrived at the Oasis of Destiny, hidden deep in the Avius Desert. Unfortunately, my friend, Mariatu, seems to have lost her room key and is unable to find it. Quain, my partner in mystery solving, has agreed to help me find her key."
 
     screen TheSuspiciousDoor():
+
+        tag journalentry
 
         vbox:
 
@@ -649,6 +663,8 @@ label start:
                     hotspot (446, 527, 109, 210) action Show("MissingKey")
 
     screen MissingKey():
+
+        tag mystery
 
         vbox:
 
