@@ -654,10 +654,10 @@ label start:
 
                 #back button
                 hotspot (53, 934, 134, 99): 
-                    action Hide("bag", transition = fade), Hide("mysteries", transition = fade)
+                    action Hide("bag", transition = fade), Hide("mysteries", transition = fade), Hide("MissingKey")
 
                 #bag
-                hotspot (73, 404, 158, 221) action Hide("mysteries")
+                hotspot (73, 404, 158, 221) action Hide("mysteries"), Hide("MissingKey")
 
                 if storypoints >= 2:
                     hotspot (446, 527, 109, 210) action Show("MissingKey")
