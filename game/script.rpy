@@ -2,6 +2,8 @@
 define q = Character("Quain")
 image dude = Placeholder("boy")
 define dude = Character("dude")
+define r = Character("Receptionist")
+image quainflip = im.Flip("quaindefault.png", vertical = True )
 
 define fade = Fade(0.5, 0.0, 0.5)
 
@@ -170,7 +172,7 @@ label start:
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("map", transition = fade)
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotelroommovelow")
@@ -263,7 +265,7 @@ label start:
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("map", transition = fade)
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotelhallwaymovelow")
@@ -281,6 +283,9 @@ label start:
     label hallwaydoor:
 
         scene hotelhallway with fade
+
+        show vetadefault at right
+        show quaindefault at left
 
         q "This doesn't look like a regular guest room."
         v "It could be for employees only."
@@ -301,7 +306,7 @@ label start:
         q "I can see just fine."
         v "That's because you're tall."
 
-        call screen hotelhallway
+        call screen hotelhallway 
 
     label hallwaylight:
 
@@ -310,7 +315,7 @@ label start:
         v "These lights are very aesthetic."
         q "They certainly set the mood."
 
-        call screen hotelhallway
+        call screen hotelhallway 
 
     label hotelhallwaymovelow:
 
@@ -328,15 +333,21 @@ label start:
             hotspot (18, 952, 105, 72) action Call("hotelhallwaylow")
 
             #arrow1
-            hotspot (490, 441, 105, 83) action Call("hotellobbylow")
+            hotspot (490, 441, 105, 83) action Call("hotellobbylow", transition = fade)
 
             #arrow2
-            hotspot (1063, 576, 95, 96) action Call("hotelroomlow")
+            hotspot (1063, 576, 95, 96) action Call("hotelroomlow", transition = fade)
 
     label hotellobbylow:
 
-        scene hotelobby with fade
+        if storypoints >= 3:
+            jump hotellobbyreceplow
+        else:
+            jump hotellobbymid
 
+    label hotellobbymid:
+
+        scene hotelobby with fade
         call screen hotellobby
 
     screen hotellobby():
@@ -348,28 +359,71 @@ label start:
             idle "hotelobbybuttons.png"
 
             #chandelier
-            hotspot (1333, 9, 325, 225)
+            hotspot (1333, 9, 325, 225) action Jump("chandelier")
 
             #painting
-            hotspot (978, 58, 343, 202)
+            hotspot (978, 58, 343, 202) action Jump("lobbypainting")
 
             #desk
-            hotspot (978, 58, 343, 202)
+            hotspot (978, 58, 343, 202) action Jump("desk")
 
             #couch
-            hotspot (929, 333, 563, 278)
+            hotspot (929, 333, 563, 278) action Jump("couch")
 
             #carpet
-            hotspot (601, 803, 1128, 271)
+            hotspot (601, 803, 1128, 271) action ("carpet")
 
             #floor
-            hotspot (563, 645, 1336, 123)
+            hotspot (563, 645, 1336, 123) action Jump("floor")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("map", transtion = fade)
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Call("hotellobbymovelow")
+
+    label hotellobbyreceplow:
+
+        scene hotelobbyrecep with fade
+        call screen hotellobbyrecep
+
+    screen hotellobbyrecep():
+
+        tag location
+
+        imagemap:
+
+            idle "hotelobbyrecep.png"
+
+            #chandelier
+            hotspot (1333, 9, 325, 225) action Jump("chandelier")
+
+            #painting
+            hotspot (978, 58, 343, 202) action Jump("lobbypainting")
+
+            #recep
+            hotspot (33, 233, 229, 277) action Jump("recep")
+
+            #desk
+            hotspot (45, 239, 204, 274) action Jump("desk")
+
+            #couch
+            hotspot (929, 333, 563, 278) action Jump("couch")
+
+            #carpet
+            hotspot (601, 803, 1128, 271) action Jump("carpet")
+
+            #floor
+            hotspot (563, 645, 1336, 123) action Jump("floor")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Call("hotellobbymovelow")
@@ -386,7 +440,7 @@ label start:
         v "I've gone blind. Quain, please be my eyes."
         q "I can't believe this."
 
-        call screen hotellobby
+        call screen hotellobby  
 
     label lobbypainting:
 
@@ -408,7 +462,7 @@ label start:
         q "There's no receptionist."
         v "Maybe they're on break?"
 
-        call screen hotellobby
+        call screen hotellobby 
 
     label couch:
 
@@ -425,7 +479,7 @@ label start:
         v "Hmm...I still think it's a couch."
         q "*facepalm*"
 
-        call screen hotellobby
+        call screen hotellobby  
 
     label carpet:
 
@@ -434,7 +488,7 @@ label start:
         q "This is a nice carpet."
         v "Too bad it has some sand on it."
 
-        call screen hotellobby
+        call screen hotellobby  
 
     label floor:
 
@@ -442,9 +496,40 @@ label start:
 
         q "The marble floors are certainly eye-catching."
         v "It's so shiny. I'm surprised there isn't sand on it."
-        q "Someone's gotta clean it."
+        q "Someone's gotta be cleaning it."
 
-        call screen hotellobby
+        call screen hotellobby  
+
+    label recep:
+
+        scene hotelobby with fade
+
+        show r at left
+        show v at right
+        show quainflip:
+            xalign 0.6
+
+        r "Good evening! How may I help you?"
+        q "Is everything alright, ma'am?"
+        r "Frankly, no. My boss is going to chew me out for sure."
+        v "What's wrong?"
+        r "I lost my ID card somehow! It was in my purse before I changed into my uniform, but it was gone when I checked afterwards."
+        v "Quain, we should help her."
+        q "I see no harm in searching for her ID. She seems too distraught to help us with the key anyway."
+        v "We'll help you look for your ID!"
+        r "Really?! Thank you so much!"
+
+        scene hotelobby with fade
+
+        show vetadefault at right
+        show quaindefault at left
+
+        v "I wonder where her ID is? Did we pass by an employee only door in the hallway?"
+        q "No, but we did pass by a suspicious door..."
+
+        $ storypoints += 1
+
+        call screen hotellobbyrecep with fade 
 
     label hotellobbymovelow:
 
@@ -611,10 +696,10 @@ label start:
 
             #back button
             hotspot (53, 934, 134, 99):
-                action Hide("bag", transition = fade), Hide("journal", transition = fade), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey")
+                action Hide("bag", transition = fade), Hide("journal", transition = fade), Hide("journalentry")
 
             #bag
-            hotspot (73, 404, 158, 221) action Hide("journal"), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey"), 
+            hotspot (73, 404, 158, 221) action Hide("journal"), Hide("journalentry") 
 
             if storypoints >= 2: 
                 textbutton "The Missing Door Key" action Show("TheMissingDoorKey") xalign 0.3 yalign 0.3 
@@ -622,6 +707,9 @@ label start:
 
             if storypoints >= 3:
                 textbutton "The Suspicious Door" action Show("TheSuspiciousDoor") xalign 0.3 yalign 0.4 
+
+            if storypoints >= 4:
+                textbutton "Missing ID" action Show("MissingID") xalign 0.3 yalign 0.5
 
     screen TheMissingDoorKey():
 
@@ -642,6 +730,18 @@ label start:
             area (990, 292, 502, 495)
 
             text "While investigating the hallway, we came across a door at the end of the hallway. It's too small to be a suite, and it doesn't have any signs on it besides the room number. We've decided it's a supply room, but I still have a feeling it's something more than that."
+
+    screen MissingID():
+
+        tag journalentry
+
+        vbox:
+
+            area (990, 292, 502, 495)
+
+            text "We found the receptionist in the lobby, but she was too upset with her missing ID to be of much help to us. We decided to help her look for it. While we didn't pass by any doors marked for employees, we did pass by a suspicious door earlier..."
+
+
     screen mysteries():
 
         modal True
@@ -689,7 +789,7 @@ label start:
             #bag
             hotspot (73, 404, 158, 221) action Hide("items")
 
-    screen map():
+    screen sketchmap():
 
         modal True
 
@@ -707,7 +807,7 @@ label start:
            # hotspot (1291, 236, 171, 232) action Call("marketlow")
             
             #back
-            hotspot (1707, 924, 138, 119) action Call("map", transition = dissolve)
+            hotspot (1707, 924, 138, 119) action Hide("sketchmap", transition = dissolve)
 
 
    # label marketlow:

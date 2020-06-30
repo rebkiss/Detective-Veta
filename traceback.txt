@@ -1,32 +1,38 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 142, in script call
-    call screen hotelroom
-  File "game/script.rpy", line 142, in script call
-    call screen hotelroom
-ScriptError: could not find label 'hotellow'.
+  File "game/script.rpy", line 146, in script call
+    call screen hotelroom with fade
+  File "game/script.rpy", line 221, in script call
+    call screen hotelroommove
+  File "game/script.rpy", line 299, in script call
+    call screen hotelhallway with fade
+  File "game/script.rpy", line 324, in script call
+    call screen hotelhallwaymove
+  File "game/script.rpy", line 341, in script
+    label hotellobbylow:
+Exception: Arguments supplied, but parameter list not present
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/bootstrap.py", line 316, in bootstrap
-    renpy.main.main()
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/main.py", line 578, in main
-    run(restart)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/main.py", line 143, in run
-    renpy.execution.run_context(True)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/execution.py", line 908, in run_context
-    context.run()
-  File "game/script.rpy", line 142, in script call
-    call screen hotelroom
-  File "game/script.rpy", line 142, in script call
-    call screen hotelroom
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/script.py", line 898, in lookup
-    raise ScriptError("could not find label '%s'." % str(original))
-ScriptError: could not find label 'hotellow'.
+  File "game/script.rpy", line 146, in script call
+    call screen hotelroom with fade
+  File "game/script.rpy", line 221, in script call
+    call screen hotelroommove
+  File "game/script.rpy", line 299, in script call
+    call screen hotelhallway with fade
+  File "game/script.rpy", line 324, in script call
+    call screen hotelhallwaymove
+  File "game/script.rpy", line 341, in script
+    label hotellobbylow:
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 855, in execute
+    values = apply_arguments(self.parameters, renpy.store._args, renpy.store._kwargs)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 154, in apply_arguments
+    raise Exception("Arguments supplied, but parameter list not present")
+Exception: Arguments supplied, but parameter list not present
 
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
 Detective Veta 1.0
-Sun Jun 21 21:24:31 2020
+Tue Jun 30 01:50:23 2020
