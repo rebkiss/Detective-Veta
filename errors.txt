@@ -2,8 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 607: is not terminated with a newline. (Check strings and parenthesis.)
-                hotspot (73, 404, 158, 221) action Hide("journal"), Hide("TheSuspiciousDoor"), Hide("TheMissingDoorKey"
+File "game/script.rpy", line 274: u'show' is not a keyword argument or valid child for the imagemap statement.
+    show "recepidcard.png" xalign 0.5 yalgin 0.5
+        ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sun Jun 21 14:59:20 2020
+Wed Jul  1 22:52:36 2020

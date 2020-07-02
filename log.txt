@@ -1,4 +1,4 @@
-Tue Jun 30 01:50:08 2020
+Wed Jul  1 23:05:04 2020
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
  
@@ -7,8 +7,8 @@ Bootstrap to the start of init.init took 0.07s
 Early init took 0.00s
 Loader init took 0.02s
 Loading error handling took 0.02s
-Loading script took 0.25s
-Loading save slot metadata. took 0.01s
+Loading script took 0.26s
+Loading save slot metadata. took 0.02s
 Loading persistent took 0.00s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
 Running init code took 0.07s
@@ -21,7 +21,7 @@ Cleaning cache took 0.00s
 Making clean stores took 0.00s
 Initial gc. took 0.02s
 DPI scale factor: 1.000000
-Creating interface object took 0.15s
+Creating interface object took 0.16s
 Cleaning stores took 0.00s
 Init translation took 0.02s
 Build styles took 0.00s
@@ -29,8 +29,8 @@ Load screen analysis took 0.00s
 Analyze screens took 0.02s
 Save screen analysis took 0.07s
 Prepare screens took 0.08s
-Save pyanalysis. took 0.14s
-Save bytecode. took 0.05s
+Save pyanalysis. took 0.16s
+Save bytecode. took 0.06s
 Running _start took 0.00s
 Performance test:
 Interface start took 0.02s
@@ -197,25 +197,25 @@ Texture testing:
 - 2048px textures work.
 Root FBO is: 0
 FBO Maximum Texture Size: 2048
-Total time until interface ready: 1.35613799095s
+Total time until interface ready: 1.39746284485s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.017510 seconds.
-- Frame drawn at 0.034252 seconds.
-- Frame drawn at 0.049962 seconds.
-- Frame drawn at 0.066252 seconds.
-- 0.066252 seconds to render 5 frames.
+- Frame drawn at 0.016248 seconds.
+- Frame drawn at 0.031911 seconds.
+- Frame drawn at 0.047910 seconds.
+- Frame drawn at 0.064501 seconds.
+- 0.064501 seconds to render 5 frames.
 
 Full traceback:
   File "game/script.rpy", line 146, in script call
     call screen hotelroom with fade
   File "game/script.rpy", line 221, in script call
     call screen hotelroommove
-  File "game/script.rpy", line 299, in script call
+  File "game/script.rpy", line 303, in script call
     call screen hotelhallway with fade
-  File "game/script.rpy", line 324, in script call
+  File "game/script.rpy", line 348, in script call
     call screen hotelhallwaymove
-  File "game/script.rpy", line 341, in script
+  File "game/script.rpy", line 365, in script
     label hotellobbylow:
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 855, in execute
     values = apply_arguments(self.parameters, renpy.store._args, renpy.store._kwargs)
@@ -228,10 +228,10 @@ While running game code:
     call screen hotelroom with fade
   File "game/script.rpy", line 221, in script call
     call screen hotelroommove
-  File "game/script.rpy", line 299, in script call
+  File "game/script.rpy", line 303, in script call
     call screen hotelhallway with fade
-  File "game/script.rpy", line 324, in script call
+  File "game/script.rpy", line 348, in script call
     call screen hotelhallwaymove
-  File "game/script.rpy", line 341, in script
+  File "game/script.rpy", line 365, in script
     label hotellobbylow:
 Exception: Arguments supplied, but parameter list not present

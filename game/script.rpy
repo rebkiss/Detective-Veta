@@ -270,6 +270,10 @@ label start:
             #boot
             hotspot (5, 924, 82, 126) action Call("hotelhallwaymovelow")
 
+            if storypoints == 4:
+                imagebutton auto "recepidcard.png" xalign 0.5 yalign 0.5 action Jump("receptidcard")
+
+
     label room:
 
         scene hotelhallway
@@ -317,6 +321,27 @@ label start:
 
         call screen hotelhallway 
 
+    label receptidcard:
+
+        scene hotelhallway with fade
+
+        show vetadefault at right
+        show quaindefault at left
+
+        v "There's something stuck under the door!"
+        q "It's a card. This looks like the receptionist's ID card."
+        v "I could've sworn there wasn't anything there the last time we checked though."
+        q "Maybe the receptionist dropped it here when she was heading to the lobby? This could be an unmarked employee room."
+        v "I guess so. Or maybe whoever stole her card dropped it here?"
+        q "Perhaps. Right now we should return the card though."
+        "Receptionist ID Card added to the bag!"
+
+        $ backpack.add_item(recepidcard)
+
+        $ storypoints += 1
+
+        call screen hotelhallway with fade
+
     label hotelhallwaymovelow:
 
         scene hotelhallway
@@ -340,10 +365,9 @@ label start:
 
     label hotellobbylow:
 
-        if storypoints >= 3:
-            jump hotellobbyreceplow
-        else:
-            jump hotellobbymid
+        scene hotelobby
+
+        jump hotellobbyreceplow
 
     label hotellobbymid:
 
@@ -711,6 +735,9 @@ label start:
             if storypoints >= 4:
                 textbutton "Missing ID" action Show("MissingID") xalign 0.3 yalign 0.5
 
+            if storypoints >= 5:
+                textbutton "Found ID" action Show("FoundID") xalign 0.3 yalign 0.6
+
     screen TheMissingDoorKey():
 
         tag journalentry
@@ -741,6 +768,14 @@ label start:
 
             text "We found the receptionist in the lobby, but she was too upset with her missing ID to be of much help to us. We decided to help her look for it. While we didn't pass by any doors marked for employees, we did pass by a suspicious door earlier..."
 
+    screen FoundID():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "We went back to the hallway where the suspicious door was and found the ID card just under the door. Quain thinks that the door is an unmarked employee room, but I have a feeling it's more than that. For now, we should return the ID card."
 
     screen mysteries():
 
@@ -788,6 +823,9 @@ label start:
 
             #bag
             hotspot (73, 404, 158, 221) action Hide("items")
+
+            if backpack.has_item(recepidcard, amount=1):
+                textbutton 
 
     screen sketchmap():
 

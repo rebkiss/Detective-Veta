@@ -5,11 +5,11 @@ While running game code:
     call screen hotelroom with fade
   File "game/script.rpy", line 221, in script call
     call screen hotelroommove
-  File "game/script.rpy", line 299, in script call
+  File "game/script.rpy", line 303, in script call
     call screen hotelhallway with fade
-  File "game/script.rpy", line 324, in script call
+  File "game/script.rpy", line 348, in script call
     call screen hotelhallwaymove
-  File "game/script.rpy", line 341, in script
+  File "game/script.rpy", line 365, in script
     label hotellobbylow:
 Exception: Arguments supplied, but parameter list not present
 
@@ -20,11 +20,11 @@ Full traceback:
     call screen hotelroom with fade
   File "game/script.rpy", line 221, in script call
     call screen hotelroommove
-  File "game/script.rpy", line 299, in script call
+  File "game/script.rpy", line 303, in script call
     call screen hotelhallway with fade
-  File "game/script.rpy", line 324, in script call
+  File "game/script.rpy", line 348, in script call
     call screen hotelhallwaymove
-  File "game/script.rpy", line 341, in script
+  File "game/script.rpy", line 365, in script
     label hotellobbylow:
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 855, in execute
     values = apply_arguments(self.parameters, renpy.store._args, renpy.store._kwargs)
@@ -35,4 +35,4 @@ Exception: Arguments supplied, but parameter list not present
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
 Detective Veta 1.0
-Tue Jun 30 01:50:23 2020
+Wed Jul  1 23:05:22 2020
