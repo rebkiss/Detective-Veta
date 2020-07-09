@@ -3,7 +3,7 @@ define q = Character("Quain")
 image dude = Placeholder("boy")
 define dude = Character("dude")
 define r = Character("Receptionist")
-image quainflip = im.Flip("quaindefault.png", vertical = True )
+image quainflip = im.Flip("quaindefault1.png", horizontal = True )
 
 define fade = Fade(0.5, 0.0, 0.5)
 
@@ -358,16 +358,20 @@ label start:
             hotspot (18, 952, 105, 72) action Call("hotelhallwaylow")
 
             #arrow1
-            hotspot (490, 441, 105, 83) action Call("hotellobbylow", transition = fade)
+            hotspot (490, 441, 105, 83) action Jump("hotellobbylow")
 
             #arrow2
             hotspot (1063, 576, 95, 96) action Call("hotelroomlow", transition = fade)
 
     label hotellobbylow:
 
-        scene hotelobby
+        scene hotelobby with fade
 
-        jump hotellobbyreceplow
+        if storypoints >= 3:
+            jump hotellobbyreceplow
+
+        else:
+            jump hotellobbymid
 
     label hotellobbymid:
 
@@ -409,56 +413,13 @@ label start:
             #boot
             hotspot (5, 924, 82, 126) action Call("hotellobbymovelow")
 
-    label hotellobbyreceplow:
-
-        scene hotelobbyrecep with fade
-        call screen hotellobbyrecep
-
-    screen hotellobbyrecep():
-
-        tag location
-
-        imagemap:
-
-            idle "hotelobbyrecep.png"
-
-            #chandelier
-            hotspot (1333, 9, 325, 225) action Jump("chandelier")
-
-            #painting
-            hotspot (978, 58, 343, 202) action Jump("lobbypainting")
-
-            #recep
-            hotspot (33, 233, 229, 277) action Jump("recep")
-
-            #desk
-            hotspot (45, 239, 204, 274) action Jump("desk")
-
-            #couch
-            hotspot (929, 333, 563, 278) action Jump("couch")
-
-            #carpet
-            hotspot (601, 803, 1128, 271) action Jump("carpet")
-
-            #floor
-            hotspot (563, 645, 1336, 123) action Jump("floor")
-
-            #bag
-            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
-
-            #map
-            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
-
-            #boot
-            hotspot (5, 924, 82, 126) action Call("hotellobbymovelow")
-
 
     label chandelier:
 
         scene hotelobby
 
         v "It's so pretty!"
-        q "Don't stare at it too lo-{nw}"
+        q "Don't stare at it for too lo-{nw}"
         v "MY EYES!!"
         q "I WARNED YOU!"
         v "I've gone blind. Quain, please be my eyes."
@@ -475,7 +436,7 @@ label start:
         v "Maybe some people forget that they're in the middle of the desert."
         q "What kind of person forgets that they're in the desert?"
         v "Mariatu."
-        q "I can't argue with that."
+        q "...I can't argue with that."
 
         call screen hotellobby
 
@@ -522,38 +483,228 @@ label start:
         v "It's so shiny. I'm surprised there isn't sand on it."
         q "Someone's gotta be cleaning it."
 
-        call screen hotellobby  
+        call screen hotellobby 
+
+    label hotellobbyreceplow:
+
+        scene hotelobbyrecep
+        
+        call screen hotellobbyrecep
+
+    screen hotellobbyrecep():
+
+        tag location
+
+        imagemap:
+
+            idle "hotelobbyrecep.png"
+
+            #chandelier
+            hotspot (1333, 9, 325, 225) action Jump("chandeliertwo")
+
+            #painting
+            hotspot (978, 58, 343, 202) action Jump("lobbypaintingtwo")
+
+            #recep
+            hotspot (33, 233, 229, 277) action Jump("recep")
+
+            #couch
+            hotspot (929, 333, 563, 278) action Jump("couchtwo")
+
+            #carpet
+            hotspot (601, 803, 1128, 271) action Jump("carpettwo")
+
+            #floor
+            hotspot (563, 645, 1336, 123) action Jump("floortwo")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Call("hotellobbymovelow")
+
+
+    label chandeliertwo:
+
+        scene hotelobby
+
+        v "It's so pretty!"
+        q "Don't stare at it for too lo-{nw}"
+        v "MY EYES!!"
+        q "I WARNED YOU!"
+        v "I've gone blind. Quain, please be my eyes."
+        q "I can't believe this."
+
+        call screen hotellobbyrecep  
+
+    label lobbypaintingtwo:
+
+        scene hotelobby
+
+        v "It's a nice painting of sand."
+        q "There's sand a few feet away though..."
+        v "Maybe some people forget that they're in the middle of the desert."
+        q "What kind of person forgets that they're in the desert?"
+        v "Mariatu."
+        q "...I can't argue with that."
+
+        call screen hotellobbyrecep
+
+    label couchtwo:
+
+        scene hotelobby
+
+        v "This is a comfy couch."
+        q "Isn't it called a sofa?"
+        v "Pretty sure it's a couch."
+        q "A couch doesn't have armrests."
+        v "Says who?"
+        q "Says the people who make them."
+        v "Oh really? And who told you that?"
+        q "One of the furniture sellers back home."
+        v "Hmm...I still think it's a couch."
+        q "*facepalm*"
+
+        call screen hotellobbyrecep  
+
+    label carpettwo:
+
+        scene hotelobby
+
+        q "This is a nice carpet."
+        v "Too bad it has some sand on it."
+
+        call screen hotellobbyrecep  
+
+    label floortwo:
+
+        scene hotelobby
+
+        q "The marble floors are certainly eye-catching."
+        v "It's so shiny. I'm surprised there isn't sand on it."
+        q "Someone's gotta be cleaning it."
+
+        call screen hotellobbyrecep  
 
     label recep:
 
-        scene hotelobby with fade
+        if storypoints >= 3:
 
-        show r at left
-        show v at right
-        show quainflip:
-            xalign 0.6
+            scene hotelobby with fade
 
-        r "Good evening! How may I help you?"
-        q "Is everything alright, ma'am?"
-        r "Frankly, no. My boss is going to chew me out for sure."
-        v "What's wrong?"
-        r "I lost my ID card somehow! It was in my purse before I changed into my uniform, but it was gone when I checked afterwards."
-        v "Quain, we should help her."
-        q "I see no harm in searching for her ID. She seems too distraught to help us with the key anyway."
-        v "We'll help you look for your ID!"
-        r "Really?! Thank you so much!"
+            show receptionistupset at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
 
-        scene hotelobby with fade
+            r "Good evening! How may I help you?"
+            q "Is everything alright, ma'am?"
+            r "Frankly, no. My boss is going to chew me out for sure."
+            v "What's wrong?"
+            r "I lost my ID card somehow! It was in my purse before I changed into my uniform, but it was gone when I checked afterwards."
+            v "Quain, we should help her."
+            q "I see no harm in searching for her ID. She seems too distraught to help us with the key anyway."
+            v "We'll help you look for your ID!"
+            show receptionisthappy at left
+            r "Really?! Thank you so much!"
 
-        show vetadefault at right
-        show quaindefault at left
+            scene hotelobby with fade
 
-        v "I wonder where her ID is? Did we pass by an employee only door in the hallway?"
-        q "No, but we did pass by a suspicious door..."
+            show vetadefault at right
+            show quaindefault at left
 
-        $ storypoints += 1
+            v "I wonder where her ID is? Did we pass by an employee only door in the hallway?"
+            q "No, but we did pass by a suspicious door..."
 
-        call screen hotellobbyrecep with fade 
+            $ storypoints += 1
+
+            call screen hotellobbyrecep with fade 
+
+        elif storypoints >= 4:
+
+            scene hotelobby with fade
+
+            show receptionistupset at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
+            r "I hope you can find my ID card..."
+
+            call screen hotellobbyrecep with fade
+
+        elif storypoints >= 5:
+
+            scene hotelobby with fade
+
+            show receptionistupset at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+            
+            r "How is the search going?"
+            q "Good news, we found it in the hallway."
+            "Receptionist ID Card handed over!"
+            show receptionisthappy
+            r "Oh, thank you so much! You don't know how much this means to me. If you need any help, please let me know!"
+
+            scene hotelobby with fade
+
+            show vetadefault at right
+            show quaindefault at left
+
+            v "Now that she's not worrying about her card, we can ask her about the key."
+            q "Maybe we can ask about the door as well."
+
+            $ storypoints += 1
+
+            call screen hotellobbyrecep
+
+        elif storypoints >= 6:
+
+            scene hotelobby with fade
+
+            show receptionisthappy at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
+            r "How can I help you?"
+            menu:
+                if storypoints <= 6: 
+                    "Mariatu's Key":
+                        v "My friend lost her room key and we haven't found it yet. Has anyone brought it here?"
+                        r "Hmm, I just started my shift, but let me see if there's anything here on the desk. Room number?"
+                        v "110."
+                        show receptionistupset
+                        hide receptionisthappy
+                        r "...Sorry, I don't have it. We do keep spare keys, but they're under lock and key. Wait right here, I'll get it from the back!"
+                        hide receptionistupset with fade
+                        v "Well that's unfortunate."
+                        q "At least there's a spare key. We've searched everywhere for the key in the hotel."
+                        v "I'm starting to think that the key didn't just fall out of her bag."
+                        q "No, this is looking less like an accident."
+                        show receptionisthappy at left with fade
+                        r "Here's one of the spare keys! Be sure to not lose it!"
+                        $ backpack.add_item(sparekey)
+                        "Spare key added to the bag!"
+                
+                "Suspicious Door":
+                    q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
+                    r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
+                    q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
+                    r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
+                    q "I see."
+
+                "New Job":
+                    v "So you're new to the job?"
+                    r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
+                    q "Where were you working before?"
+                    r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."      
+
 
     label hotellobbymovelow:
 
@@ -735,8 +886,7 @@ label start:
             if storypoints >= 4:
                 textbutton "Missing ID" action Show("MissingID") xalign 0.3 yalign 0.5
 
-            if storypoints >= 5:
-                textbutton "Found ID" action Show("FoundID") xalign 0.3 yalign 0.6
+
 
     screen TheMissingDoorKey():
 
@@ -823,9 +973,7 @@ label start:
 
             #bag
             hotspot (73, 404, 158, 221) action Hide("items")
-
-            if backpack.has_item(recepidcard, amount=1):
-                textbutton 
+ 
 
     screen sketchmap():
 
