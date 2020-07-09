@@ -220,7 +220,7 @@ label start:
             hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
 
             #boot
-            hotspot (5, 924, 82, 126) action Call("hotelroommovelow")
+            hotspot (5, 924, 82, 126) action Jump("hotelroommovelow")
 
     label roomoutside:
 
@@ -313,7 +313,7 @@ label start:
             hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
 
             #boot
-            hotspot (5, 924, 82, 126) action Call("hotelhallwaymovelow")
+            hotspot (5, 924, 82, 126) action Jump("hotelhallwaymovelow")
 
             if storypoints == 4:
                 imagebutton auto "recepidcard.png" xalign 0.5 yalign 0.5 action Jump("receptidcard")
@@ -400,13 +400,13 @@ label start:
             idle "hotelhallwayarrow.png"
 
             #back
-            hotspot (18, 952, 105, 72) action Call("hotelhallwaylow")
+            hotspot (18, 952, 105, 72) action Jump("hotelhallwaylow")
 
             #arrow1
             hotspot (490, 441, 105, 83) action Jump("hotellobbylow")
 
             #arrow2
-            hotspot (1063, 576, 95, 96) action Call("hotelroomlow", transition = fade)
+            hotspot (1063, 576, 95, 96) action Jump("hotelroomlow")
 
     label hotellobbylow:
 
@@ -771,65 +771,6 @@ label start:
 
             #back
             hotspot (18, 952, 105, 72) action Call("hotellobbylow")
-        
-
-    #label oasislow:
-
-        #scene oasisbuttonsperson
-
-        #call screen oasis
-
-    #screen oasis():
-
-        #imagemap:
-
-         #   idle "oasisbuttonsitems.jpg"
-            
-            #water
-          #  hotspot (360, 619, 1300, 128) action Jump("water")
-
-            #sand  
-           # hotspot (28, 404, 1803, 126) action Jump("sand")
-
-            #sky    
-            #hotspot (4, 9, 1900, 339) action Jump("sky")
-
-            #bag
-           # hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
-
-            #map
-           # hotspot (1793, 939, 112, 102) action Call("maplow")
-
-            #paper
-           # hotspot (1381, 855, 114, 69) action Jump("firstpaper")
-
-            #man
-           # hotspot (228, 740, 97, 262) action Jump("Ellis")
-
-    #screen oasistwo():
-
-        #imagemap:
-
-            #idle "oasisbuttonsperson.jpg"
-            
-            #water
-           # hotspot (360, 619, 1300, 128) action Jump("water")
-
-            #sand  
-           # hotspot (28, 404, 1803, 126) action Jump("sand")
-
-            #sky    
-           # hotspot (4, 9, 1900, 339) action Jump("sky")
-
-            #bag
-            #hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
-
-            #map
-           # hotspot (1793, 939, 112, 102) action Call("map")
-
-            #man
-            #hotspot (228, 740, 97, 262) action Jump("Ellis")
-
 
     screen bag():
 
@@ -1043,212 +984,107 @@ label start:
             #back
             hotspot (1707, 924, 138, 119) action Hide("sketchmap", transition = dissolve)
 
+    label oasiseasternlow:
 
-   # label marketlow:
+        scene
 
-        #scene marketbuttonsperson
+        call screen oasiseastern
+    
+    screen oasiseastern():
 
-       # call screen market
+        tag location
 
-   # screen market():
-        #imagemap:
+        imagemap:
 
-            #idle "marketbuttonsperson.jpg"
+            idle
 
-            #map
-           # hotspot (1795, 939, 110, 99) action Call("maplow")
+            #water
+            hotspot  action Jump("seastwater")
 
-            #bag
-           # hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
+            #tree
+            hotspot  action Jump("easttree")
 
-            #shade
-           # hotspot (529, 13, 951, 420) action Jump("shade")
+            #building
+            hotspot  action Jump("eastbuilding")
 
-            #pottery
-            #hotspot (50, 391, 1415, 659) action Jump("pottery")
+            #tents
+            hotspot  action Jump("easttents")
 
-            #person
-           # hotspot (1533, 433, 188, 317) action Jump("documentmissing")
-
-    #label hotellow:
-
-        #scene hotelbuttons
-
-       # call screen hotel
-
-   # screen hotel():
-       # imagemap:
-
-           # idle "hotelbuttons.jpg"
-
-            #map
-           # hotspot (1793, 939, 112, 102) action Call("maplow")
+            #far buildings
+            hotspot  action Jump("eastfar")
 
             #bag
-           # hotspot (1790, 38, 118, 105) action Show("bag", transition = dissolve)
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
-            #bed
-           # hotspot (20, 608, 1076, 390) action Jump("bed")
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
 
-            #view
-           # hotspot (1225, 335, 310, 159) action Jump("view")
+            #boot
+            hotspot (5, 924, 82, 126) action Jump("oasiseasternmovelow")
 
-            #chairs
-           # hotspot (1216, 575, 330, 90) action Jump("chairs")
+    label oasiseasternmovelow:
 
-            #flower
-          #  hotspot (1601, 379, 273, 524) action Jump("flower")
+        scene
 
+        call screen oasiseasternmove
 
-  #  label water:
-       # scene oasisconcept 
-       # v "The water looks really refreshing right now. "
-       # call screen oasis
-   # label sand:
-        #scene oasisconcept
-       # v "I keep slipping in the sand."
-       # call screen oasis
-   # label sky:
-      #  scene oasisconcept
-      #  v "These clouds aren't helping with the heat."
-      #  call screen oasis
+    screen oasiseasternmove():
 
-   #label shade:
-        #scene marketconcept
-       # v "The canopy doesn't seem to do much with providing shade from the sun."
-      #  call screen market
+        imagemap:
 
-   # label pottery:
-       # scene marketconcept
-      #  v "A lot of the pottery here looks interesting.
-      #  Too bad most are buried in sand."
-      #  call screen market
+            idle
 
-   # label bed:
-       # scene hotelconcept
-       # v "The bed is so soft. I'll sleep good tonight."
-       # call screen hotel
+            #back
+            hotspot (18, 952, 105, 72) action Jump("hotelhallwaylow")
 
-  #  label view:
-       # scene hotelconcept
-       # v "Sand. So much sand.
-      #  I want to roll down one of the dunes."
-      #  call screen hotel
+    label eastwater:
 
-   # label chairs:
-       # scene hotelconcept
-       # v "These chairs are comfy. 
-       # Maybe I'll sleep under the stars sometime this week."
-       # call screen hotel
+        scene
 
-   # label flower:
-       # scene hotelconcept
-       # v "I think these are lilies. My knowledge of flowers is a bit rusty."
-       # call screen hotel
+        v "I bet the water is nice and cold right now."
+        q "Don't even think about swimming in there."
+        v "I'm not. I can't even swim."
+        q "Good thing we're in a desert and not at the beach."
 
-   # label firstpaper:
-       # scene oasisconcept
+        call screen oasissouthern
 
-        #show vetaconcept at right
-      #  show quainplaceholder at left
+    label easttree:
 
-      #  v "Hey, I found something!"
-      #  q "What is that?"
-      #  q "Seems like a piece of paper. Throw it out."
-      #  v "Hold on, look on the back! There are some lines on here."
-      #  q "Alright, it’s got some squiggles. Now throw it out."
-      #  v "This could be important!"
-     #   q "It's junk. Even if you kept it, what are the chances of you finding the rest of it?"
-      #  v "Fine. I'll throw it out."
-      #  "Piece of paper sneakily slipped into bag"
-       # $ backpack.add_item(paper)
+        scene
 
-       # call screen oasistwo
-#label Ellis:
-       # scene oasisconcept
+        v "Look at these palm trees! There's so much shade under here."
+        q "...Did you forget to put on sunscreen?"
+        v "No..."
 
-       # show quainplaceholder at left
-       # show dude at right
+        call screen oasissouthern
 
-       # menu: 
-           # "What should I ask him about?"
+    label eastbuilding:
 
-           # "Murder":
-            #    q "Can you tell me about the murder? What happened?"
-             #   dude "A teacher from the city was killed last night.
-              #  I didn’t know about it until I woke up this morning.
-               # The oasis is frozen over too.
-                #Someone with an ice ability must have done it.
-                #Considering how rare that ability is around here, an outsider probably did it."
-                #jump Ellis
+        scene 
 
-           # "Victim":
-              #  q "The victim, did you know anything about her?"
-              #  dude "I just know she’s a teacher.
-               # Some students had been in that crowd earlier and were saying that she was their teacher."
-               # jump Ellis
+        q "This looks like another hotel."
+        v "Seems much smaller than our hotel though, and our hotel is cheap."
+        q "Maybe it's for the rich?"
+        v "Or maybe they have conference rooms, like for meetings or parties."
+        q "That's a good guess."
 
-           # "Suspect":
-               # q "Is there someone that you think could be the murderer?"
-              #  dude "Someone said they saw the teacher with a student last night.
-              #  A lot of people started assuming that the student is the suspect.
-              #  While that could be true, it’s probably best to wait until the authorities from the city arrive."
-              #  q "Who was the person that saw the teacher and student together?"
-              #  dude "I’m not sure.
-              #  You could probably ask around at the market. Information spreads there."
-              #  jump Ellis
+    label easttents:
 
-           # "That's all":
-               # q "Thank you for the information." 
-              #  jump discussion
+        scene
 
-   # label discussion:
-       # scene oasisconcept
+        q "That must be where the market is."
+        v "It's certainly colorful. Definitely catches the eye."
+        q "Once they catch your eye, they go after your money next."
+        v "People need to make a living here you know."
+        q "I didn't say it was a bad thing."
 
-       # show vetaconcept at right
-       # show quainplaceholder at left
+    label eastfar:
 
-       # v "Well, no new information there besides the whole ice ability thing."
-       # q "That and the fact that Ms. Millie and Mariatu were seen together last night. 
-       # Did you know about this?"
-       # v "Yeah...Mari lost her key as soon as we got to the room. 
-       # She had to talk to Ms. Millie about it."
-       # q "Why am I not surprised?"
-       # v "We should probably check out the market.
-       # Seems like a breeding ground for rumors and information."
-       # q "Agreed."
+        scene
 
-       #if backpack.has_item(paper, amount=1):
-          #  jump oasistwo
+        q "The western part of the oasis seems to have a lot more buildings than over here."
+        v "I think I can see our hotel over there."
+        q "How I long for my bed..."
 
-       # else: 
-          #  jump oasislow
-
-   # label documentmissing:
-       # scene marketconcept
-
-       # show vetaconcept at right
-       # show dude at center
-       # show quainplaceholder at left
-
-      #  v "Is something the matter, sir?"
-       # dude "Oh, I didn't see you two there. 
-       # I lost a piece of my paper during the crowd earlier by the crime scene."
-        
-       # if backpack.has_item(paper, amount=1):
-         #   q "..."
-          #  v "Do you mean...this piece of paper?"
-          #  q "What the-?! Where did you-?!"
-         #   dude "YES!
-         #   You found it!"
-         #   "Piece of paper given to the dude."
-         #   $ backpack.remove_item(paper, amount=1)
-         #   v "Glad to help!"
-         #   call screen market
-
-       # else: 
-           # q "Sorry, we don't have it."
-           # dude "Ashame."
-           # call screen market
 
     return
