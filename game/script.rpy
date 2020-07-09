@@ -1189,5 +1189,71 @@ label start:
         v "The sky is almost beautiful."
 
         call screen oasissouthern
+        
+    label oasiswesternlow:
+
+        scene
+
+        call screen oasiswestern
+    
+    screen oasiswestern():
+
+        tag location
+
+        imagemap:
+
+            idle
+
+            #buildings
+            hotspot  action Jump("westbuildings")
+
+            #tree
+            hotspot  action Jump("westtree")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Jump("oasiswesternmovelow")
+
+    label oasiswesternmovelow:
+
+        scene
+
+        call screen oasiswesternmove
+
+    screen oasiswesternmove():
+
+        imagemap:
+
+            idle
+
+            #back
+            hotspot (18, 952, 105, 72) action Jump("oasiswesternlow")
+
+    label westbuildings:
+
+        scene
+
+        v "There are a lot of hotels around here, ours included."
+        q "This is probably where the tourists stay, to separate them from the locals."
+        v "I can see that. There are three souveneir shops that I can see from here alone."
+        q "I should get a souveneir for my parents now that I think about it."
+        v "We can check those shops out, but maybe hold off on buying anything until we see what the market has."
+
+        call screen oasiswestern
+
+    label westtree:
+
+        scene
+
+        v "Let's take a break in the shade."
+        q "I guess we can rest our legs. The oasis is larger than expected."
+        v "Here, let me get some water for us."
+
+        call screen oasiswestern
 
     return
