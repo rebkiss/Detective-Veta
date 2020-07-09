@@ -9,6 +9,7 @@ define m = Character("Mariatu")
 define ? = Character("????")
 define fade = Fade(0.5, 0.0, 0.5)
 define ms = Character("Ms. Millie")
+define e = Character("Ellis")
 
 
 image vetadefault:
@@ -739,6 +740,7 @@ label start:
                         r "Here's one of the spare keys! Be sure to not lose it!"
                         $ backpack.add_item(sparekey)
                         "Spare key added to the bag!"
+                        jump recepdiscussion
                 
                 "Suspicious Door":
                     q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
@@ -746,12 +748,17 @@ label start:
                     q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
                     r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
                     q "I see."
+                    jump recepdiscussion
 
                 "New Job":
                     v "So you're new to the job?"
                     r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
                     q "Where were you working before?"
                     r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
+                    jump recepdiscussion
+
+                "Goodbye":
+                    jump hotellobbylow
 
 
     label hotellobbymovelow:
@@ -973,7 +980,7 @@ label start:
             idle "MapConcept.jpg"
 
             #oasis
-           # hotspot (714, 298, 488, 390) action Call("oasislow") 
+            hotspot (714, 298, 488, 390) action Call("oasissouthernlow") 
             
             #hotel
             hotspot (479, 203, 212, 294) action Call("hotellobbylow") 
@@ -1210,6 +1217,9 @@ label start:
             #tree
             hotspot  action Jump("westtree")
 
+            #Ellis
+            hotspot  action Jump("Ellis")
+
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
@@ -1255,5 +1265,46 @@ label start:
         v "Here, let me get some water for us."
 
         call screen oasiswestern
+
+    label Ellis:
+
+        if storypoints >= 9:
+
+            scene
+
+            e "Good morning, you two. Tourists seeing the sights?"
+            q "Yes, something like that."
+            e "Well, I'm terribly sorry about the commotion earlier today. It's not everyday someone gets murderered here!"
+            q "We're actually investigating the murder. Can we ask you some questions?"
+            e "If it'll help find the killer!"
+
+            $ storypoints += 1:
+
+        if storypoints >= 10:
+
+            scene
+
+            menu:
+
+                "Victim":
+                    q "Can you tell us what you know about the victim?"
+                    e "She's a teacher if I remember correctly. I've seen her a few times over the years with her classes."
+                    q "Has she done anything over those years that would upset someone?"
+                    e "No! In fact, a lot of the locals liked her because she brought business here. Those students of hers always buy a lot of our goods."
+                    q "Hmm, so none of the locals seem to want her dead..."
+                    jump Ellis
+
+                "Suspect":
+                    q "Do you know anything about the suspect?"
+                    e "I think she's one of the teacher's students. Rumors are going around that she's the one that froze the oasis too."
+                    q "She's definitely one of the students, but she doesn't have ice abilities. She doesn't have any abilities."
+                    v "Aside from forgetting things."
+                    q "If she is the killer, what motive does she have?"
+                    e "I heard she got into an arguement with the teacher late last night! Probably something to do with that."
+                    jump Ellis
+
+                    "Goodbye":
+                        jump oasiswesternlow 
+
 
     return
