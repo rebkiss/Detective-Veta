@@ -980,13 +980,15 @@ label start:
             idle "MapConcept.jpg"
 
             #oasis
-            hotspot (714, 298, 488, 390) action Call("oasissouthernlow") 
+            if storypoints >= 9:
+                hotspot (714, 298, 488, 390) action Call("oasissouthernlow") 
             
             #hotel
             hotspot (479, 203, 212, 294) action Call("hotellobbylow") 
             
             #market
-           # hotspot (1291, 236, 171, 232) action Call("marketlow")
+            if storypoints >= 12:
+                hotspot (1291, 236, 171, 232) action Call("marketlow")
             
             #back
             hotspot (1707, 924, 138, 119) action Hide("sketchmap", transition = dissolve)
@@ -1218,7 +1220,8 @@ label start:
             hotspot  action Jump("westtree")
 
             #Ellis
-            hotspot  action Jump("Ellis")
+            if storypoints >= 10:
+                hotspot  action Jump("Ellis")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
@@ -1250,8 +1253,8 @@ label start:
 
         v "There are a lot of hotels around here, ours included."
         q "This is probably where the tourists stay, to separate them from the locals."
-        v "I can see that. There are three souveneir shops that I can see from here alone."
-        q "I should get a souveneir for my parents now that I think about it."
+        v "I can see that. There are three souvenir shops that I can see from here alone."
+        q "I should get a souvenir for my parents now that I think about it."
         v "We can check those shops out, but maybe hold off on buying anything until we see what the market has."
 
         call screen oasiswestern
@@ -1306,5 +1309,178 @@ label start:
                     "Goodbye":
                         jump oasiswesternlow 
 
+    label marketlow:
+
+        scene
+
+        call screen market
+
+    screen market():
+
+        tag location
+
+        imagemap:
+
+            idle
+
+            #pottery stand
+            hotspot  action Jump("potterystand")
+
+            #food cart
+            hotspot  action Jump("foodcart")
+
+            #stalls
+            hotspot  action Jump("stalls")
+
+            if storypoints >= 13:
+                hotspot  action Jump("potteryseller")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Jump("marketmovelow")
+
+    label marketmovelow:
+
+        scene
+
+        call screen marketmove
+
+    screen marketmove():
+
+        imagemap:
+
+            idle
+
+            #back
+            hotspot (18, 952, 105, 72) action Jump("marketlow")
+
+    label potterystand:
+
+        scene 
+
+        v "Look at all of these!"
+        q "Fine craftsmanship indeed."
+        v "Glad I told you to wait until we got here to buy a souvenir?"
+        q "I was waiting anyway without you telling me to."
+
+        call screen market
+
+    label foodcart:
+
+        scene
+
+        if storypoints == 15:
+
+            v "This must be the food cart that boy was talking about."
+            q "There's no here manning the cart. I guess we'll have to wait until the owner comes back to ask questions."
+            v "I guess you're rig-{nw} ACK!!"
+            q "What's wrong?"
+            v "My...my head feels like it's going to explode!!"
+            q "Did you hurt yourself today? Hit your hit somewhere?"
+            v "I touched the cart for a second and now I-I can't see!"
+            q "Here's my arm, hang onto it. Let's find a medical professional. There has to be a hospital or clinic somewhere around here."
+            v "Wait! I can see something! It's a picture."
+            q "I don't see any pictures."
+            v "I think it's in my head. I can see the food cart. And Ms. Millie! And someone else!"
+            "Investigate the picture!"
+
+            call screen foodcartsnapshot
+
+        else:
+
+            v "There's no one here."
+            q "Must be on break."
+            v "But I'm hungry..."
+
+    screen foodcartsnapshot():
+
+        imagemap:
+
+            idle
+
+            #seller
+            hotspot  action Jump("snapshotseller")
+
+            #Ms. Millie
+            hotspot  action Jump("snapshotMs")
+
+            #foodcart
+            hotspot  action Jump("snapshotcart")
+
+            #necklace
+            hotspot  action Jump("snapshotnecklace")
+
+    label snapshotseller:
+
+        scene
+
+        call screen foodcartsnapshot
+
+    label snapshotMs:
+
+        scene
+
+        call screen foodcartsnapshot
+
+    label snapshotcart:
+
+        scene
+
+        call screen foodcartsnapshot
+
+    label snapshotnecklace:
+
+        scene 
+
+        call screen foodcartsnapshot
+
+    label marketalleylow:
+
+        scene
+
+        call screen marketalley
+
+    screen marketalley():
+
+        tag location
+
+        imagemap:
+
+            idle
+
+            #stalls
+            hotspot  action Jump("marketalleystalls")
+
+            if storypoints >= 14:
+                hotspot  action Jump("marketboy")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Jump("marketalleymovelow")
+
+    label marketalleymovelow:
+
+        scene
+
+        call screen marketalleymove
+
+    screen marketalleymove():
+
+        imagemap:
+
+            idle
+
+            #back
+            hotspot (18, 952, 105, 72) action Jump("marketalleylow")
 
     return
