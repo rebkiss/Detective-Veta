@@ -999,7 +999,7 @@ label start:
             idle
 
             #water
-            hotspot  action Jump("seastwater")
+            hotspot  action Jump("eastwater")
 
             #tree
             hotspot  action Jump("easttree")
@@ -1035,7 +1035,7 @@ label start:
             idle
 
             #back
-            hotspot (18, 952, 105, 72) action Jump("hotelhallwaylow")
+            hotspot (18, 952, 105, 72) action Jump("oasiseasternlow")
 
     label eastwater:
 
@@ -1046,7 +1046,7 @@ label start:
         v "I'm not. I can't even swim."
         q "Good thing we're in a desert and not at the beach."
 
-        call screen oasissouthern
+        call screen oasiseastern
 
     label easttree:
 
@@ -1056,7 +1056,7 @@ label start:
         q "...Did you forget to put on sunscreen?"
         v "No..."
 
-        call screen oasissouthern
+        call screen oasiseastern
 
     label eastbuilding:
 
@@ -1068,6 +1068,8 @@ label start:
         v "Or maybe they have conference rooms, like for meetings or parties."
         q "That's a good guess."
 
+        call screen oasiseastern
+
     label easttents:
 
         scene
@@ -1078,6 +1080,8 @@ label start:
         v "People need to make a living here you know."
         q "I didn't say it was a bad thing."
 
+        call screen oasiseastern
+
     label eastfar:
 
         scene
@@ -1086,5 +1090,104 @@ label start:
         v "I think I can see our hotel over there."
         q "How I long for my bed..."
 
+        call screen oasiseastern
+
+    label oasissouthernlow:
+
+        scene
+
+        call screen oasissouthern
+    
+    screen oasissouthern():
+
+        tag location
+
+        imagemap:
+
+            idle
+
+            #crime scene
+            hotspot  action Jump("crimescene")
+
+            #frozen water
+            hotspot  action Jump("frozenwater")
+
+            #sand
+            hotspot  action Jump("sand")
+
+            #sky
+            hotspot  action Jump("sky")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Jump("oasissouthernmovelow")
+
+    label oasissouthernmovelow:
+
+        scene
+
+        call screen oasissouthernmove
+
+    screen oasissouthernmove():
+
+        imagemap:
+
+            idle
+
+            #back
+            hotspot (18, 952, 105, 72) action Jump("oasissouthernlow")
+
+    label crimescene:
+
+        scene
+
+        q "There's Ms. Millie."
+        v "*shudder* I really don't like looking at her."
+        q "Me neither, but we need to bring her killer to justice."
+        v "I hope we can catch them soon."
+
+        call screen oasissouthern
+
+    label frozenwater:
+
+        scene
+
+        v "The oasis is completely frozen."
+        q "I wonder who did this."
+        v "Someone with ice abilities for sure."
+        q "Someone powerful for sure. We'll need to be careful while investigating."
+        v "I'd rather not meet the same end as Ms. Millie."
+
+        call screen oasissouthern
+
+    label sand:
+
+        scene 
+
+        v "I keep slipping in this sand."
+        q "You've got boots on."
+        v "I know tha- WHOA!!"
+        q "Lucky I caught you."
+        v "Would you like a gold star for that?"
+        q "No, I would like to stop touching your sweaty hand."
+        v "If you weren't my friend-{nw}"
+        q "We're not friends."
+
+        call screen oasissouthern
+
+    label sky:
+
+        scene 
+
+        v "The sky is beautiful."
+        q "The sky needs more clouds over the sun."
+        v "The sky is almost beautiful."
+
+        call screen oasissouthern
 
     return
