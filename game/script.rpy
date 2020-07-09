@@ -4,8 +4,12 @@ image dude = Placeholder("boy")
 define dude = Character("dude")
 define r = Character("Receptionist")
 image quainflip = im.Flip("quaindefault1.png", horizontal = True )
-
+image black = "#000"
+define m = Character("Mariatu")
+define ? = Character("????")
 define fade = Fade(0.5, 0.0, 0.5)
+define ms = Character("Ms. Millie")
+
 
 image vetadefault:
     "vetadefault1.png"
@@ -125,6 +129,47 @@ init python:
 
 # game starts here
 label start:
+
+    label prologue:
+
+        scene black
+
+        "We arrived at the Oasis of Destiny long after sunset."
+        "Our field trip began before sunrise at the school, and now we're in the middle of the desert."
+        "This trip is like a rite of passage for us, every student at our school goes on a field trip here before graduating."
+
+        v "*stretching* Hnnnnngh...My legs are sore from sitting in the caravan all day."
+        q "Well, we're here at last. The oasis is quite beautiful."
+        v "We should definitely check it out tomorrow."
+        q "I don't remember agreeing to spending this field trip trailing after you."
+        v "Oh, come on! Don't be like that. You know things are more interesting when I'm around."
+        q "*snort*"
+        ? "Oh, there you two are!"
+        ms "I have both of your room keys over here."
+        v "Thank you, Ms. Millie."
+        q "I'm going to my room."
+        v "Which room are you in? I'm in 110."
+        q "111."
+        v "Cool, let's walk together then."
+
+        v "Oh, here's my room."
+        ? "WHERE IS IT?"
+        v "Um..."
+        m "Oh, I'm sorry! I didn't realize you were there."
+        q "Is something the matter, Mariatu?"
+        v "Wait, let me guess. You lost your room key?"
+        m "*sniffle* Yes, I lost it. I just got it a moment ago!"
+        v "Lucky for you, we're in the same suite, so I have a key. Did you drop it somewhere?"
+        m "I'm not sure. When I got my key, I had put it straight into my bag. But now I can't find it!"
+        q "So it didn't fall out?"
+        m "*sniffle* No!"
+        v "...Well, tell you what. Quain and I will go look for it while you stay with one of our other classmates in the mean time."
+        m "Are you sure?"
+        v "Quain?"
+        q "Leave the mystery solving to us."
+        m "Of course, you guys are the experts!"
+        jump chapterone
+
 
     label chapterone:
 
@@ -664,8 +709,11 @@ label start:
             call screen hotellobbyrecep
 
         elif storypoints >= 6:
+            jump recepdiscussion
 
-            scene hotelobby with fade
+    label recepdiscussion:
+         
+         scene hotelobby with fade
 
             show receptionisthappy at left
             show vetadefault1 at right
@@ -703,7 +751,7 @@ label start:
                     v "So you're new to the job?"
                     r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
                     q "Where were you working before?"
-                    r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."      
+                    r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
 
 
     label hotellobbymovelow:
