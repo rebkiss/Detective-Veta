@@ -742,23 +742,23 @@ label start:
                         "Spare key added to the bag!"
                         jump recepdiscussion
                 
-                "Suspicious Door":
-                    q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
-                    r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
-                    q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
-                    r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
-                    q "I see."
-                    jump recepdiscussion
+                    "Suspicious Door":
+                        q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
+                        r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
+                        q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
+                        r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
+                        q "I see."
+                        jump recepdiscussion
 
-                "New Job":
-                    v "So you're new to the job?"
-                    r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
-                    q "Where were you working before?"
-                    r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
-                    jump recepdiscussion
+                    "New Job":
+                        v "So you're new to the job?"
+                        r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
+                        q "Where were you working before?"
+                        r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
+                        jump recepdiscussion
 
-                "Goodbye":
-                    jump hotellobbylow
+                    "Goodbye":
+                        jump hotellobbylow
 
 
     label hotellobbymovelow:
@@ -1051,9 +1051,9 @@ label start:
         scene
 
         v "I bet the water is nice and cold right now."
-        q "Don't even think about swimming in there."
+        q "You can't swim in there. It's frozen."
         v "I'm not. I can't even swim."
-        q "Good thing we're in a desert and not at the beach."
+        q "Good thing it's frozen then."
 
         call screen oasiseastern
 
@@ -1158,7 +1158,7 @@ label start:
         q "There's Ms. Millie."
         v "*shudder* I really don't like looking at her."
         q "Me neither, but we need to bring her killer to justice."
-        v "I hope we can catch them soon."
+        v "I hope we can catch whoever did this soon."
 
         call screen oasissouthern
 
@@ -1282,8 +1282,10 @@ label start:
             e "If it'll help find the killer!"
 
             $ storypoints += 1:
+            
+            jump oasiswesternlow
 
-        if storypoints >= 10:
+        elif storypoints >= 10:
 
             scene
 
@@ -1295,6 +1297,7 @@ label start:
                     q "Has she done anything over those years that would upset someone?"
                     e "No! In fact, a lot of the locals liked her because she brought business here. Those students of hers always buy a lot of our goods."
                     q "Hmm, so none of the locals seem to want her dead..."
+                    v "Maybe someone else knows more about Ms. Millie."
                     jump Ellis
 
                 "Suspect":
@@ -1306,8 +1309,17 @@ label start:
                     e "I heard she got into an arguement with the teacher late last night! Probably something to do with that."
                     jump Ellis
 
-                    "Goodbye":
-                        jump oasiswesternlow 
+                "Ms. Millie's Friends":
+                    q "Is there anyone else you know that was close to the victim?"
+                    e "Hmm...I think there was someone in the market that knows her better than I do. I don't know specifically who, but she was a frequent there."
+                    q "So someone at the market knows more information."
+                    v "I think it's time we visited the market."
+
+                "Goodbye":
+                    jump oasiswesternlow 
+        else:
+            e "How's the investigation?"
+
 
     label marketlow:
 
@@ -1482,5 +1494,478 @@ label start:
 
             #back
             hotspot (18, 952, 105, 72) action Jump("marketalleylow")
+
+    label hotelroomdaylow:
+
+        scene hotelroomday 
+
+        call screen hotelroomday with fade
+
+    screen hotelroomday():
+
+        tag location
+
+        imagemap:
+
+            idle "hotelroomdaybuttons.png"
+
+            #outside
+            hotspot (1114, 240, 549, 408) action Jump("roomoutsideday")
+
+            #bed
+            hotspot (180, 701, 1140, 293) action Jump("bedday")
+
+            #painting
+            hotspot (219, 190, 435, 303) action Jump("roompaintingday")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Jump("hotelroomdaymovelow")
+
+    label roomoutsideday:
+
+        scene hotelroomday 
+
+        v "Wow, the sand outside looks like it's blue!"
+        q "I'm more concerned with the fact that the window doesn't have curtains or blinds."
+        v "Ms. Millie did say that the school booked a cheap hotel."
+        q "A hotel so cheap that they can't afford curtains."
+        v "At least the view is beautiful."
+        q "I suppose."
+
+        call screen hotelroomday 
+
+    label bedday:
+
+        scene hotelroomday 
+
+        v "*lays on bed* These beds are really comfy!"
+        q "They certainly are."
+        v "This comforter matches my clothes, too!"
+        q "Indeed, you blend right in. I almost forgot you were here. Almost."
+        v "Wow, the betrayal. I thought we were friends, detective partners."
+        q "Well, I agree that we are partners. Not so sure about friends."
+        v "Hmph."
+
+        call screen hotelroomday
+
+    label roompaintingday:
+
+        scene hotelroomday 
+
+        v "It's a cactus."
+        q "Thank you for pointing out the obvious."
+        v "You're welcome."
+
+        call screen hotelroomday 
+
+    label hotelroomdaymovelow:
+
+        scene hotelroomday
+
+        call screen hotelroomdaymove
+
+    screen hotelroomdaymove():
+
+        imagemap:
+
+            idle "hotelroomdayarrow.png"
+
+            #arrow
+            hotspot (18, 570, 129, 94) action Call("hotelhallwaydaylow")
+
+            #back
+            hotspot (18, 952, 105, 72) action Call("hotelroomdaylow")
+
+    label hotelhallwaydaylow:
+
+        scene hotelhallwayday with fade
+
+        call screen hotelhallwayday
+
+    screen hotelhallwayday():
+
+        tag location
+
+        imagemap:
+
+            idle "hotelhallwaydaybuttons.png"
+
+            #room
+            hotspot (970, 177, 297, 596) action Jump("roomday")
+
+            #door
+            hotspot (243, 131, 144, 372) action Jump("hallwaydoorday")
+
+            #window
+            hotspot (5, 94, 101, 112) action Jump("hallwaywindowday")
+
+            #light1
+            hotspot (519, 164, 82, 88) action Jump("hallwaylightday")
+
+            #light2
+            hotspot (737, 191, 109, 112) action Jump("hallwaylightday")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Jump("hotelhallwaydaymovelow")
+
+            if storypoints == 4:
+                imagebutton auto "recepidcard.png" xalign 0.5 yalign 0.5 action Jump("receptidcard")
+
+
+    label roomday:
+
+        scene hotelhallwayday
+
+        v "That's my room!"
+        q "We can always take a break if you want."
+        v "I think it's you who needs a break."
+
+        call screen hotelhallwayday 
+
+    label hallwaydoorday:
+
+        scene hotelhallway
+
+        show vetadefault at right
+        show quaindefault at left
+
+        q "This doesn't look like a regular guest room."
+        v "It could be for employees only."
+        q "There's no sign that says that. Just the room number."
+        v "It's locked. Someone doesn't want just anyone in there."
+        q "It could be a supply room."
+        v "I guess we'll leave it at that."
+
+        call screen hotelhallwayday
+
+    label hallwaywindowday:
+
+        scene hotelhallwayday
+
+        v "I can't see!"
+        q "I can see just fine."
+        v "That's because you're tall."
+
+        call screen hotelhallwayday 
+
+    label hallwaylightday:
+
+        scene hotelhallwayday
+
+        v "These lights are very aesthetic."
+        q "They certainly set the mood."
+
+        call screen hotelhallwayday 
+
+    label hotelhallwaydaymovelow:
+
+        scene hotelhallwayday
+
+        call screen hotelhallwaydaymove
+
+    screen hotelhallwaydaymove():
+
+        imagemap:
+
+            idle "hotelhallwaydayarrow.png"
+
+            #back
+            hotspot (18, 952, 105, 72) action Jump("hotelhallwaydaylow")
+
+            #arrow1
+            hotspot (490, 441, 105, 83) action Jump("hotellobbydaylow")
+
+            #arrow2
+            hotspot (1063, 576, 95, 96) action Jump("hotelroomdaylow")
+
+    label hotellobbydaylow:
+
+        scene hotelobby with fade
+
+        if storypoints >= 3:
+            jump hotellobbydayreceplow
+
+        else:
+            jump hotellobbydaymid
+
+    label hotellobbydaymid:
+
+        scene hotelobby with fade
+        call screen hotellobbyday
+
+    screen hotellobbyday():
+
+        tag location
+
+        imagemap:
+
+            idle "hotelobbybuttons.png"
+
+            #chandelier
+            hotspot (1333, 9, 325, 225) action Jump("chandelierday")
+
+            #painting
+            hotspot (978, 58, 343, 202) action Jump("lobbypaintingday")
+
+            #desk
+            hotspot (978, 58, 343, 202) action Jump("deskday")
+
+            #couch
+            hotspot (929, 333, 563, 278) action Jump("couchday")
+
+            #carpet
+            hotspot (601, 803, 1128, 271) action ("carpetday")
+
+            #floor
+            hotspot (563, 645, 1336, 123) action Jump("floorday")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Call("hotellobbydaymovelow")
+
+
+    label chandelierday:
+
+        scene hotelobby
+
+        v "It's so pretty!"
+        q "Don't stare at it for too lo-{nw}"
+        v "MY EYES!!"
+        q "I WARNED YOU!"
+        v "I've gone blind. Quain, please be my eyes."
+        q "I can't believe this."
+
+        call screen hotellobbyday  
+
+    label lobbypaintingday:
+
+        scene hotelobby
+
+        v "It's a nice painting of sand."
+        q "There's sand a few feet away though..."
+        v "Maybe some people forget that they're in the middle of the desert."
+        q "What kind of person forgets that they're in the desert?"
+        v "Mariatu."
+        q "...I can't argue with that."
+
+        call screen hotellobbyday
+
+    label deskday:
+
+        scene hotelobby
+
+        q "There's no receptionist."
+        v "Maybe they're on break?"
+
+        call screen hotellobbyday 
+
+    label couchday:
+
+        scene hotelobby
+
+        v "This is a comfy couch."
+        q "Isn't it called a sofa?"
+        v "Pretty sure it's a couch."
+        q "A couch doesn't have armrests."
+        v "Says who?"
+        q "Says the people who make them."
+        v "Oh really? And who told you that?"
+        q "One of the furniture sellers back home."
+        v "Hmm...I still think it's a couch."
+        q "*facepalm*"
+
+        call screen hotellobbyday  
+
+    label carpetday:
+
+        scene hotelobby
+
+        q "This is a nice carpet."
+        v "Too bad it has some sand on it."
+
+        call screen hotellobbyday  
+
+    label floorday:
+
+        scene hotelobby
+
+        q "The marble floors are certainly eye-catching."
+        v "It's so shiny. I'm surprised there isn't sand on it."
+        q "Someone's gotta be cleaning it."
+
+        call screen hotellobbyday 
+
+    label hotellobbydayreceplow:
+
+        scene hotelobbyrecep
+        
+        call screen hotellobbydayrecep
+
+    screen hotellobbydayrecep():
+
+        tag location
+
+        imagemap:
+
+            idle "hotelobbyrecep.png"
+
+            #chandelier
+            hotspot (1333, 9, 325, 225) action Jump("chandeliertwoday")
+
+            #painting
+            hotspot (978, 58, 343, 202) action Jump("lobbypaintingtwoday")
+
+            #recep
+            hotspot (33, 233, 229, 277) action Jump("recepday")
+
+            #couch
+            hotspot (929, 333, 563, 278) action Jump("couchtwoday")
+
+            #carpet
+            hotspot (601, 803, 1128, 271) action Jump("carpettwoday")
+
+            #floor
+            hotspot (563, 645, 1336, 123) action Jump("floortwoday")
+
+            #bag
+            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
+
+            #map
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+
+            #boot
+            hotspot (5, 924, 82, 126) action Call("hotellobbydaymovelow")
+
+
+    label chandeliertwoday:
+
+        scene hotelobby
+
+        v "It's so pretty!"
+        q "Don't stare at it for too lo-{nw}"
+        v "MY EYES!!"
+        q "I WARNED YOU!"
+        v "I've gone blind. Quain, please be my eyes."
+        q "I can't believe this."
+
+        call screen hotellobbydayrecep  
+
+    label lobbypaintingtwoday:
+
+        scene hotelobby
+
+        v "It's a nice painting of sand."
+        q "There's sand a few feet away though..."
+        v "Maybe some people forget that they're in the middle of the desert."
+        q "What kind of person forgets that they're in the desert?"
+        v "Mariatu."
+        q "...I can't argue with that."
+
+        call screen hotellobbydayrecep
+
+    label couchtwoday:
+
+        scene hotelobby
+
+        v "This is a comfy couch."
+        q "Isn't it called a sofa?"
+        v "Pretty sure it's a couch."
+        q "A couch doesn't have armrests."
+        v "Says who?"
+        q "Says the people who make them."
+        v "Oh really? And who told you that?"
+        q "One of the furniture sellers back home."
+        v "Hmm...I still think it's a couch."
+        q "*facepalm*"
+
+        call screen hotellobbydayrecep  
+
+    label carpettwoday:
+
+        scene hotelobby
+
+        q "This is a nice carpet."
+        v "Too bad it has some sand on it."
+
+        call screen hotellobbydayrecep  
+
+    label floortwoday:
+
+        scene hotelobby
+
+        q "The marble floors are certainly eye-catching."
+        v "It's so shiny. I'm surprised there isn't sand on it."
+        q "Someone's gotta be cleaning it."
+
+        call screen hotellobbydayrecep  
+
+    label recepday: 
+
+        jump recepdaydiscussion
+
+    label recepdaydiscussion:
+         
+         scene hotelobby with fade
+
+            show receptionisthappy at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
+            r "How can I help you?"
+            menu: 
+                "Suspicious Door":
+                    q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
+                    r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
+                    q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
+                    r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
+                    q "I see."
+                    jump recepdiscussion
+
+                "New Job":
+                    v "So you're new to the job?"
+                    r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
+                    q "Where were you working before?"
+                    r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
+                    jump recepdiscussion
+
+                "Goodbye":
+                    jump hotellobbydaylow
+
+
+    label hotellobbydaymovelow:
+
+        scene hotellobby
+
+        call screen hotellobbydaymove
+
+    screen hotellobbydaymove():
+
+        imagemap:
+
+            idle "hotelobbyarrow.png"
+
+            #arrow
+            hotspot (532, 490, 103, 100) action Call("hotelhallwaydaylow")
+
+            #back
+            hotspot (18, 952, 105, 72) action Call("hotellobbydaylow")
 
     return
