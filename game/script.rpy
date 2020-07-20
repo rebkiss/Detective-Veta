@@ -136,7 +136,9 @@ label start:
 
     label prologue:
 
-        scene black
+        scene black with fade
+
+        scene caravan with fade
 
         "We arrived at the Oasis of Destiny long after sunset."
         "Our field trip began before sunrise at the school, and now we're in the middle of the desert."
@@ -148,7 +150,12 @@ label start:
         q "I don't remember agreeing to spending this field trip trailing after you."
         v "Oh, come on! Don't be like that. You know things are more interesting when I'm around."
         q "*snort*"
+
+        scene black with fade
+
         ? "Oh, there you two are!"
+
+        scene arriving with fade
         ms "I have both of your room keys over here."
         v "Thank you, Ms. Millie."
         q "I'm going to my room."
@@ -156,9 +163,23 @@ label start:
         q "111."
         v "Cool, let's walk together then."
 
+        scene black with fade
+
+        "At the time, I didn't realize that would be the last time I talked to Ms. Millie."
+
+        scene hotelhallway with fade
+
+        
+        show vetadefault1 at right
+        show quainflip:
+            xalign 0.7
+
         v "Oh, here's my room."
         ? "WHERE IS IT?"
         v "Um..."
+
+        show mariatusad at left
+
         m "Oh, I'm sorry! I didn't realize you were there."
         q "Is something the matter, Mariatu?"
         v "Wait, let me guess. You lost your room key?"
@@ -171,6 +192,10 @@ label start:
         m "Are you sure?"
         v "Quain?"
         q "Leave the mystery solving to us."
+
+        show mariatuhappy at left
+        hide mariatusad
+
         m "Of course, you guys are the experts!"
         jump chapterone
 
