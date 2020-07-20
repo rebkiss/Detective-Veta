@@ -969,6 +969,12 @@ label start:
 
             #bag
             hotspot (73, 404, 158, 221) action Hide("items")
+
+            if backpack.has_item(recepidcard):
+                textbutton "Receptionist ID Card" action Show("Receptidcard") xalign 0.3 yalign 0.3
+
+            if backpack.has_item(necklace):
+                textbutton "Necklace" action Show("Necklace") xalign 0.3 yalign 0.3
  
 
     screen sketchmap():
@@ -995,7 +1001,7 @@ label start:
 
     label oasiseasternlow:
 
-        scene
+        scene oasiseastern
 
         call screen oasiseastern
     
@@ -1005,7 +1011,7 @@ label start:
 
         imagemap:
 
-            idle
+            idle "oasiseasternbuttons.png"
 
             #water
             hotspot  action Jump("eastwater")
@@ -1033,7 +1039,7 @@ label start:
 
     label oasiseasternmovelow:
 
-        scene
+        scene oasiseastern
 
         call screen oasiseasternmove
 
@@ -1041,14 +1047,14 @@ label start:
 
         imagemap:
 
-            idle
+            idle "oasiseasternarrow.png"
 
             #back
             hotspot (18, 952, 105, 72) action Jump("oasiseasternlow")
 
     label eastwater:
 
-        scene
+        scene oasiseastern
 
         v "I bet the water is nice and cold right now."
         q "You can't swim in there. It's frozen."
@@ -1059,7 +1065,7 @@ label start:
 
     label easttree:
 
-        scene
+        scene oasiseastern
 
         v "Look at these palm trees! There's so much shade under here."
         q "...Did you forget to put on sunscreen?"
@@ -1069,7 +1075,7 @@ label start:
 
     label eastbuilding:
 
-        scene 
+        scene oasiseastern
 
         q "This looks like another hotel."
         v "Seems much smaller than our hotel though, and our hotel is cheap."
@@ -1081,7 +1087,7 @@ label start:
 
     label easttents:
 
-        scene
+        scene oasiseastern
 
         q "That must be where the market is."
         v "It's certainly colorful. Definitely catches the eye."
@@ -1093,7 +1099,7 @@ label start:
 
     label eastfar:
 
-        scene
+        scene oasiseastern
 
         q "The western part of the oasis seems to have a lot more buildings than over here."
         v "I think I can see our hotel over there."
@@ -1103,7 +1109,7 @@ label start:
 
     label oasissouthernlow:
 
-        scene
+        scene oasissouthern
 
         call screen oasissouthern
     
@@ -1113,7 +1119,7 @@ label start:
 
         imagemap:
 
-            idle
+            idle "oasissouthernbuttons.png"
 
             #crime scene
             hotspot  action Jump("crimescene")
@@ -1138,7 +1144,7 @@ label start:
 
     label oasissouthernmovelow:
 
-        scene
+        scene oasissouthern
 
         call screen oasissouthernmove
 
@@ -1146,14 +1152,14 @@ label start:
 
         imagemap:
 
-            idle
+            idle "oasissouthernarrow.png"
 
             #back
             hotspot (18, 952, 105, 72) action Jump("oasissouthernlow")
 
     label crimescene:
 
-        scene
+        scene oasissouthern
 
         q "There's Ms. Millie."
         v "*shudder* I really don't like looking at her."
@@ -1164,7 +1170,7 @@ label start:
 
     label frozenwater:
 
-        scene
+        scene oasissouthern
 
         v "The oasis is completely frozen."
         q "I wonder who did this."
@@ -1176,7 +1182,7 @@ label start:
 
     label sand:
 
-        scene 
+        scene oasissouthern
 
         v "I keep slipping in this sand."
         q "You've got boots on."
@@ -1191,7 +1197,7 @@ label start:
 
     label sky:
 
-        scene 
+        scene oasissouthern
 
         v "The sky is beautiful."
         q "The sky needs more clouds over the sun."
@@ -1201,7 +1207,7 @@ label start:
         
     label oasiswesternlow:
 
-        scene
+        scene oasiswestern
 
         call screen oasiswestern
     
@@ -1211,7 +1217,7 @@ label start:
 
         imagemap:
 
-            idle
+            idle "oasiswesternbuttons.png"
 
             #buildings
             hotspot  action Jump("westbuildings")
@@ -1234,7 +1240,7 @@ label start:
 
     label oasiswesternmovelow:
 
-        scene
+        scene oasiswestern
 
         call screen oasiswesternmove
 
@@ -1242,14 +1248,14 @@ label start:
 
         imagemap:
 
-            idle
+            idle "oasiswesternarrow.png"
 
             #back
             hotspot (18, 952, 105, 72) action Jump("oasiswesternlow")
 
     label westbuildings:
 
-        scene
+        scene oasiswestern
 
         v "There are a lot of hotels around here, ours included."
         q "This is probably where the tourists stay, to separate them from the locals."
@@ -1261,7 +1267,7 @@ label start:
 
     label westtree:
 
-        scene
+        scene oasiswestern
 
         v "Let's take a break in the shade."
         q "I guess we can rest our legs. The oasis is larger than expected."
@@ -1273,7 +1279,7 @@ label start:
 
         if storypoints >= 9:
 
-            scene
+            scene oasiswestern
 
             e "Good morning, you two. Tourists seeing the sights?"
             q "Yes, something like that."
@@ -1287,7 +1293,7 @@ label start:
 
         elif storypoints >= 10:
 
-            scene
+            scene oasiswestern
 
             menu:
 
@@ -1323,7 +1329,7 @@ label start:
 
     label marketlow:
 
-        scene
+        scene market
 
         call screen market
 
@@ -1333,7 +1339,7 @@ label start:
 
         imagemap:
 
-            idle
+            idle "market.png"
 
             #pottery stand
             hotspot  action Jump("potterystand")
@@ -1353,27 +1359,9 @@ label start:
             #map
             hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
 
-            #boot
-            hotspot (5, 924, 82, 126) action Jump("marketmovelow")
-
-    label marketmovelow:
-
-        scene
-
-        call screen marketmove
-
-    screen marketmove():
-
-        imagemap:
-
-            idle
-
-            #back
-            hotspot (18, 952, 105, 72) action Jump("marketlow")
-
     label potterystand:
 
-        scene 
+        scene market
 
         v "Look at all of these!"
         q "Fine craftsmanship indeed."
@@ -1384,7 +1372,7 @@ label start:
 
     label foodcart:
 
-        scene
+        scene market
 
         if storypoints == 15:
 
@@ -1450,50 +1438,6 @@ label start:
         scene 
 
         call screen foodcartsnapshot
-
-    label marketalleylow:
-
-        scene
-
-        call screen marketalley
-
-    screen marketalley():
-
-        tag location
-
-        imagemap:
-
-            idle
-
-            #stalls
-            hotspot  action Jump("marketalleystalls")
-
-            if storypoints >= 14:
-                hotspot  action Jump("marketboy")
-
-            #bag
-            hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
-
-            #map
-            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
-
-            #boot
-            hotspot (5, 924, 82, 126) action Jump("marketalleymovelow")
-
-    label marketalleymovelow:
-
-        scene
-
-        call screen marketalleymove
-
-    screen marketalleymove():
-
-        imagemap:
-
-            idle
-
-            #back
-            hotspot (18, 952, 105, 72) action Jump("marketalleylow")
 
     label hotelroomdaylow:
 
