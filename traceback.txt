@@ -1,36 +1,83 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00keymap.rpy", line 421, in script
-    python hide:
-  File "renpy/common/00keymap.rpy", line 421, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 440, in _execute_python_hide
-    renpy.save("_reload-1", "reload save game")
-AttributeError: 'NoneType' object has no attribute 'stores'
+  File "game/script.rpy", line 354, in script call
+    
+  File "game/script.rpy", line 760, in script call
+    scene hotelobby with fade
+  File "game/script.rpy", line 856, in script call
+    imagemap:
+  File "game/script.rpy", line 479, in script
+    scene hotelhallway
+  File "renpy/common/000statements.rpy", line 531, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/script.rpy", line 1046, in execute
+    imagemap:
+  File "game/script.rpy", line 1046, in execute
+    imagemap:
+  File "game/script.rpy", line 1050, in execute
+    #back button
+  File "game/script.rpy", line 1064, in execute
+    textbutton "Fettling Knife" action Show("FettlingKnife") xalign 0.3 yalign 0.3
+NameError: name 'necklace' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00keymap.rpy", line 421, in script
-    python hide:
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 914, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/python.py", line 2028, in py_exec_bytecode
-    exec bytecode in globals, locals
-  File "renpy/common/00keymap.rpy", line 421, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 440, in _execute_python_hide
-    renpy.save("_reload-1", "reload save game")
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/loadsave.py", line 398, in save
-    roots = renpy.game.log.freeze(None)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/python.py", line 1925, in freeze
-    self.complete(False)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/python.py", line 1531, in complete
-    self.current.stores[name], self.current.delta_ebc[name] = sd.get_changes(begin)
-AttributeError: 'NoneType' object has no attribute 'stores'
+  File "game/script.rpy", line 354, in script call
+    
+  File "game/script.rpy", line 760, in script call
+    scene hotelobby with fade
+  File "game/script.rpy", line 856, in script call
+    imagemap:
+  File "game/script.rpy", line 479, in script
+    scene hotelhallway
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 1949, in execute
+    self.call("execute")
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 1937, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/statements.py", line 277, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 531, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/exports.py", line 2905, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ui.py", line 297, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 2702, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3094, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/screen.py", line 430, in visit_all
+    callback(self)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3094, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/screen.py", line 440, in per_interact
+    self.update()
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/screen.py", line 625, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 1046, in execute
+    imagemap:
+  File "game/script.rpy", line 1046, in execute
+    imagemap:
+  File "game/script.rpy", line 1050, in execute
+    #back button
+  File "game/script.rpy", line 1064, in execute
+    textbutton "Fettling Knife" action Show("FettlingKnife") xalign 0.3 yalign 0.3
+  File "<screen language>", line 1064, in <module>
+NameError: name 'necklace' is not defined
 
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
- 
-Mon Jul 20 13:00:54 2020
+Detective Veta 1.0
+Mon Jul 20 17:47:07 2020

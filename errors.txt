@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 1382: u'buildings' is not a keyword argument or valid child for the imagemap statement.
-    buildings
-             ^
+File "game/script.rpy", line 407: expected a keyword argument or child statement.
+    "recepidcard.png" 
+    ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jul 20 13:00:39 2020
+Mon Jul 20 17:39:26 2020

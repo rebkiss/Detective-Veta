@@ -92,6 +92,9 @@ init python:
                 return('not found')
     
     paper = Item('paper')
+    recepidcard = Item('recepidcard')
+    necklace = Item('necklace')
+    knife = Item('knife')
 
 
  ## Attempt to make a party system so investigation varies depending on party members
@@ -403,7 +406,10 @@ label start:
             hotspot (5, 924, 82, 126) action Jump("hotelhallwaymovelow")
 
             if storypoints == 4:
-                imagebutton auto "recepidcard.png" xalign 0.5 yalign 0.5 action Jump("receptidcard")
+                imagebutton: 
+                    idle "recepidcard.png" 
+                    xalign 0.15 yalign 0.489 
+                    action Jump("receptidcard")
 
 
     label room:
@@ -966,7 +972,11 @@ label start:
             if storypoints >= 4:
                 textbutton "Missing ID" action Show("MissingID") xalign 0.3 yalign 0.5
 
+            if storypoints >= 5:
+                textbutton "Found ID" action Show("FoundId") xalign 0.3 yalign 0.6
 
+            if storypoints >= 6:
+                textbutton "Returned ID" action Show("ReturnedID") xalign 0.3 yalign 0.7
 
     screen TheMissingDoorKey():
 
@@ -1006,6 +1016,139 @@ label start:
             area (990, 292, 502, 495)
 
             text "We went back to the hallway where the suspicious door was and found the ID card just under the door. Quain thinks that the door is an unmarked employee room, but I have a feeling it's more than that. For now, we should return the ID card."
+
+    screen ReturnedID():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "We managed to return the ID card back to the receptionist. Hopefully she can help us find Mariatu's key."
+
+    screen journaltwo():
+
+        modal True
+
+        imagemap:
+
+            idle "journalpagetwo.png"
+
+            if storypoints >= 7:
+                textbutton "Spare Key" action Show("SpareKey") xalign 0.3 yalign 0.3
+
+            if storypoints >= 9:
+                textbutton "Goodnight's Sleep" action Show("GoodnightsSleep") xalign 0.3 yalign 0.4
+
+            if storypoints >= 10:
+                textbutton "Ms. Millie is Dead" action Show("MsMillieisDead") xalign 0.3 yalign 0.5
+
+            if storypoints >= 11:
+                textbutton "Talking to Ellis" action Show("TalkingtoEllis") xalign 0.3 yalign 0.6
+
+            if storypoints >= 12:
+                textbutton "Pig Necklace" action Show("PigNecklace") xalign 0.3 yalign 0.7
+
+    screen SpareKey():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "Unfortunately, the receptionist didn't have Mariatu's key, but she was able to give us a spare key in the meantime. I only hope that Mariatu won't lose this one either."
+
+    screen GoodnightsSleep():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "After giving Mariatu the key, I decided to turn in for the night. Mariatu went off to tell Ms. Millie about her missing key. I ended up waking up to a commotion outside."
+
+    screen MsMillieisDead():
+
+        tag journalentry 
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "There were a crowd of people by the oasis. I couldn't believe it when I saw Ms. Millie, cold and still, under the frozen oasis. Quain decided to help me investigate."
+
+    screen TalkingtoEllis():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "We searched around the oasis and found Ellis, who shed some light on rumors circulating about Mariatu as the killer. He told us that someone from the market may be able to give us more information."
+
+    screen PigNecklace():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "On our way to the market, we found a necklace of a pig stuck in the bushes where Ms. Millie's body is. We decided to keep it in case if we happen to find the owner."
+
+    screen journalthree():
+
+        modal True
+
+        imagemap:
+
+            idle "journalpagethree.png"
+
+            if storypoints >= 13:
+                textbutton "Run in with Aimon" action Show("RuninwithAimon") xalign 0.3 yalign 0.3
+
+            if storypoints >= 14:
+                textbutton "Missing Knife" action Show("MissingKnife") xalign 0.3 yalign 0.4
+
+            if storypoints >= 15:
+                textbutton "Found Knife" action Show("FoundKnife") xalign 0.3 yalign 0.5
+
+            if storypoints >= 17:
+                textbutton "Pottery Seller" action Show("PotterySeller") xalign 0.3 yalign 0.6
+
+    screen RuninwithAimon():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "When we got to the market, a strange man by the name of Aimon happened to bump into me. He was searching for the pig necklace, a supposed gift from a friend. We were glad to give it back."
+
+    screen MissingKnife():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "We tried talking to the pottery seller at the market, but he won't tell us anything until get find his fettling knife. We didn't see it anywhere, so maybe someone has already found it...?"
+
+    screen FoundKnife():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "It turns out that the receptionist had found the knife while on her way to work. She recognized it as the pottery seller's, her former employer. Now we need to return it."
+
+    screen PotterySeller():
+
+        tag journalentry
+
+        vbox:
+            area (990, 292, 502, 495)
+
+            text "According to the pottery seller, Ms. Millie visited the market frequently and was well liked by the locals. He pointed us towards the food cart. There's no one there, but maybe if we investigate..."
 
     screen mysteries():
 
@@ -1049,7 +1192,7 @@ label start:
 
             #back button
             hotspot (53, 934, 134, 99): 
-                action Hide("bag", transition = fade), Hide("items", transition = fade)
+                action Hide("bag", transition = fade), Hide("items", transition = fade), Hide("item")
 
             #bag
             hotspot (73, 404, 158, 221) action Hide("items")
@@ -1059,7 +1202,57 @@ label start:
 
             if backpack.has_item(necklace):
                 textbutton "Necklace" action Show("Necklace") xalign 0.3 yalign 0.3
- 
+
+            if backpack.has_item(knife):
+                textbutton "Fettling Knife" action Show("FettlingKnife") xalign 0.3 yalign 0.3
+
+    screen Receptidcard():
+
+        tag item
+
+        vbox:
+            
+            area (982, 239, 521, 308)
+
+            image "recepidcarditem.png"
+
+        vbox:
+
+            area (981, 553, 519, 241)
+
+            text "The receptionist's missing ID card. Found under the suspicious door."
+
+    screen Necklace():
+
+        tag item
+
+        vbox:
+            
+            area (982, 239, 521, 308)
+
+            image "necklaceitem.png"
+
+        vbox:
+
+            area (981, 553, 519, 241)
+
+            text "A pig necklace found in the bushes by the crime scene."
+
+    screen FettlingKnife():
+
+        tag item
+
+        vbox:
+            
+            area (982, 239, 521, 308)
+
+            image "fettlingknifeitem.png"
+
+        vbox:
+
+            area (981, 553, 519, 241)
+
+            text "A knife used to make pottery. The receptionist found it."
 
     screen sketchmap():
 
@@ -1230,6 +1423,10 @@ label start:
             #bushes
             hotspot (13, 518, 784, 225) action Jump("bushes")
 
+            #necklace
+            if storypoints == 11:
+                imagebutton auto "necklace.png" action Jump("necklace")
+
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
@@ -1363,9 +1560,26 @@ label start:
 
         scene oasissouthern
 
-        v "The sky is beautiful."
-        q "The sky needs more clouds over the sun."
-        v "The sky is almost beautiful."
+        v "These bushes are really thick."
+        q "Perhaps whoever did the crime had to make this opening."
+        v "I wonder how long it took to for them to hack through the bushes..."
+
+        call screen oasissouthern
+
+    label necklace:
+
+        scene oasissouthern
+
+        v "Huh? What's this?"
+        q "It's a necklace."
+        v "Weird looking necklace. I'll keep it."
+        q "We might come across the owner during our investigation."
+        
+        $ backpack.add_item(necklace)
+
+        "Necklace added to the bag!"
+
+        $ storypoints += 1
 
         call screen oasissouthern
         
@@ -1390,8 +1604,11 @@ label start:
             hotspot (934, 69, 471, 787) action Jump("westtree")
 
             #Ellis
-            #if storypoints >= 10:
-                #hotspot  action Jump("Ellis")
+            if storypoints >= 10:
+                imagebutton:  
+                    idle "ellisworld.png"
+                    xalign 0.5 yalign 0.5
+                    action Jump("Ellis")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
@@ -1522,8 +1739,11 @@ label start:
             #stalls
             hotspot (1447, 6, 233, 596) action Jump("stalls")
 
-            #if storypoints >= 13:
-                #hotspot  action Jump("potteryseller")
+            if storypoints >= 13:
+                imagebutton:
+                    idle "sellerworld.png"
+                    xalign 0.5 yalign 0.5
+                    action Jump("potteryseller")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
@@ -1721,23 +1941,23 @@ label start:
             idle "foodsnap.png"
 
             #seller
-            if snapsell = False:
+            if snapsell == False:
                 hotspot (240, 217, 555, 689) action Jump("snapshotseller")
 
             #Ms. Millie
-            if snapms = False:
+            if snapms == False:
                 hotspot (1010, 295, 543, 390) action Jump("snapshotMs")
 
             #foodcart
-            if snapcart = False:
+            if snapcart == False:
                 hotspot (338, 5, 890, 186) action Jump("snapshotcart")
 
             #necklace
-            if snaplace = False:
+            if snaplace == False:
                 hotspot (1224, 703, 110, 68) action Jump("snapshotnecklace")
 
-            if (snapsell = True) and (snapms = True) and (snapcart = True) and (snaplace = True):
-                jump ending
+            if (snapsell == True) and (snapms == True) and (snapcart == True) and (snaplace == True):
+               hotspot (11, 11, 1894, 1060) action Jump("ending")
 
     label snapshotseller:
 
@@ -2269,6 +2489,25 @@ label start:
             #back
             hotspot (18, 952, 105, 72) action Call("hotellobbydaylow")
 
-    label ending: 
+    label ending:
+
+        scene black with fade 
+
+        scene market with fade 
+
+        show vetadefault at right
+        show quaindefault at left
+
+        q "...Hmm, is that everything you saw?"
+        v "Yep."
+        q "It seems like we'll need to find this food cart seller. He seems close to Ms. Millie."
+        v "He probably has information about who could have murdered her."
+        q "I guess we know where to go from here."
+
+        scene black with fade
+
+        "Thank you for playing the demo of Detective Veta and the Frozen Oasis!"
+
+        return
 
     return
