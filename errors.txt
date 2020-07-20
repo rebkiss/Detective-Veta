@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 832: textbutton statement expects 1 positional arguments, got 0.
-    textbutton 
-               ^
+File "game/script.rpy", line 1382: u'buildings' is not a keyword argument or valid child for the imagemap statement.
+    buildings
+             ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Thu Jul  2 13:12:33 2020
+Mon Jul 20 13:00:39 2020

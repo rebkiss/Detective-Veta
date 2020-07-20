@@ -1,111 +1,36 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While loading <'Flip' <'Image' u'quaindefault.png'> False True>:
-  File "game/script.rpy", line 146, in script call
-    call screen hotelroom with fade
-  File "game/script.rpy", line 221, in script call
-    call screen hotelroommove
-  File "game/script.rpy", line 239, in script call
-    call screen hotelhallway
-  File "game/script.rpy", line 349, in script call
-    call screen hotelhallwaymove
-  File "game/script.rpy", line 303, in script call
-    call screen hotelhallway with fade
-  File "game/script.rpy", line 538, in script
-    r "Good evening! How may I help you?"
-  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
-    _window_show()
-  File "renpy/common/000window.rpy", line 60, in _window_show
-    renpy.with_statement(trans)
-IOError: Couldn't find file 'quaindefault.png'.
+While running game code:
+  File "renpy/common/00keymap.rpy", line 421, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 421, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 440, in _execute_python_hide
+    renpy.save("_reload-1", "reload save game")
+AttributeError: 'NoneType' object has no attribute 'stores'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 146, in script call
-    call screen hotelroom with fade
-  File "game/script.rpy", line 221, in script call
-    call screen hotelroommove
-  File "game/script.rpy", line 239, in script call
-    call screen hotelhallway
-  File "game/script.rpy", line 349, in script call
-    call screen hotelhallwaymove
-  File "game/script.rpy", line 303, in script call
-    call screen hotelhallway with fade
-  File "game/script.rpy", line 538, in script
-    r "Good evening! How may I help you?"
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 671, in execute
-    statement_name("say")
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 45, in statement_name
-    i(name)
-  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
-    _window_show()
-  File "renpy/common/000window.rpy", line 60, in _window_show
-    renpy.with_statement(trans)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/exports.py", line 1601, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 2251, in do_with
-    clear=clear)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 2702, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3194, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 2094, in draw_screen
-    renpy.config.screen_height,
-  File "renpy/display/render.pyx", line 490, in renpy.display.render.render_screen (gen/renpy.display.render.c:6805)
-    rv = render(root, width, height, st, st)
-  File "renpy/display/render.pyx", line 259, in renpy.display.render.render (gen/renpy.display.render.c:3520)
-    rv = d.render(widtho, heighto, st, at)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/layout.py", line 722, in render
-    surf = render(child, width, height, cst, cat)
-  File "renpy/display/render.pyx", line 166, in renpy.display.render.render (gen/renpy.display.render.c:4075)
-    cpdef render(d, object widtho, object heighto, double st, double at):
-  File "renpy/display/render.pyx", line 259, in renpy.display.render.render (gen/renpy.display.render.c:3520)
-    rv = d.render(widtho, heighto, st, at)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/transition.py", line 360, in render
-    bottom = render(self.old_widget, width, height, st, at)
-  File "renpy/display/render.pyx", line 166, in renpy.display.render.render (gen/renpy.display.render.c:4075)
-    cpdef render(d, object widtho, object heighto, double st, double at):
-  File "renpy/display/render.pyx", line 259, in renpy.display.render.render (gen/renpy.display.render.c:3520)
-    rv = d.render(widtho, heighto, st, at)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/layout.py", line 722, in render
-    surf = render(child, width, height, cst, cat)
-  File "renpy/display/render.pyx", line 166, in renpy.display.render.render (gen/renpy.display.render.c:4075)
-    cpdef render(d, object widtho, object heighto, double st, double at):
-  File "renpy/display/render.pyx", line 259, in renpy.display.render.render (gen/renpy.display.render.c:3520)
-    rv = d.render(widtho, heighto, st, at)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/layout.py", line 722, in render
-    surf = render(child, width, height, cst, cat)
-  File "renpy/display/render.pyx", line 166, in renpy.display.render.render (gen/renpy.display.render.c:4075)
-    cpdef render(d, object widtho, object heighto, double st, double at):
-  File "renpy/display/render.pyx", line 259, in renpy.display.render.render (gen/renpy.display.render.c:3520)
-    rv = d.render(widtho, heighto, st, at)
-  File "accelerator.pyx", line 110, in renpy.display.accelerator.transform_render
-  File "renpy/display/render.pyx", line 259, in renpy.display.render.render (gen/renpy.display.render.c:3520)
-    rv = d.render(widtho, heighto, st, at)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/image.py", line 500, in render
-    return wrap_render(self.target, width, height, st, at)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/image.py", line 306, in wrap_render
-    rend = render(child, w, h, st, at)
-  File "renpy/display/render.pyx", line 166, in renpy.display.render.render (gen/renpy.display.render.c:4075)
-    cpdef render(d, object widtho, object heighto, double st, double at):
-  File "renpy/display/render.pyx", line 259, in renpy.display.render.render (gen/renpy.display.render.c:3520)
-    rv = d.render(widtho, heighto, st, at)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/im.py", line 583, in render
-    return cache.get(self, render=True)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/im.py", line 266, in get
-    surf = image.load()
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/im.py", line 919, in load
-    child = cache.get(self.image)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/im.py", line 266, in get
-    surf = image.load()
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/im.py", line 628, in load
-    surf = renpy.display.pgrender.load_image(renpy.loader.load(self.filename), self.filename)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/loader.py", line 576, in load
-    raise IOError("Couldn't find file '%s'." % name)
-IOError: Couldn't find file 'quaindefault.png'.
+  File "renpy/common/00keymap.rpy", line 421, in script
+    python hide:
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 914, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/python.py", line 2028, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "renpy/common/00keymap.rpy", line 421, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 440, in _execute_python_hide
+    renpy.save("_reload-1", "reload save game")
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/loadsave.py", line 398, in save
+    roots = renpy.game.log.freeze(None)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/python.py", line 1925, in freeze
+    self.complete(False)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/python.py", line 1531, in complete
+    self.current.stores[name], self.current.delta_ebc[name] = sd.get_changes(begin)
+AttributeError: 'NoneType' object has no attribute 'stores'
 
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
-Detective Veta 1.0
-Mon Jul  6 21:02:45 2020
+ 
+Mon Jul 20 13:00:54 2020

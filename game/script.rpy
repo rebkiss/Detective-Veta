@@ -4,7 +4,7 @@ define r = Character("Receptionist")
 image quainflip = im.Flip("quaindefault1.png", horizontal = True )
 image black = "#000"
 define m = Character("Mariatu")
-define ? = Character("????")
+define unknown = Character("????")
 define fade = Fade(0.5, 0.0, 0.5)
 define ms = Character("Ms. Millie")
 define e = Character("Ellis")
@@ -153,7 +153,7 @@ label start:
 
         scene black with fade
 
-        ? "Oh, there you two are!"
+        unknown "Oh, there you two are!"
 
         scene arriving with fade
         ms "I have both of your room keys over here."
@@ -175,7 +175,7 @@ label start:
             xalign 0.7
 
         v "Oh, here's my room."
-        ? "WHERE IS IT?"
+        unknown "WHERE IS IT?"
         v "Um..."
 
         show mariatusad at left
@@ -796,51 +796,49 @@ label start:
 
     label recepdiscussion:
          
-         scene hotelobby with fade
+        scene hotelobby with fade
 
-            show receptionisthappy at left
-            show vetadefault1 at right
-            show quainflip:
-                xalign 0.7
+        show receptionisthappy at left
+        show vetadefault1 at right
+        show quainflip:
+            xalign 0.7
 
-            r "How can I help you?"
-            menu:
-                if storypoints <= 6: 
-                    "Mariatu's Key":
-                        v "My friend lost her room key and we haven't found it yet. Has anyone brought it here?"
-                        r "Hmm, I just started my shift, but let me see if there's anything here on the desk. Room number?"
-                        v "110."
-                        show receptionistupset
-                        hide receptionisthappy
-                        r "...Sorry, I don't have it. We do keep spare keys, but they're under lock and key. Wait right here, I'll get it from the back!"
-                        hide receptionistupset with fade
-                        v "Well that's unfortunate."
-                        q "At least there's a spare key. We've searched everywhere for the key in the hotel."
-                        v "I'm starting to think that the key didn't just fall out of her bag."
-                        q "No, this is looking less like an accident."
-                        show receptionisthappy at left with fade
-                        r "Here's one of the spare keys! Be sure to not lose it!"
-                        $ backpack.add_item(sparekey)
-                        "Spare key added to the bag!"
-                        jump recepdiscussion
+        r "How can I help you?"
+        menu: 
+                "Mariatu's Key" if storypoints >= 6:
+                    v "My friend lost her room key and we haven't found it yet. Has anyone brought it here?"
+                    r "Hmm, I just started my shift, but let me see if there's anything here on the desk. Room number?"
+                    v "110."
+                    show receptionistupset
+                    hide receptionisthappy
+                    r "...Sorry, I don't have it. We do keep spare keys, but they're under lock and key. Wait right here, I'll get it from the back!"
+                    hide receptionistupset with fade
+                    v "Well that's unfortunate."
+                    q "At least there's a spare key. We've searched everywhere for the key in the hotel."
+                    v "I'm starting to think that the key didn't just fall out of her bag."
+                    q "No, this is looking less like an accident."
+                    show receptionisthappy at left with fade
+                    r "Here's one of the spare keys! Be sure to not lose it!"
+                    $ backpack.add_item(sparekey)
+                    "Spare key added to the bag!"
+                    jump recepdiscussion
                 
-                    "Suspicious Door":
-                        q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
-                        r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
-                        q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
-                        r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
-                        q "I see."
-                        jump recepdiscussion
+                "Suspicious Door":
+                    q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
+                    r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
+                    q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
+                    r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
+                    q "I see."
+                    jump recepdiscussion
 
-                    "New Job":
-                        v "So you're new to the job?"
-                        r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
-                        q "Where were you working before?"
-                        r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
-                        jump recepdiscussion
-
-                    "Goodbye":
-                        jump hotellobbylow
+                "New Job":
+                    v "So you're new to the job?"
+                    r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
+                    q "Where were you working before?"
+                    r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
+                    jump recepdiscussion
+                "Goodbye":
+                    jump hotellobbylow
 
 
     label hotellobbymovelow:
@@ -1072,14 +1070,12 @@ label start:
                 hotspot (714, 298, 488, 390) action Call("oasissouthernlow") 
             
             #hotel
-            hotspot: 
-                (479, 203, 212, 294) 
-                if storypoints >= 9:
-                action Call("hotellobbydaylow")
-                else:
-                    action Call("hotellobbylow")
+            if storypoints >= 9:
+                hotspot (479, 203, 212, 294) action Call("hotellobbydaylow")
 
-            
+            if storypoints <= 8:
+                hotspot (479, 203, 212, 294) action Call("hotellobbylow")
+
             #market
             if storypoints >= 12:
                 hotspot (1291, 236, 171, 232) action Call("marketlow")
@@ -1102,19 +1098,19 @@ label start:
             idle "oasiseasternbuttons.png"
 
             #water
-            hotspot  action Jump("eastwater")
+            hotspot (9, 536, 689, 311) action Jump("eastwater")
 
             #tree
-            hotspot  action Jump("easttree")
+            hotspot (799, 109, 578, 781) action Jump("easttree")
 
             #building
-            hotspot  action Jump("eastbuilding")
+            hotspot (1609, 1, 304, 869) action Jump("eastbuilding")
 
             #tents
-            hotspot  action Jump("easttents")
+            hotspot (1479, 384, 122, 294) action Jump("easttents")
 
             #far buildings
-            hotspot  action Jump("eastfar")
+            hotspot (19, 410, 444, 100) action Jump("eastfar")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
@@ -1139,6 +1135,9 @@ label start:
 
             #back
             hotspot (18, 952, 105, 72) action Jump("oasiseasternlow")
+
+            #arrow
+            hotspot (43, 461, 110, 98) action Jump("oasissouthernlow")
 
     label eastwater:
 
@@ -1216,16 +1215,16 @@ label start:
             idle "oasissouthernbuttons.png"
 
             #crime scene
-            hotspot  action Jump("crimescene")
+            hotspot (976, 493, 429, 180) action Jump("crimescene")
 
             #frozen water
-            hotspot  action Jump("frozenwater")
+            hotspot (0, 342, 1894, 109) action Jump("frozenwater")
 
             #sand
-            hotspot  action Jump("sand")
+            hotspot (8, 112, 1692, 203) action Jump("sand")
 
-            #sky
-            hotspot  action Jump("sky")
+            #bushes
+            hotspot (13, 518, 784, 225) action Jump("bushes")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
@@ -1251,6 +1250,12 @@ label start:
             #back
             hotspot (18, 952, 105, 72) action Jump("oasissouthernlow")
 
+            #left
+            hotspot (43, 456, 114, 103) action Jump("oasiswesternlow")
+
+            #right
+            hotspot (1757, 500, 120, 110) action Jump("oasiseasternlow")
+
     label milliedeath:
 
         scene black
@@ -1262,10 +1267,10 @@ label start:
 
         m "WAIT....THAT'S MS. MILLIE!!!"
         v "The oasis is entirely frozen over too!"
-        ? "Look, she's the one that did it!"
+        unknown "Look, she's the one that did it!"
         m "M-ME??"
-        ? "I saw her with the victim last night!"
-        ? "She probably froze the water, too!"
+        unknown "I saw her with the victim last night!"
+        unknown "She probably froze the water, too!"
         m "WHAT?! I didn't do this! I would never!"
         v "Mariatu! Let's get back to the hotel! Hurry!"
 
@@ -1350,7 +1355,7 @@ label start:
 
         call screen oasissouthern
 
-    label sky:
+    label bushes:
 
         scene oasissouthern
 
@@ -1375,14 +1380,14 @@ label start:
             idle "oasiswesternbuttons.png"
 
             #buildings
-            hotspot  action Jump("westbuildings")
+            hotspot (1757, 500, 120, 110) action Jump("westbuildings")
 
             #tree
-            hotspot  action Jump("westtree")
+            hotspot (934, 69, 471, 787) action Jump("westtree")
 
             #Ellis
-            if storypoints >= 10:
-                hotspot  action Jump("Ellis")
+            #if storypoints >= 10:
+                #hotspot  action Jump("Ellis")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
@@ -1407,6 +1412,9 @@ label start:
 
             #back
             hotspot (18, 952, 105, 72) action Jump("oasiswesternlow")
+
+            #arrow
+            hotspot (1751, 492, 131, 123) action Jump("oasissouthernlow")
 
     label westbuildings:
 
@@ -1442,7 +1450,7 @@ label start:
             q "We're actually investigating the murder. Can we ask you some questions?"
             e "If it'll help find the killer!"
 
-            $ etalk += 1:
+            $ etalk += 1
             
             jump oasiswesternlow
 
@@ -1502,16 +1510,16 @@ label start:
             idle "market.png"
 
             #pottery stand
-            hotspot  action Jump("potterystand")
+            hotspot (0, 5, 786, 886) action Jump("potterystand")
 
             #food cart
-            hotspot  action Jump("foodcart")
+            hotspot (909, 143, 471, 521) action Jump("foodcart")
 
             #stalls
-            hotspot  action Jump("stalls")
+            hotspot (1447, 6, 233, 596) action Jump("stalls")
 
-            if storypoints >= 13:
-                hotspot  action Jump("potteryseller")
+            #if storypoints >= 13:
+                #hotspot  action Jump("potteryseller")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
@@ -1581,7 +1589,7 @@ label start:
 
             call screen market
 
-        else storypoints >= 16:
+        else:
 
             scene market with fade
 
@@ -1648,17 +1656,17 @@ label start:
             xalign 0.7 
 
         v "Ooof!"
-        ? "Ack! I'm sorry!"
+        unknown "Ack! I'm sorry!"
 
         show aimonupset at left
 
-        ? "I'm terribly sorry! Are you okay?"
+        unknown "I'm terribly sorry! Are you okay?"
         v "Um...yeah, I'm fine."
 
         show aimonhappy at left
         hide aimonupset
 
-        ? "Thank goodness! My name's Aimon, by the way. I was looking for something before I bumped into you."
+        unknown "Thank goodness! My name's Aimon, by the way. I was looking for something before I bumped into you."
         a "You haven't seen a necklace lying around, have you?"
         q "Depends on what the necklace looks like."
         a "It's a pig necklace. Pink. I think I dropped it by the oasis, but I didn't see it."
@@ -1674,8 +1682,6 @@ label start:
         hide aimonhappy
 
         v "Interesting fellow."
-
-
 
     label foodcart:
 
@@ -1696,7 +1702,7 @@ label start:
             v "I think it's in my head. I can see the food cart. And Ms. Millie! And someone else!"
             "Investigate the picture!"
 
-            call screen foodcartsnapshot
+            call screen market
 
         else:
 
@@ -1704,47 +1710,47 @@ label start:
             q "Must be on break."
             v "But I'm hungry..."
 
-    screen foodcartsnapshot():
+    #screen foodcartsnapshot():
 
-        imagemap:
+        #imagemap:
 
-            idle
+            #idle
 
             #seller
-            hotspot  action Jump("snapshotseller")
+            #hotspot  action Jump("snapshotseller")
 
             #Ms. Millie
-            hotspot  action Jump("snapshotMs")
+            #hotspot  action Jump("snapshotMs")
 
             #foodcart
-            hotspot  action Jump("snapshotcart")
+            #hotspot  action Jump("snapshotcart")
 
             #necklace
-            hotspot  action Jump("snapshotnecklace")
+            #hotspot  action Jump("snapshotnecklace")
 
-    label snapshotseller:
+    #label snapshotseller:
 
-        scene
+        #scene
 
-        call screen foodcartsnapshot
+        #call screen foodcartsnapshot
 
-    label snapshotMs:
+    #label snapshotMs:
 
-        scene
+        #scene
 
-        call screen foodcartsnapshot
+        #call screen foodcartsnapshot
 
-    label snapshotcart:
+    #label snapshotcart:
 
-        scene
+        #scene
 
-        call screen foodcartsnapshot
+        #call screen foodcartsnapshot
 
-    label snapshotnecklace:
+    #label snapshotnecklace:
 
-        scene 
+        #scene 
 
-        call screen foodcartsnapshot
+        #call screen foodcartsnapshot
 
     label hotelroomdaylow:
 
@@ -2173,45 +2179,45 @@ label start:
 
     label recepdaydiscussion:
          
-         scene hotelobby with fade
+        scene hotelobby with fade
 
-            show receptionisthappy at left
-            show vetadefault1 at right
-            show quainflip:
-                xalign 0.7
+        show receptionisthappy at left
+        show vetadefault1 at right
+        show quainflip:
+            xalign 0.7
 
-            r "How can I help you?"
-            menu: 
-                "Suspicious Door":
-                    q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
-                    r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
-                    q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
-                    r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
-                    q "I see."
-                    jump recepdiscussion
+        r "How can I help you?"
+        menu: 
+            "Suspicious Door":
+                q "We noticed the door down the hallway. It's not marked for employees, but it's far too small to be a suite."
+                r "Hmm, I'm not really sure what that door is for. I actually just started working here less than a week ago."
+                q "Your ID card was stuck under the door. I'm assuming you've never opened that door before?"
+                r "That's correct. I've never been down that hallway before. The employee rooms are down this hallway behind me."
+                q "I see."
+                jump recepdiscussion
 
-                "New Job":
-                    v "So you're new to the job?"
-                    r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
-                    q "Where were you working before?"
-                    r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
-                    jump recepdiscussion
+            "New Job":
+                v "So you're new to the job?"
+                r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
+                q "Where were you working before?"
+                r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
+                jump recepdiscussion
 
-                "Fettling Knife" if storypoints == 14:
+            "Fettling Knife" if storypoints == 14:
 
-                    q "Good morning, ma'am. The pottery seller in the market lost his fettling knife. Do you happen to know where it is?"
-                    r "Actually...now that you mention it, I did happen to find a fettling knife on my walk to work this morning."
-                    r "It was just lying there in the sand. I was running late, so I didn't get a chance to return it."
-                    r "This definitely is his knife though. His name is engraved on the handle. Here you go!"
-                    $ backpack.add_item(knife)
-                    v "Now we can return the knife!"
+                q "Good morning, ma'am. The pottery seller in the market lost his fettling knife. Do you happen to know where it is?"
+                r "Actually...now that you mention it, I did happen to find a fettling knife on my walk to work this morning."
+                r "It was just lying there in the sand. I was running late, so I didn't get a chance to return it."
+                r "This definitely is his knife though. His name is engraved on the handle. Here you go!"
+                $ backpack.add_item(knife)
+                v "Now we can return the knife!"
 
-                    $ storypoints += 1
+                $ storypoints += 1
 
-                    jump recepdiscussion
+                jump recepdiscussion
 
-                "Goodbye":
-                    jump hotellobbydaylow
+            "Goodbye":
+                jump hotellobbydaylow
 
 
     label hotellobbydaymovelow:
