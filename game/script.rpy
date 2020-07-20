@@ -335,11 +335,12 @@ label start:
         hide mariatuhappy
         m "I'm not sure, but there's a crowd of people down by the oasis."
         v "It's too noisy to go back to sleep, so let's check it out."
-
+        m "Oh! I don't remember how to get there."
+        v "It's easy, just look at the map!"
 
         $ storypoints += 1
 
-        scene black with fade
+        call screen hotelroomday
 
     label hotelroommovelow:
 
@@ -1198,7 +1199,13 @@ label start:
 
         scene oasissouthern
 
-        call screen oasissouthern
+        if storypoints == 9:
+
+            jump milliedeath
+
+        else:
+
+            call screen oasissouthern
     
     screen oasissouthern():
 
@@ -1243,6 +1250,67 @@ label start:
 
             #back
             hotspot (18, 952, 105, 72) action Jump("oasissouthernlow")
+
+    label milliedeath:
+
+        scene black
+
+        m "The commotion seems to being coming from here."
+        v "Wait.......look in the water!!"
+
+        scene milliedeath
+
+        m "WAIT....THAT'S MS. MILLIE!!!"
+        v "The oasis is entirely frozen over too!"
+        ? "Look, she's the one that did it!"
+        m "M-ME??"
+        ? "I saw her with the victim last night!"
+        ? "She probably froze the water, too!"
+        m "WHAT?! I didn't do this! I would never!"
+        v "Mariatu! Let's get back to the hotel! Hurry!"
+
+        scene black with fade
+
+        jump safe
+
+    label safe:
+
+        scene hotelroom with fade
+
+        show mariatusad at left
+        show vetadefault1 at right
+
+        m "I...I can't believe they think I did it."
+        v "But you didn't do it, right?"
+        m "Of course I didn't do it! Ms. Millie was perfectly fine when I saw her."
+        m "Sure I got a scolding, but that doesn't mean I should kill her!"
+        v "Well, those people seem adamant about you as the killer. We'll need to prove your innocence."
+
+        show quainflip:
+            xalign 0.7
+
+        q "I don't think that's a good idea."
+        v "Ack! When did you get here?"
+        m "Perfect! Quain should accompany you!"
+        v "What?"
+        q "I'd rather not."
+        m "You're not going to leave Veta to investigate on her own, are you?"
+        q "..."
+        q "I guess that's a worse idea. Someone has to babysit her."
+        v "Hey! I'm not a child!"
+        q "Do you want to interrogate people on your own?"
+        v "...Well..."
+        v "Now that you mention it, I guess I'll let you tag along."
+        m "I'll check on the other students in the meantime. Thank you for doing this!"
+        v "Of course!"
+
+        scene black with fade
+
+        q "Let's check out the oasis first."
+
+        $ storypoints += 1
+
+        call screen hotelroomday
 
     label crimescene:
 
