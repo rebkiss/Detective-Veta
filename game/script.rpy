@@ -1,7 +1,5 @@
 ﻿define v = Character("Veta")
 define q = Character("Quain")
-image dude = Placeholder("boy")
-define dude = Character("dude")
 define r = Character("Receptionist")
 image quainflip = im.Flip("quaindefault1.png", horizontal = True )
 image black = "#000"
@@ -11,6 +9,7 @@ define fade = Fade(0.5, 0.0, 0.5)
 define ms = Character("Ms. Millie")
 define e = Character("Ellis")
 define p = Character("Seller")
+define a = Character("Aimon")
 
 
 image vetadefault:
@@ -40,6 +39,7 @@ default profile_quain = False
 #flags
 define storypoints = 1
 define ptalk = 1
+define etalk = 1
 
 default backpack = Container()
 
@@ -1339,7 +1339,7 @@ label start:
 
     label Ellis:
 
-        if storypoints >= 9:
+        if etalk == 1:
 
             scene oasiswestern
 
@@ -1349,11 +1349,11 @@ label start:
             q "We're actually investigating the murder. Can we ask you some questions?"
             e "If it'll help find the killer!"
 
-            $ storypoints += 1:
+            $ etalk += 1:
             
             jump oasiswesternlow
 
-        elif storypoints >= 10:
+        elif etalk >= 2:
 
             scene oasiswestern
 
@@ -1393,7 +1393,12 @@ label start:
 
         scene market
 
-        call screen market
+        if storypoints == 12:
+            
+            jump bumpaimon
+        else:
+
+            call screen market
 
     screen market():
 
@@ -1538,6 +1543,46 @@ label start:
         q "I was waiting anyway without you telling me to."
 
         call screen market
+
+    label bumpaimon:
+
+        scene market with fade
+
+        "THUD!"
+
+        show vetadefault1 at right with fade
+        show quainflip with fade:
+            xalign 0.7 
+
+        v "Ooof!"
+        ? "Ack! I'm sorry!"
+
+        show aimonupset at left
+
+        ? "I'm terribly sorry! Are you okay?"
+        v "Um...yeah, I'm fine."
+
+        show aimonhappy at left
+        hide aimonupset
+
+        ? "Thank goodness! My name's Aimon, by the way. I was looking for something before I bumped into you."
+        a "You haven't seen a necklace lying around, have you?"
+        q "Depends on what the necklace looks like."
+        a "It's a pig necklace. Pink. I think I dropped it by the oasis, but I didn't see it."
+        v "Actually, we did find a necklace like that on our way here. Is it this one?"
+        a "Yes! You found it! It was a gift from a close friend and I've been feeling sick since I lost it. Thank you!"
+
+        $ backpack.remove_item(necklace)
+
+        "Necklace handed over to Aimon"
+
+        a "Thank you again! I'll see you around!"
+
+        hide aimonhappy
+
+        v "Interesting fellow."
+
+
 
     label foodcart:
 
@@ -2057,6 +2102,19 @@ label start:
                     r "Yes! I've lived here all my life in the outskirts of the town. The hotel was hiring and I took the opportunity for better pay."
                     q "Where were you working before?"
                     r "I was working in the market for one of the pottery sellers. It was hard work and the pay wasn't worth it."
+                    jump recepdiscussion
+
+                "Fettling Knife" if storypoints == 14:
+
+                    q "Good morning, ma'am. The pottery seller in the market lost his fettling knife. Do you happen to know where it is?"
+                    r "Actually...now that you mention it, I did happen to find a fettling knife on my walk to work this morning."
+                    r "It was just lying there in the sand. I was running late, so I didn't get a chance to return it."
+                    r "This definitely is his knife though. His name is engraved on the handle. Here you go!"
+                    $ backpack.add_item(knife)
+                    v "Now we can return the knife!"
+
+                    $ storypoints += 1
+
                     jump recepdiscussion
 
                 "Goodbye":
