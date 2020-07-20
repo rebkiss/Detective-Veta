@@ -10,6 +10,7 @@ define ? = Character("????")
 define fade = Fade(0.5, 0.0, 0.5)
 define ms = Character("Ms. Millie")
 define e = Character("Ellis")
+define p = Character("Seller")
 
 
 image vetadefault:
@@ -36,7 +37,9 @@ default items_highlights = False
 default profile_veta = False
 default profile_quain = False
 
+#flags
 define storypoints = 1
+define ptalk = 1
 
 default backpack = Container()
 
@@ -195,6 +198,9 @@ label start:
 
         scene hotelroom 
 
+        if storypoints == 7:
+            jump newkey 
+
         call screen hotelroom with fade
 
     screen hotelroom():
@@ -259,6 +265,56 @@ label start:
         v "You're welcome."
 
         call screen hotelroom 
+
+    label newkey:
+
+        scene hotelroom with fade
+
+        show mariatusad at left
+        show vetadefault1 at right
+        show quainflip:
+                xalign 0.7
+
+        m "Oh, you're back! Did you manage to find my key?"
+        v "No, but we were able to get you a spare key."
+        q "Make sure you don't lose it."
+        m "Thank you! Thank you! I'll be sure to take extra care of this one!"
+        q "Well, I think it's time to turn in for the night. We have to meet up with the rest of the class in the morning."
+        v "Alright then."
+        hide quainflip
+
+        m "I'm going to let Ms. Millie know about my key. I'd rather get a scolding now than first thing in the morning."
+        v "Well, you have a key now, so you can get back into the room. I'm going to bed."
+        m "Goodnight!"
+
+        $ storypoints += 1
+
+        scene black with fade
+
+        jump morning
+
+    label morning:
+
+        scene black with fade
+        scene hotelroomday with fade
+
+        "The next morning"
+        v "Nnnnnnehhhh...."
+        v "What's that noise...?"
+
+        show mariatuhappy at left
+        show vetadefault1 at right
+
+        v "What's going on?"
+        show mariatusad
+        hide mariatuhappy
+        m "I'm not sure, but there's a crowd of people down by the oasis."
+        v "It's too noisy to go back to sleep, so let's check it out."
+
+
+        $ storypoints += 1
+
+        scene black with fade
 
     label hotelroommovelow:
 
@@ -990,7 +1046,13 @@ label start:
                 hotspot (714, 298, 488, 390) action Call("oasissouthernlow") 
             
             #hotel
-            hotspot (479, 203, 212, 294) action Call("hotellobbylow") 
+            hotspot: 
+                (479, 203, 212, 294) 
+                if storypoints >= 9:
+                action Call("hotellobbydaylow")
+                else:
+                    action Call("hotellobbylow")
+
             
             #market
             if storypoints >= 12:
@@ -1359,6 +1421,113 @@ label start:
             #map
             hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
 
+    label potteryseller:
+
+        scene market
+
+        if storypoints >= 13:
+
+            scene market with fade
+
+            show potteryseller at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
+            q "Good morning, sir. Could we ask you some questions?"
+            p "Hmph. I'm too busy at the moment to answer your silly questions."
+            p "...But, if you're willing to help me, I'll be happy to help you."
+            q "What do you need help with, sir?"
+            p "It's my knife. I lost my fettling knife and now I can't make my pottery without it."
+            q "Don't worry, sir. We'll help you find it."
+            v "I don't remember seeing a knife anywhere."
+            q "Maybe someone knows where it is?"
+
+            $ storypoints += 1
+
+            call screen market
+        
+        elif storypoints >= 14:
+
+            scene market with fade
+
+            show potteryseller at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
+            p "Found my knife yet?"
+            q "No, sir. We'll keep looking."
+
+            call screen market
+
+        elif storypoints >= 15:
+
+            scene market with fade
+
+            show potteryseller at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
+            p "Found my knife yet?"
+            q "Yes, sir. We got it right here."
+            "Fettling Knife handed over"
+            p "Ah, yes. This is definitely my knife. Where did you find it?"
+            q "Actually, the receptionist at the hotel we're staying at found it."
+            v "She said she used to work for you and recognized the knife."
+            p "...I'm glad she's doing well."
+            p "Go ahead and ask away. You earned it."
+
+            $ storypoints += 1
+
+            call screen market
+
+        else storypoints >= 16:
+
+            scene market with fade
+
+            show potteryseller at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
+            p "How can I help you?"
+
+            menu:
+                "Victim":
+                    
+                    q "There was a murder earlier today. Do you happen to know anything about the victim."
+                    p "A lot of us market sellers know Millie alright. Her class field trips helped bring in money in the slow season."
+                    q "Do you know anyone who might have some kind of ill will towards her?"
+                    p "Not that I know of. She was well liked by most everyone."
+                    q "Is there anyone else that she happened to be close to here at the market?"
+                    p "Hmm...That food cart was something she frequented every time she visited."
+
+                    if ptalk == 1:
+                        $ ptalk += 1
+                    else:
+                        jump potterystand
+
+                "Food Cart" if ptalk >= 2:
+
+                    q "So Ms. Millie visited that food cart over there often?"
+                    p "Very. The food there is delicious, but I think they were close friends."
+                    q "Do you know where the food cart seller is now? Or when they'll return?"
+                    p "He might be prepping his food right now. You should probably check back later."
+                    v "Maybe we should check out that food cart before he comes back."
+                    q "Agreed."
+
+                    $ storypoints += 1
+
+                    jump potteryseller
+
+                "Goodbye":
+
+                    call screen market
+
+
+            
     label potterystand:
 
         scene market
@@ -1374,7 +1543,7 @@ label start:
 
         scene market
 
-        if storypoints == 15:
+        if storypoints == 17:
 
             v "This must be the food cart that boy was talking about."
             q "There's no here manning the cart. I guess we'll have to wait until the owner comes back to ask questions."
@@ -1638,7 +1807,7 @@ label start:
 
         scene hotelobby with fade
 
-        if storypoints >= 3:
+        if storypoints >= 9:
             jump hotellobbydayreceplow
 
         else:
