@@ -40,6 +40,10 @@ default profile_quain = False
 define storypoints = 1
 define ptalk = 1
 define etalk = 1
+define snapsell = False
+define snapms = False
+define snapcart = False
+define snaplace = False
 
 default backpack = Container()
 
@@ -1697,7 +1701,7 @@ label start:
             q "Did you hurt yourself today? Hit your hit somewhere?"
             v "I touched the cart for a second and now I-I can't see!"
             q "Here's my arm, hang onto it. Let's find a medical professional. There has to be a hospital or clinic somewhere around here."
-            v "Wait! I can see something! It's a picture."
+            v "Wait! I can see something! It's a picture. But in black in white!"
             q "I don't see any pictures."
             v "I think it's in my head. I can see the food cart. And Ms. Millie! And someone else!"
             "Investigate the picture!"
@@ -1710,47 +1714,74 @@ label start:
             q "Must be on break."
             v "But I'm hungry..."
 
-    #screen foodcartsnapshot():
+    screen foodcartsnapshot():
 
-        #imagemap:
+        imagemap:
 
-            #idle
+            idle "foodsnap.png"
 
             #seller
-            #hotspot  action Jump("snapshotseller")
+            if snapsell = False:
+                hotspot (240, 217, 555, 689) action Jump("snapshotseller")
 
             #Ms. Millie
-            #hotspot  action Jump("snapshotMs")
+            if snapms = False:
+                hotspot (1010, 295, 543, 390) action Jump("snapshotMs")
 
             #foodcart
-            #hotspot  action Jump("snapshotcart")
+            if snapcart = False:
+                hotspot (338, 5, 890, 186) action Jump("snapshotcart")
 
             #necklace
-            #hotspot  action Jump("snapshotnecklace")
+            if snaplace = False:
+                hotspot (1224, 703, 110, 68) action Jump("snapshotnecklace")
 
-    #label snapshotseller:
+            if (snapsell = True) and (snapms = True) and (snapcart = True) and (snaplace = True):
+                jump ending
 
-        #scene
+    label snapshotseller:
 
-        #call screen foodcartsnapshot
+        scene foodsnap
 
-    #label snapshotMs:
+        v "This looks like the food cart seller. He seems young and happy. Maybe he was close to Ms. Millie?"
 
-        #scene
+        $ snapsell = True
 
-        #call screen foodcartsnapshot
+        call screen foodcartsnapshot
 
-    #label snapshotcart:
+    label snapshotMs:
 
-        #scene
+        scene foodsnap
 
-        #call screen foodcartsnapshot
+        v "This is Ms. Millie. But she doesn't have glasses on."
+        v "Ms. Millie looks a lot younger than she is now."
 
-    #label snapshotnecklace:
+        $ snapms = True
 
-        #scene 
+        call screen foodcartsnapshot
 
-        #call screen foodcartsnapshot
+    label snapshotcart:
+
+        scene foodsnap
+
+        v "The food cart. It looks exactly the same as the one in the market."
+        v "At least, I think it looks the same. Without color, it's hard to tell."
+
+        $ snapcart = True
+
+        call screen foodcartsnapshot
+
+    label snapshotnecklace:
+
+        scene foodsnap
+
+        v "Wait a second. This is the same necklace we found earlier!"
+        v "So was it actually Ms. Millie's necklace that Aimon took? Or did he happen to have the same one?"
+        v "And if it is Ms. Millie's, why did Aimon want it so badly?"
+
+        $ snaplace = True
+
+        call screen foodcartsnapshot
 
     label hotelroomdaylow:
 
@@ -2237,5 +2268,7 @@ label start:
 
             #back
             hotspot (18, 952, 105, 72) action Call("hotellobbydaylow")
+
+    label ending: 
 
     return
