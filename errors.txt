@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 407: expected a keyword argument or child statement.
-    "recepidcard.png" 
-    ^
+File "game/script.rpy", line 963: u'add' is not a keyword argument or valid child for the imagebutton statement.
+    add "profilesmariatuhover.png" xalign 0.3 yalign 0.54
+       ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jul 20 17:39:26 2020
+Mon Jul 20 20:11:57 2020

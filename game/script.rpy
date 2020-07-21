@@ -944,7 +944,55 @@ label start:
                     hovered SetVariable("profile_quain", True)
                     unhovered SetVariable("profile_quain", False) 
                     if profile_quain:
-                        add "profilesquainhover.png" xalign 0.3 yalign 0.54           
+                        add "profilesquainhover.png" xalign 0.3 yalign 0.54  
+
+                #mariatu
+                imagebutton:
+                    idle "profilesmariatu.png"
+                    xalign 0.5 yalign 0.5
+                    action NullAction()
+                    hovered "profilesmariatuhover.png"
+                    
+
+                #msmillie
+                imagebutton:
+                    idle "profilesmillie.png"
+                    xalign 0.5 yalign 0.5
+                    action NullAction()
+                    hovered "profilesmilliehover.png"
+                    
+
+                #receptionist
+                imagebutton:
+                    idle "profilesrecep.png"
+                    xalign 0.5 yalign 0.5
+                    action NullAction()
+                    hovered "profilesrecephover.png"
+                    
+
+                #ellis
+                imagebutton:
+                    idle "profilesellis.png"
+                    xalign 0.5 yalign 0.5
+                    action NullAction()
+                    hovered "profilesellishover.png"
+                    
+
+                #aimon
+                imagebutton:
+                    idle "profilesaimon.png"
+                    xalign 0.5 yalign 0.5
+                    action NullAction()
+                    hovered "profilesaimonhover.png"
+                    
+
+                #potteryseller
+                imagebutton:
+                    idle "profilesseller.png"
+                    xalign 0.5 yalign 0.5
+                    action NullAction()
+                    hovered "profilessellerhover.png"
+                            
 
 
     screen journal():
