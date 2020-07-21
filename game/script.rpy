@@ -918,51 +918,51 @@ label start:
 
         modal True
 
-        if storypoints >= 1:
-            imagemap:
+        imagemap:
 
-                idle "profilespageone.png"
+            idle "profilespageone.png"
 
-                #back button
-                hotspot (53, 934, 134, 99): 
-                    action Hide("bag", transition = fade), Hide("profiles", transition = fade)
+            #back button
+            hotspot (53, 934, 134, 99): 
+                action Hide("bag", transition = fade), Hide("profiles", transition = fade)
 
-                #bag
-                hotspot (73, 404, 158, 221) action Hide("profiles")    
+            #bag
+            hotspot (73, 404, 158, 221) action Hide("profiles")    
 
-                #veta
-                hotspot (446, 530, 106, 99):
-                    action NullAction()
-                    hovered SetVariable("profile_veta", True)
-                    unhovered SetVariable("profile_veta", False)
-                    if profile_veta:
-                        add "profilesvetahover.png" xalign 0.25 yalign 0.541
+            #veta
+            hotspot (446, 530, 106, 99):
+                action NullAction()
+                hovered SetVariable("profile_veta", True)
+                unhovered SetVariable("profile_veta", False)
+                if profile_veta:
+                    add "profilesvetahover.png" xalign 0.25 yalign 0.541
 
-                #quain
-                hotspot (561, 530, 107, 98):
-                    action NullAction()
-                    hovered SetVariable("profile_quain", True)
-                    unhovered SetVariable("profile_quain", False) 
-                    if profile_quain:
-                        add "profilesquainhover.png" xalign 0.3 yalign 0.54  
+            #quain
+            hotspot (561, 530, 107, 98):
+                action NullAction()
+                hovered SetVariable("profile_quain", True)
+                unhovered SetVariable("profile_quain", False) 
+                if profile_quain:
+                    add "profilesquainhover.png" xalign 0.3 yalign 0.54  
 
-                #mariatu
-                imagebutton:
-                    idle "profilesmariatu.png"
-                    xalign 0.5 yalign 0.5
-                    action NullAction()
-                    hovered "profilesmariatuhover.png"
+            #mariatu
+            imagebutton:
+                idle "profilesmariatu.png"
+                xalign 0.37 yalign 0.54
+                action NullAction()
+                hovered "profilesmariatuhover.png"
                     
 
-                #msmillie
-                imagebutton:
-                    idle "profilesmillie.png"
-                    xalign 0.5 yalign 0.5
-                    action NullAction()
-                    hovered "profilesmilliehover.png"
+            #msmillie
+            imagebutton:
+                idle "profilesmillie.png"
+                xalign 0.5 yalign 0.5
+                action NullAction()
+                hovered "profilesmilliehover.png"
                     
 
-                #receptionist
+            #receptionist
+            if storypoints >= 4:
                 imagebutton:
                     idle "profilesrecep.png"
                     xalign 0.5 yalign 0.5
@@ -970,7 +970,8 @@ label start:
                     hovered "profilesrecephover.png"
                     
 
-                #ellis
+            #ellis
+            if storypoints >= 11:
                 imagebutton:
                     idle "profilesellis.png"
                     xalign 0.5 yalign 0.5
@@ -979,6 +980,7 @@ label start:
                     
 
                 #aimon
+            if storypoints >= 13:
                 imagebutton:
                     idle "profilesaimon.png"
                     xalign 0.5 yalign 0.5
@@ -987,6 +989,7 @@ label start:
                     
 
                 #potteryseller
+            if storypoints >= 14:
                 imagebutton:
                     idle "profilesseller.png"
                     xalign 0.5 yalign 0.5

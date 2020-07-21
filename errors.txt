@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 963: u'add' is not a keyword argument or valid child for the imagebutton statement.
-    add "profilesmariatuhover.png" xalign 0.3 yalign 0.54
-       ^
+File "game/script.rpy", line 992: reached end of line when expecting ':'.
+    if storypoints >= 14
+                        ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jul 20 20:11:57 2020
+Mon Jul 20 20:24:19 2020
