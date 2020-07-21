@@ -385,7 +385,8 @@ label start:
             hotspot (970, 177, 297, 596) action Jump("room")
 
             #door
-            hotspot (243, 131, 144, 372) action Jump("hallwaydoor")
+            if storypoints == 2:
+                hotspot (243, 131, 144, 372) action Jump("hallwaydoor")
 
             #window
             hotspot (5, 94, 101, 112) action Jump("hallwaywindow")
@@ -729,7 +730,7 @@ label start:
 
     label recep:
 
-        if storypoints >= 3:
+        if storypoints == 3:
 
             scene hotelobby with fade
 
@@ -761,7 +762,7 @@ label start:
 
             call screen hotellobbyrecep with fade 
 
-        elif storypoints >= 4:
+        elif storypoints == 4:
 
             scene hotelobby with fade
 
@@ -774,7 +775,7 @@ label start:
 
             call screen hotellobbyrecep with fade
 
-        elif storypoints >= 5:
+        elif storypoints == 5:
 
             scene hotelobby with fade
 
@@ -786,7 +787,8 @@ label start:
             r "How is the search going?"
             q "Good news, we found it in the hallway."
             "Receptionist ID Card handed over!"
-            show receptionisthappy
+            show receptionisthappy at left
+            hide receptionistupset
             r "Oh, thank you so much! You don't know how much this means to me. If you need any help, please let me know!"
 
             scene hotelobby with fade
@@ -815,7 +817,7 @@ label start:
 
         r "How can I help you?"
         menu: 
-                "Mariatu's Key" if storypoints >= 6:
+                "Mariatu's Key" if storypoints == 6:
                     v "My friend lost her room key and we haven't found it yet. Has anyone brought it here?"
                     r "Hmm, I just started my shift, but let me see if there's anything here on the desk. Room number?"
                     v "110."
@@ -831,6 +833,7 @@ label start:
                     r "Here's one of the spare keys! Be sure to not lose it!"
                     $ backpack.add_item(sparekey)
                     "Spare key added to the bag!"
+                    $ storypoints += 1
                     jump recepdiscussion
                 
                 "Suspicious Door":
