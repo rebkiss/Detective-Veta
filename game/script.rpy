@@ -35,6 +35,12 @@ default items_highlights = False
 #profiles
 default profile_veta = False
 default profile_quain = False
+default profile_millie = False
+default profile_mariatu = False
+default profile_ellis = False
+default profile_aimon = False
+default profile_seller = False
+default profile_recep = False
 
 #flags
 define storypoints = 1
@@ -923,7 +929,7 @@ label start:
 
         imagemap:
 
-            idle "profilespageone.png"
+            idle "profilespagetwo.png"
 
             #back button
             hotspot (53, 934, 134, 99): 
@@ -949,57 +955,57 @@ label start:
                     add "profilesquainhover.png" xalign 0.3 yalign 0.54  
 
             #mariatu
-            hotspot (561, 530, 107, 98):
+            hotspot (672, 528, 113, 104):
                 action NullAction()
                 hovered SetVariable("profile_mariatu", True)
                 unhovered SetVariable("profile_mariatu", False) 
-                if profile_quain:
-                    add "profilesmariatuhover.png" xalign 0.3 yalign 0.54
+                if profile_mariatu:
+                    add "profilesmariatuhover.png" xalign 0.35 yalign 0.54
                     
 
             #msmillie
-            hotspot (561, 530, 107, 98):
+            hotspot (789, 526, 111, 103):
                 action NullAction()
                 hovered SetVariable("profile_millie", True)
                 unhovered SetVariable("profile_millie", False) 
-                if profile_quain:
-                    add "profilesmilliehover.png" xalign 0.3 yalign 0.54
+                if profile_millie:
+                    add "profilesmilliehover.png" xalign 0.45 yalign 0.54
                     
 
             #receptionist
-            hotspot (561, 530, 107, 98):
+            hotspot (903, 528, 110, 103):
                 action NullAction()
                 hovered SetVariable("profile_recep", True)
                 unhovered SetVariable("profile_recep", False) 
-                if profile_quain:
-                    add "profilesrecephover.png" xalign 0.3 yalign 0.54
+                if profile_recep:
+                    add "profilesrecephover.png" xalign 0.5 yalign 0.54
                     
 
             #ellis
-            hotspot (561, 530, 107, 98):
+            hotspot (1015, 526, 112, 105):
                 action NullAction()
                 hovered SetVariable("profile_ellis", True)
                 unhovered SetVariable("profile_ellis", False) 
-                if profile_quain:
-                    add "profilesellishover.png" xalign 0.3 yalign 0.54
+                if profile_ellis:
+                    add "profilesellishover.png" xalign 0.55 yalign 0.54
                     
 
             #aimon
-            hotspot (561, 530, 107, 98):
+            hotspot (1130, 526, 113, 106):
                 action NullAction()
                 hovered SetVariable("profile_aimon", True)
                 unhovered SetVariable("profile_aimon", False) 
-                if profile_quain:
-                    add "profilesaimonhover.png" xalign 0.3 yalign 0.54
+                if profile_aimon:
+                    add "profilesaimonhover.png" xalign 0.6 yalign 0.54
                     
 
             #potteryseller
-            hotspot (561, 530, 107, 98):
+            hotspot (1244, 528, 111, 101):
                 action NullAction()
                 hovered SetVariable("profile_seller", True)
                 unhovered SetVariable("profile_seller", False) 
-                if profile_quain:
-                    add "profilessellerhover.png" xalign 0.3 yalign 0.54
+                if profile_seller:
+                    add "profilessellerhover.png" xalign 0.65 yalign 0.54
                             
 
 
@@ -1017,6 +1023,10 @@ label start:
 
             #bag
             hotspot (73, 404, 158, 221) action Hide("journal"), Hide("journalentry") 
+
+            #rightarrow
+            hotspot (776, 756, 61, 50): 
+                action Hide("journal"), Hide("journalentry"), Show("journaltwo")
 
             if storypoints >= 2: 
                 textbutton "The Missing Door Key" action Show("TheMissingDoorKey") xalign 0.3 yalign 0.3 
@@ -1090,6 +1100,21 @@ label start:
 
             idle "journalpagetwo.png"
 
+            #back button
+            hotspot (53, 934, 134, 99):
+                action Hide("bag", transition = fade), Hide("journaltwo", transition = fade), Hide("journalentry")
+
+            #bag
+            hotspot (73, 404, 158, 221) action Hide("journaltwo"), Hide("journalentry") 
+
+            #rightarrow
+            hotspot (776, 756, 61, 50): 
+                action Hide("journaltwo"), Hide("journalentry"), Show("journalthree")
+
+            #leftarrow
+            hotspot (516, 754, 66, 53):
+                action Hide("journaltwo"), Hide("journalentry"), Show("journal")
+
             if storypoints >= 7:
                 textbutton "Spare Key" action Show("SpareKey") xalign 0.3 yalign 0.3
 
@@ -1157,6 +1182,17 @@ label start:
         imagemap:
 
             idle "journalpagethree.png"
+
+            #back button
+            hotspot (53, 934, 134, 99):
+                action Hide("bag", transition = fade), Hide("journalthree", transition = fade), Hide("journalentry")
+
+            #bag
+            hotspot (73, 404, 158, 221) action Hide("journalthree"), Hide("journalentry") 
+
+            #leftarrow
+            hotspot (516, 754, 66, 53):
+                action Hide("journalthree"), Hide("journalentry"), Show("journaltwo")
 
             if storypoints >= 13:
                 textbutton "Run in with Aimon" action Show("RuninwithAimon") xalign 0.3 yalign 0.3

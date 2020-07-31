@@ -1,17 +1,27 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 242, in script
-    hotspot (5, 924, 82, 126) action Jump("hotelroommovelow")
+  File "game/script.rpy", line 247, in script
+    call screen hotelroom
   File "renpy/common/000statements.rpy", line 531, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-TypeError: 'unicode' object is not callable
+  File "game/script.rpy", line 925, in execute
+    screen profiles():
+  File "game/script.rpy", line 925, in execute
+    screen profiles():
+  File "game/script.rpy", line 929, in execute
+    imagemap:
+  File "game/script.rpy", line 975, in execute
+    hotspot (903, 528, 110, 103):
+  File "game/script.rpy", line 979, in execute
+    if profile_quain:
+NameError: name 'profile_recep' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 242, in script
-    hotspot (5, 924, 82, 126) action Jump("hotelroommovelow")
+  File "game/script.rpy", line 247, in script
+    call screen hotelroom
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 1949, in execute
     self.call("execute")
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 1937, in call
@@ -26,19 +36,40 @@ Full traceback:
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 2702, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3515, in interact_core
-    rv = renpy.display.focus.mouse_handler(ev, x, y)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/focus.py", line 407, in mouse_handler
-    return change_focus(new_focus, default=default)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/focus.py", line 369, in change_focus
-    rv = widget.focus(default=default)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/behavior.py", line 819, in focus
-    rv = run(self.hovered)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/behavior.py", line 320, in run
-    return action(*args, **kwargs)
-TypeError: 'unicode' object is not callable
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3094, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/screen.py", line 430, in visit_all
+    callback(self)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3094, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/screen.py", line 440, in per_interact
+    self.update()
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/screen.py", line 625, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 925, in execute
+    screen profiles():
+  File "game/script.rpy", line 925, in execute
+    screen profiles():
+  File "game/script.rpy", line 929, in execute
+    imagemap:
+  File "game/script.rpy", line 975, in execute
+    hotspot (903, 528, 110, 103):
+  File "game/script.rpy", line 979, in execute
+    if profile_quain:
+  File "<screen language>", line 979, in <module>
+NameError: name 'profile_recep' is not defined
 
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
 Detective Veta 1.0
-Fri Jul 24 13:14:44 2020
+Fri Jul 31 12:01:15 2020
