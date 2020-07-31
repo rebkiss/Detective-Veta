@@ -206,35 +206,6 @@ label start:
         m "Of course, you guys are the experts!"
         jump chapterone
 
-
-    label chapterone:
-
-        scene chapter1 with fade
-        $ renpy.pause(delay=5,hard=False)
-
-        scene hotelroom with fade
-        show vetadefault at right
-        show quaindefault at left
-
-        v "Well, Mariatu is staying with another student, so we can start our investigation now."
-        q "Let's start with finding Mariatu's lost room key. It has to be somewhere in this hotel."
-        v "Sounds like a plan! I'll bring my bag along, too! It has some useful stuff and we can put the
-        things we find in here."
-        q "I have this map here that we can use to travel to different places."
-        v "Let's get this investigation started!"
-        $ storypoints += 1
-
-        call screen hotelroom with fade
-
-    label hotelroomlow:
-
-        scene hotelroom 
-
-        if storypoints == 7:
-            jump newkey 
-
-        call screen hotelroom with fade
-
     screen hotelroom():
 
         tag location
@@ -260,6 +231,34 @@ label start:
 
             #boot
             hotspot (5, 924, 82, 126) action Jump("hotelroommovelow")
+
+    label hotelroomlow:
+
+        scene hotelroom with fade
+
+        if storypoints == 7:
+            jump newkey 
+
+        call screen hotelroom 
+
+    label chapterone:
+
+        scene chapter1 with fade
+        $ renpy.pause(delay=5,hard=False)
+
+        scene hotelroom with fade
+        show vetadefault at right
+        show quaindefault at left
+
+        v "Well, Mariatu is staying with another student, so we can start our investigation now."
+        q "Let's start with finding Mariatu's lost room key. It has to be somewhere in this hotel."
+        v "Sounds like a plan! I'll bring my bag along, too! It has some useful stuff and we can put the
+        things we find in here."
+        q "I have this map here that we can use to travel to different places."
+        v "Let's get this investigation started!"
+        $ storypoints += 1
+
+        jump hotelroomlow
 
     label roomoutside:
 
@@ -854,6 +853,7 @@ label start:
                     jump hotellobbylow
 
 
+
     label hotellobbymovelow:
 
         scene hotellobby
@@ -949,55 +949,57 @@ label start:
                     add "profilesquainhover.png" xalign 0.3 yalign 0.54  
 
             #mariatu
-            imagebutton:
-                idle "profilesmariatu.png"
-                xalign 0.37 yalign 0.54
+            hotspot (561, 530, 107, 98):
                 action NullAction()
-                hovered "profilesmariatuhover.png"
+                hovered SetVariable("profile_mariatu", True)
+                unhovered SetVariable("profile_mariatu", False) 
+                if profile_quain:
+                    add "profilesmariatuhover.png" xalign 0.3 yalign 0.54
                     
 
             #msmillie
-            imagebutton:
-                idle "profilesmillie.png"
-                xalign 0.5 yalign 0.5
+            hotspot (561, 530, 107, 98):
                 action NullAction()
-                hovered "profilesmilliehover.png"
+                hovered SetVariable("profile_millie", True)
+                unhovered SetVariable("profile_millie", False) 
+                if profile_quain:
+                    add "profilesmilliehover.png" xalign 0.3 yalign 0.54
                     
 
             #receptionist
-            if storypoints >= 4:
-                imagebutton:
-                    idle "profilesrecep.png"
-                    xalign 0.5 yalign 0.5
-                    action NullAction()
-                    hovered "profilesrecephover.png"
+            hotspot (561, 530, 107, 98):
+                action NullAction()
+                hovered SetVariable("profile_recep", True)
+                unhovered SetVariable("profile_recep", False) 
+                if profile_quain:
+                    add "profilesrecephover.png" xalign 0.3 yalign 0.54
                     
 
             #ellis
-            if storypoints >= 11:
-                imagebutton:
-                    idle "profilesellis.png"
-                    xalign 0.5 yalign 0.5
-                    action NullAction()
-                    hovered "profilesellishover.png"
+            hotspot (561, 530, 107, 98):
+                action NullAction()
+                hovered SetVariable("profile_ellis", True)
+                unhovered SetVariable("profile_ellis", False) 
+                if profile_quain:
+                    add "profilesellishover.png" xalign 0.3 yalign 0.54
                     
 
-                #aimon
-            if storypoints >= 13:
-                imagebutton:
-                    idle "profilesaimon.png"
-                    xalign 0.5 yalign 0.5
-                    action NullAction()
-                    hovered "profilesaimonhover.png"
+            #aimon
+            hotspot (561, 530, 107, 98):
+                action NullAction()
+                hovered SetVariable("profile_aimon", True)
+                unhovered SetVariable("profile_aimon", False) 
+                if profile_quain:
+                    add "profilesaimonhover.png" xalign 0.3 yalign 0.54
                     
 
-                #potteryseller
-            if storypoints >= 14:
-                imagebutton:
-                    idle "profilesseller.png"
-                    xalign 0.5 yalign 0.5
-                    action NullAction()
-                    hovered "profilessellerhover.png"
+            #potteryseller
+            hotspot (561, 530, 107, 98):
+                action NullAction()
+                hovered SetVariable("profile_seller", True)
+                unhovered SetVariable("profile_seller", False) 
+                if profile_quain:
+                    add "profilessellerhover.png" xalign 0.3 yalign 0.54
                             
 
 

@@ -1,8 +1,8 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 227, in script
-    call screen hotelroom with fade
+  File "game/script.rpy", line 242, in script
+    hotspot (5, 924, 82, 126) action Jump("hotelroommovelow")
   File "renpy/common/000statements.rpy", line 531, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
 TypeError: 'unicode' object is not callable
@@ -10,8 +10,8 @@ TypeError: 'unicode' object is not callable
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 227, in script
-    call screen hotelroom with fade
+  File "game/script.rpy", line 242, in script
+    hotspot (5, 924, 82, 126) action Jump("hotelroommovelow")
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 1949, in execute
     self.call("execute")
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/ast.py", line 1937, in call
@@ -26,8 +26,8 @@ Full traceback:
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 2702, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3234, in interact_core
-    renpy.display.focus.mouse_handler(None, x, y, default=False)
+  File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/core.py", line 3515, in interact_core
+    rv = renpy.display.focus.mouse_handler(ev, x, y)
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/focus.py", line 407, in mouse_handler
     return change_focus(new_focus, default=default)
   File "/Users/Rebekah/Desktop/renpy-7.3.5-sdk/renpy/display/focus.py", line 369, in change_focus
@@ -41,4 +41,4 @@ TypeError: 'unicode' object is not callable
 Darwin-18.7.0-x86_64-i386-64bit
 Ren'Py 7.3.5.606
 Detective Veta 1.0
-Mon Jul 20 20:26:59 2020
+Fri Jul 24 13:14:44 2020
