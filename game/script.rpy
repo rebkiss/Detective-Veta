@@ -1759,7 +1759,7 @@ label start:
 
             scene oasiswestern
             
-            show ellis at left
+            show ellishappy at left
             show vetadefault1 at right
             show quainflip:
                 xalign 0.7
