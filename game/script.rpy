@@ -142,8 +142,6 @@ init python:
             else:
                 return('not found')
 
-
-
 # game starts here
 label start:
 
@@ -343,7 +341,7 @@ label start:
         show vetadefault1 at right
 
         v "What's going on?"
-        show mariatusad
+        show mariatusad at left
         hide mariatuhappy
         m "I'm not sure, but there's a crowd of people down by the oasis."
         v "It's too noisy to go back to sleep, so let's check it out."
@@ -542,9 +540,6 @@ label start:
             #couch
             hotspot (929, 333, 563, 278) action Jump("couch")
 
-            #carpet
-            hotspot (601, 803, 1128, 271) action ("carpet")
-
             #floor
             hotspot (563, 645, 1336, 123) action Jump("floor")
 
@@ -563,7 +558,7 @@ label start:
         scene hotelobby
 
         v "It's so pretty!"
-        q "Don't stare at it for too lo-{nw}"
+        q "Don't stare at it for too lo-"
         v "MY EYES!!"
         q "I WARNED YOU!"
         v "I've gone blind. Quain, please be my eyes."
@@ -608,16 +603,7 @@ label start:
         v "Hmm...I still think it's a couch."
         q "*facepalm*"
 
-        call screen hotellobby  
-
-    label carpet:
-
-        scene hotelobby
-
-        q "This is a nice carpet."
-        v "Too bad it has some sand on it."
-
-        call screen hotellobby  
+        call screen hotellobby    
 
     label floor:
 
@@ -655,9 +641,6 @@ label start:
             #couch
             hotspot (929, 333, 563, 278) action Jump("couchtwo")
 
-            #carpet
-            hotspot (601, 803, 1128, 271) action Jump("carpettwo")
-
             #floor
             hotspot (563, 645, 1336, 123) action Jump("floortwo")
 
@@ -676,7 +659,7 @@ label start:
         scene hotelobby
 
         v "It's so pretty!"
-        q "Don't stare at it for too lo-{nw}"
+        q "Don't stare at it for too lo-"
         v "MY EYES!!"
         q "I WARNED YOU!"
         v "I've gone blind. Quain, please be my eyes."
@@ -808,7 +791,7 @@ label start:
 
             call screen hotellobbyrecep
 
-        elif storypoints >= 6:
+        else storypoints >= 6:
             jump recepdiscussion
 
     label recepdiscussion:
@@ -826,7 +809,7 @@ label start:
                     v "My friend lost her room key and we haven't found it yet. Has anyone brought it here?"
                     r "Hmm, I just started my shift, but let me see if there's anything here on the desk. Room number?"
                     v "110."
-                    show receptionistupset
+                    show receptionistupset at left
                     hide receptionisthappy
                     r "...Sorry, I don't have it. We do keep spare keys, but they're under lock and key. Wait right here, I'll get it from the back!"
                     hide receptionistupset with fade
@@ -837,6 +820,7 @@ label start:
                     show receptionisthappy at left with fade
                     r "Here's one of the spare keys! Be sure to not lose it!"
                     $ backpack.add_item(sparekey)
+                    $ backpack.remove_item(recepidcard)
                     "Spare key added to the bag!"
                     $ storypoints += 1
                     jump recepdiscussion
@@ -857,8 +841,6 @@ label start:
                     jump recepdiscussion
                 "Goodbye":
                     jump hotellobbylow
-
-
 
     label hotellobbymovelow:
 
@@ -1359,10 +1341,10 @@ label start:
                 hotspot (714, 298, 488, 390) action Call("oasissouthernlow") 
             
             #hotel
-            if storypoints >= 9:
+            if storypoints >= 8:
                 hotspot (479, 203, 212, 294) action Call("hotellobbydaylow")
 
-            if storypoints <= 8:
+            if storypoints <= 7:
                 hotspot (479, 203, 212, 294) action Call("hotellobbylow")
 
             #market
@@ -1405,7 +1387,7 @@ label start:
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Jump("oasiseasternmovelow")
@@ -1517,13 +1499,13 @@ label start:
 
             #necklace
             if storypoints == 11:
-                imagebutton auto "necklace.png" action Jump("necklace")
+                imagebutton auto "necklace.png" xalign 0.6 yalign 0.5 action Jump("necklace")
 
             #bag
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Jump("oasissouthernmovelow")
@@ -1706,7 +1688,7 @@ label start:
             hotspot (1786, 28, 103, 115) action Show("bag", transition = fade)
 
             #map
-            hotspot (1785, 916, 91, 134) action Show("sketchmap", transtion = fade)
+            hotspot (1785, 916, 91, 134) action Show("sketchmap", transition = fade)
 
             #boot
             hotspot (5, 924, 82, 126) action Jump("oasiswesternmovelow")
@@ -1757,6 +1739,11 @@ label start:
 
             scene oasiswestern
 
+            show ellishappy at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
+
             e "Good morning, you two. Tourists seeing the sights?"
             q "Yes, something like that."
             e "Well, I'm terribly sorry about the commotion earlier today. It's not everyday someone gets murderered here!"
@@ -1770,6 +1757,11 @@ label start:
         elif etalk >= 2:
 
             scene oasiswestern
+            
+            show ellis at left
+            show vetadefault1 at right
+            show quainflip:
+                xalign 0.7
 
             menu:
 
@@ -2346,7 +2338,7 @@ label start:
         scene hotelobby
 
         v "It's so pretty!"
-        q "Don't stare at it for too lo-{nw}"
+        q "Don't stare at it for too lo-"
         v "MY EYES!!"
         q "I WARNED YOU!"
         v "I've gone blind. Quain, please be my eyes."
@@ -2438,9 +2430,6 @@ label start:
             #couch
             hotspot (929, 333, 563, 278) action Jump("couchtwoday")
 
-            #carpet
-            hotspot (601, 803, 1128, 271) action Jump("carpettwoday")
-
             #floor
             hotspot (563, 645, 1336, 123) action Jump("floortwoday")
 
@@ -2495,16 +2484,7 @@ label start:
         v "Hmm...I still think it's a couch."
         q "*facepalm*"
 
-        call screen hotellobbydayrecep  
-
-    label carpettwoday:
-
-        scene hotelobby
-
-        q "This is a nice carpet."
-        v "Too bad it has some sand on it."
-
-        call screen hotellobbydayrecep  
+        call screen hotellobbydayrecep   
 
     label floortwoday:
 
