@@ -791,7 +791,7 @@ label start:
 
             call screen hotellobbyrecep
 
-        else storypoints >= 6:
+        else: 
             jump recepdiscussion
 
     label recepdiscussion:

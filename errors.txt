@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 853: reached end of line when expecting ':'.
-    if backpack.has_item(sparekey)
-                                  ^
+File "game/script.rpy", line 794: expected ':' not found.
+    else storypoints >= 6:
+         ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Thu Jul 30 17:23:41 2020
+Fri Jul 31 12:47:14 2020
