@@ -1349,7 +1349,7 @@ label start:
                 hotspot (479, 203, 212, 294) action Call("hotellobbylow")
 
             #market
-            if storypoints >= 12:
+            if storypoints >= 11:
                 hotspot (1291, 236, 171, 232) action Call("marketlow")
             
             #back
