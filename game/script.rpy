@@ -101,6 +101,7 @@ init python:
     recepidcard = Item('recepidcard')
     necklace = Item('necklace')
     knife = Item('knife')
+    sparekey = Item('sparekey')
 
 
  ## Attempt to make a party system so investigation varies depending on party members
